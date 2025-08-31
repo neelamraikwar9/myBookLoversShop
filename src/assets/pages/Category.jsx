@@ -3,6 +3,7 @@ import useFetch from "../hook/useFetch";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Background from "../components/Background";
 
 const Category = () => {
@@ -24,8 +25,10 @@ const Category = () => {
     <Navbar />
     <br/>
     <br/>
-
     <Background />
+    <br/>
+    <br/>
+
       {loading && <p>Loading...</p>}
       {error && <p>An error occured while fetching books.</p>}
       {data && data.length > 0 ? (
@@ -63,8 +66,9 @@ const Category = () => {
        </div>
        <div>
        </div>
+       <br/>
+       <Footer />
     </div>
-   
   );
 };
 
