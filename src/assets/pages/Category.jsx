@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
+import useBookContext from "../contexts/BookContext";
 
 const Category = () => {
   const navigate = useNavigate();
@@ -13,18 +14,27 @@ const Category = () => {
   );
   console.log(data);
 
-  
-  const handleCategoryClick = (cat) => {
-    // if(!data?.category) return;
-    navigate(`/books/${cat.category}`);
+  // const handleCategoryClick = (cat) => {
+  //   navigate(`/books/${cat.category}`);
+  // };
+  // console.log("checkding handlecategrory fucti", handleCategoryClick);
+
+  const { books, setFilteredBooks} = useBookContext();
+  console.log(books, "checking books......")
+
+  const handleCategoryClick = (category) => {
+    console.log(category, "checking category")
+    const newFilteredBooks = books?.filter((book) => book.Category === category);
+    console.log(newFilteredBooks, "filtered books");
+    setFilteredBooks(newFilteredBooks);
+    navigate(`/books/${category}`);
   };
-  console.log("checkding handlecategrory fucti", handleCategoryClick);
+
+
+
 
   return (
     <div>
-    <Navbar />
-    <br/>
-    <br/>
     <Background />
     <br/>
     <br/>
@@ -36,7 +46,7 @@ const Category = () => {
           {data?.map((cat) => (
             <div
               key={cat._id}
-              onClick={() => handleCategoryClick(cat)}
+              onClick={() => handleCategoryClick(cat.category)}
               className="col-md-4"
             >
               <div className="container">

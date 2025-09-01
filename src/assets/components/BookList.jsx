@@ -3,8 +3,9 @@ import useBookContext from '../contexts/BookContext';
 
 
 const BookList = () => {
-  const { books, loading, error }  = useBookContext();
+  const {filteredBooks, books, loading, error, bookCartHandler }  = useBookContext();
   console.log(books)
+  console.log(filteredBooks, "Checking filtered books in book list.")
 
   return (
     <>
@@ -31,9 +32,9 @@ const BookList = () => {
                   </h5>
                   <h4 className="text-center"><strong>{book.price}</strong></h4>
                   <h5 className="text-center">⭐⭐⭐⭐⭐{book.rating}</h5>
-                  <button className="btn btn-primary">🛒Add to Cart</button>
+                  <button className="btn btn-primary" onClick={() => bookCartHandler(book._id)}>🛒Add to Cart</button>
                   <br/>
-                  <button className="btn btn-primary">🩷Add to WishList</button>
+                  <button className="btn btn-primary">🩷Add to Wishlist</button>
                 </div>
               </div>
             ))}
