@@ -14,16 +14,16 @@ const BookList = () => {
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>An error occured while fetching books.</p>}
-        {books && books?.length > 0 ? (
+        {filteredBooks && filteredBooks?.length > 0 ? (
           <div className="row">
-            {books && books?.map((book) => (
+            {filteredBooks && filteredBooks?.map((book) => (
               <div key={book._id} className="col-md-4 container py-3">
-                <div className="card">
+                <div className="card h-100">
                   <div className="bg-body-secondary">
                     <img
                       src={book.image}
                       alt={book.name}
-                      className="img-fluid"
+                      className="img-fluid object-fit-cover border rounded"
                     />
                   </div>
                   <br />

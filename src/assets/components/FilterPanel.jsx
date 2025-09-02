@@ -1,5 +1,5 @@
 import React from "react";
-// import CategoryFilter from '../CategoryFil';
+import CategoryFilter from '../components/CategoryFilter';
 // import SliderRating from '../SliderRating';
 
 const FilterPanel = () => {
@@ -8,10 +8,7 @@ const FilterPanel = () => {
     <div className="container">
       <h2>Filters</h2>
       {/* Category filter */}
-      {/* <CategoryFilter 
-        // updateFilters={updateFilters}   
-        // value={value}       
-      /> */}
+      <CategoryFilter   /> 
 
       {/* Ratings: A slider for ratings. */}
       {/* <SliderRating /> */}

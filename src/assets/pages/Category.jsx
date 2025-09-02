@@ -24,9 +24,11 @@ const Category = () => {
 
   const handleCategoryClick = (category) => {
     console.log(category, "checking category")
-    const newFilteredBooks = books?.filter((book) => book.Category === category);
+    const newFilteredBooks = books?.filter((book) => book.category === category);
     console.log(newFilteredBooks, "filtered books");
     setFilteredBooks(newFilteredBooks);
+    // books(newFilteredBooks);
+
     navigate(`/books/${category}`);
   };
 
@@ -35,6 +37,9 @@ const Category = () => {
 
   return (
     <div>
+    <br/>
+    <br/>
+
     <Background />
     <br/>
     <br/>
