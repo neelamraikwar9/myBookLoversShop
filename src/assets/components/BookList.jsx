@@ -1,22 +1,35 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import useBookContext from '../contexts/BookContext';
+import { useParams } from "react-router-dom";
 
 
 const BookList = () => {
-  const {filteredBooks, books, loading, error, bookCartHandler }  = useBookContext();
+  const {dataget, loading, error, books, setBooks, bookCartHandler }  = useBookContext();
   console.log(books)
-  console.log(filteredBooks, "Checking filtered books in book list.")
+
+    const { category } = useParams();
+    console.log(category, "checking category on bookCOntext")
+
+
+  useEffect(() => {
+      if(category){
+        const filterBooks = dataget?.filter((book) => book.category === category);
+        setBooks(filterBooks)
+      } else{
+        setBooks(dataget)
+      }
+    }, [dataget, category])
 
   return (
     <>
       <h1>Books</h1>
-      {console.log(books)}
+      {/* {console.log(books)} */}
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>An error occured while fetching books.</p>}
-        {filteredBooks && filteredBooks?.length > 0 ? (
+        {books && books?.length > 0 ? (
           <div className="row">
-            {filteredBooks && filteredBooks?.map((book) => (
+            {books && books?.map((book) => (
               <div key={book._id} className="col-md-4 container py-3">
                 <div className="card h-100">
                   <div className="bg-body-secondary">

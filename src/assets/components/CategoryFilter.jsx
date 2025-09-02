@@ -1,13 +1,10 @@
 import React from 'react'
 import useFetch from '../hook/useFetch';
 import { useState, useEffect}  from 'react';
-import useBookContext from '../contexts/BookContext';
+// import useBookContext from '../contexts/BookContext';
 
 const CategoryFilter = () => {
-    const {updatedFilters} = useBookContext();
-
-
-
+    // const {updatedFilters} = useBookContext();
 
     const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
@@ -38,7 +35,7 @@ const CategoryFilter = () => {
       <h5>Category📙📘📗</h5>
       {catData?.map((cat, index) => (
       <label htmlFor={cat.category} key={cat.category} className="ms-3">
-      <input type="checkbox" id={cat.category} value={cat.category} name="Fiction" onChange={() => updatedFilters()} />  
+      <input type="checkbox" id={cat.category} value={cat.category} name="Fiction"/>  
       {cat.category}
       </label> ))
       }

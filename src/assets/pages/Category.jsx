@@ -2,38 +2,21 @@ import React from "react";
 import useFetch from "../hook/useFetch";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
-import useBookContext from "../contexts/BookContext";
+// import useBookContext from "../contexts/BookContext";
 
 const Category = () => {
   const navigate = useNavigate();
   const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
   );
-  console.log(data);
+  console.log( "checking data on cte..", data);
 
-  // const handleCategoryClick = (cat) => {
-  //   navigate(`/books/${cat.category}`);
-  // };
-  // console.log("checkding handlecategrory fucti", handleCategoryClick);
-
-  const { books, setFilteredBooks} = useBookContext();
-  console.log(books, "checking books......")
-
-  const handleCategoryClick = (category) => {
-    console.log(category, "checking category")
-    const newFilteredBooks = books?.filter((book) => book.category === category);
-    console.log(newFilteredBooks, "filtered books");
-    setFilteredBooks(newFilteredBooks);
-    // books(newFilteredBooks);
-
+  const handleCategoryClick = ( category ) => {
     navigate(`/books/${category}`);
   };
-
-
-
+  console.log("checkding handlecategrory fucti", handleCategoryClick);
 
   return (
     <div>
