@@ -22,13 +22,13 @@ const BookList = () => {
 
   return (
     <>
-      <h1>Books</h1>
+      <h1 className='text-center'>Books</h1>
       {/* {console.log(books)} */}
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>An error occured while fetching books.</p>}
         {books && books?.length > 0 ? (
-          <div className="row">
+          <div className="row row-cols-lg-5 row-col">
             {books && books?.map((book) => (
               <div key={book._id} className="col-md-4 container py-3">
                 <div className="card h-100">

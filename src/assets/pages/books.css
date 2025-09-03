@@ -1,4 +1,4 @@
-.home{
+/* .home{
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -14,10 +14,10 @@
 }
 
 .filterPanelWrap{
-    flex-basis: 280px;
+    flex-basis: 180px;
 }
 
 .panelListWrap, .filterPanelWrap, .listWrap{
     overflow-y: auto;
 
-}
+} */

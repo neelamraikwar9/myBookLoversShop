@@ -25,7 +25,7 @@ const Books = () => {
     // Buton to clear filter */}
         </div>
 
-        <div className="listWrap">
+        <div className="py-3">
           <BookList/>
         </div>
       </div>

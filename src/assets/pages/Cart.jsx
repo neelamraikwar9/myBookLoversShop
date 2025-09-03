@@ -7,20 +7,20 @@ export const Cart = () => {
   console.log(cart, "cart checking on cart page....");
   return (
     <>
-      <h1>My Cart()</h1>
+      <h1 className="text-center">My Cart()</h1>
       <br />
       <br />
       <div>
         {cart && cart.length === 0 ? (
-          <div className="card col-md-5 mx-auto">
-            <h3>Cart is empty!</h3>
+          <div className="card col-md-4 mx-auto">
+            <h3 className="text-center py-3">Cart is empty!</h3>
             <img
               src="https://i.imghippo.com/files/sFg1101IhI.jpg"
               alt="Empty Cart"
               className="img-fluid"
             />
             <Link to="/books">
-              <button className="btn btn-primary">Shop Now</button>
+              <button className="btn btn-primary btn-block w-100">Shop Now</button>
             </Link>
           </div>
         ) : (
@@ -47,7 +47,8 @@ export const Cart = () => {
                         <div className="card-body">
                           <h5>{car.name}</h5>
                           <h6>by {car.author}</h6>
-                          <h5>{car.price}</h5>
+                          <h5>{car.price}</h5> <h5></h5>
+
                           <p>Quantity: </p>
                           <button
                             className="btn btn-secondary mb-3"

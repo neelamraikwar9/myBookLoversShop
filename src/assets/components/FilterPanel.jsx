@@ -5,8 +5,8 @@ import CategoryFilter from '../components/CategoryFilter';
 const FilterPanel = () => {
   
   return (
-    <div className="container">
-      <h2>Filters</h2>
+    <div className="d-flex flex-md-row flex-lg-column">
+      <h2 className="container">Filters</h2>
       {/* Category filter */}
       <CategoryFilter   /> 
 

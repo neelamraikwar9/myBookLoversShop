@@ -44,17 +44,6 @@ export function BookProvider({ children }) {
     setCart(updatedCart)
   }
 
-
-  // function updatedFilters(event){
-  //   console.log(event.target.value, event.target.checked)
-  //   if(event.target.checked){
-  //    const filtered = data?.filter((item) => item.category === value)    
-  //     setCatFil([...catFil, filtered])
-  //   } else{
-  //     setCatFil([...catFil.filter((item) => item.category !== value)])
-  //   }
-  // }
-
   
    const value = {
     books,
