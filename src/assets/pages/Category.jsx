@@ -35,7 +35,7 @@ const Category = () => {
             <div
               key={cat._id}
               onClick={() => handleCategoryClick(cat.category)}
-              className="col-md-4"
+              className="col-md-4 bt-sm-3"
             >
               <div className="container">
                 <div className="card">
