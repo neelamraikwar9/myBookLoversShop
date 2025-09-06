@@ -13,7 +13,7 @@ const FilterPanel = () => {
 
       {/* Ratings: A slider for ratings. */}
       {/* <SliderRating /> */}
-      <CategoryFilter   />
+      
 
       {/* A button to clear filters from where you can clear all the applied filters. */}
       {/* I will create her./ */}

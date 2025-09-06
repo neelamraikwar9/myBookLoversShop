@@ -16,10 +16,11 @@ export function BookProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [counter, setCounter] = useState(0);
   const [list, setList] = useState([]);
+  // const [dataTo, setDataTo] = useState(data);
   
 
   //useStates for filters
-  const [catFil, setCatFil] = useState();
+  // const [catFil, setCatFil] = useState();
 
   // const [inCart, setInCart] = useState([]);
 
@@ -106,28 +107,31 @@ export function BookProvider({ children }) {
 
 
   // All Filters 
-  //  function updatedFilters(event){
-  //   // console.log(event.target.value, event.target.checked)
-  //   if(event.target.checked){
-  //    const filtered = books?.filter((item) => item.category === value)    
-  //     setCatFil([...catFil, filtered])
-  //     console.log("filterd items", filtered)
-  //   } else{
-  //     setCatFil([...catFil.filter((item) => item.category !== value)])
+  //  useEffect(() => {
+  //   if (data && data.length > 0) {
+  //     setDataTo(data);
+  //   } else {
+  //     data;
   //   }
-  //   console.log("checking cat filter: ", catFil)
+  // }, [data, dataget]);
+
+  // function updatedFilter(event){
+  //   const {checked, value} = event.target;
+  //   console.log(checked, "checking checked on fun")
+    
+  //     console.log(dataget, "checing data at funciton")
+  //     console.log(value, "checing valie at funciton")
+  //     const filtered = dataget?.filter((item) => item.category === value)   
+  //     setBooks(filtered)
+  //     // setCatFil([filtered])
+  //     console.log("checking at funct books", books)
+  // }
+  
 
 
 
 
-  function updatedFilter(event){
-    if(event.target.checked){
-      const filtered = books?.filter((item) => item.category === value)   
-      setCatFil([...catFil, event.target.value])
-    } else{
-      setCatFil([...catFil.filter((item) => item.category !== value)])
-    }
-  }
+ 
 
 
 
@@ -148,11 +152,10 @@ export function BookProvider({ children }) {
     cartRemoveHandler,
     addToWishlist,
     list,
-    updatedFilter,
     wishListRemoveHandler,
     handleMoveCart,
     handleMoveWishlist,
-    quantity
+    quantity,
     
   };
 

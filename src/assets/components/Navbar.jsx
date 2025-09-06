@@ -14,7 +14,10 @@ const Navbar = () => {
       <header>
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <NavLink to="/" className="navbar-brand ms-md-5 ms-lg-5 ms-lg-5 ps-lg-5 ">
-            📚BookLovers
+            {/* 📚BookLovers */}
+            <h1 className="display-4 fw-semibold fst-italic text-dark">
+  📚Book<span className="text-secondary">Lovers</span>
+</h1>
           </NavLink>
           <button
             className="navbar-toggler"

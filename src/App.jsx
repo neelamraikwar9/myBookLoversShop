@@ -11,6 +11,7 @@ import { BookProvider } from './assets/contexts/BookContext'
 import WishList from './assets/pages/WishList';
 import Cart from './assets/pages/Cart';
 import Login from './assets/pages/Login';
+import BookDetail from './assets/pages/BookDetail';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/wishList-page" element={<WishList />}></Route>
       <Route path="/cart-page" element={<Cart />}></Route>
       <Route path="/login-page" element={<Login />}></Route>
+      <Route path="/book/:bookId" element={<BookDetail/>}></Route>
       </Routes>
     </BookProvider>
     </>
