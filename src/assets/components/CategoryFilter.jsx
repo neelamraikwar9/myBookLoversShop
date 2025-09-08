@@ -2,7 +2,6 @@ import React from 'react'
 import useFetch from '../hook/useFetch';
 import { useState, useEffect}  from 'react';
 import useBookContext from '../contexts/BookContext';
-import { useNavigate } from 'react-router-dom';
 
 const CategoryFilter = () => {
     const {dataget, books, setBooks } = useBookContext();
@@ -13,7 +12,6 @@ const CategoryFilter = () => {
   console.log("Checking data", data)
 
   const [catData, setCatData] = useState();
-  // const [catFil, setCatFil] = useState([])
   
     useEffect(() => {
       if(data && data.length > 0){
@@ -26,29 +24,19 @@ const CategoryFilter = () => {
   
   console.log(catData, "Checking catData")
 
-   const navigate = useNavigate();
-
    function updatedFilter(event){
     const {checked, value} = event.target;
     console.log(checked, "checking checked on fun")
 
-      // console.log(dataget, "checing data at funciton")
-      // console.log(value, "checing valie at funciton")
-
-      const filtered = dataget?.filter((book) => book.category === value)   
-      setBooks(filtered)
-
-      if(filtered){
-        navigate(`/books/${value}`)
-      }
-
-      else{
-        setBooks(dataget)
-        navigate(`/books`)
-      }
-
-      // setCatFil([filtered])
+    const filtered = dataget?.filter((book) => book.category === value)   
+    if(filtered){
+    setBooks(filtered)
+    console.log("checking at funct books", books)
+    } else{
+      setBooks(...books)
       console.log("checking at funct books", books)
+    }
+    // console.log("checking at funct books", books)
   }
 
    

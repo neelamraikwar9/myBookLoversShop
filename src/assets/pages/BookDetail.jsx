@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useBookContext from "../contexts/BookContext";
 
 const BookDetail = () => {
-    const {dataget, handleAddToWish, handleAddToCart} = useBookContext();
+    const {dataget, handleAddToWish, handleAddToCart, handleAddWish, handleAddCart} = useBookContext();
     console.log(dataget, "amm i getting dataget?")
     console.log(dataget, "checking data in detail page...")
   const { bookId } = useParams();
@@ -33,7 +33,7 @@ const BookDetail = () => {
                 <Link to="/wishList-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100 mb-2"
-                    onClick={() => handleAddToWish(data?._id)}
+                    onClick={() => handleAddToWish(data._id)}
                   >
                   Add to Wishlist
                   <i className="bi bi-suit-heart-fill ms-2"></i>
@@ -103,7 +103,7 @@ const BookDetail = () => {
                      <Link to="/wishList-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100 mb-2"
-                    onClick={() =>handleAddToWish(data._id)}
+                    onClick={() =>handleAddWish(book._id)}
                   >
                   Add to Wishlist
                   <i className="bi bi-suit-heart-fill ms-2"></i>
@@ -112,7 +112,7 @@ const BookDetail = () => {
                 <Link to="/cart-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100"
-                    onClick={() => wishListRemoveHandler(data._id)}
+                    onClick={() => handleAddCart(book._id)}
                   >
                     Add to Cart<i className="bi bi-cart4 ms-2"></i>
                   </button>

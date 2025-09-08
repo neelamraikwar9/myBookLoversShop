@@ -14,7 +14,7 @@ export const Cart = () => {
       <div className="container">
         {cart && cart.length === 0 ? (
           <div className='container-fluid'>
-          <div className="row justify-content-center">
+          <div className="container row justify-content-center text-align-center">
           <div className="col-4">
           <div className="card ">
             <h3 className="text-center py-3">Cart is empty!</h3>
@@ -34,7 +34,7 @@ export const Cart = () => {
           <div className="container  bg-dark ">
           <div className="">
           <div className="row justify-content-center ms-lg-5 ps-lg-5">
-           <div className="col-md-6">
+           <div className="col-md-8">
 
             <div className="card text-center mb-3">        
             {/* style={{ width: "20rem" }} */}
@@ -69,7 +69,7 @@ export const Cart = () => {
                     style={{ maxWidth: "450px" }}
                   >
                     <div className=" row g-0">
-                      <div className="col-md-4 py-5">
+                      {/* <div className="col-md-4 py-2 col-ms-4"> */}
                         <img
                           src={car.image}
                           alt={car.name}
@@ -78,6 +78,7 @@ export const Cart = () => {
                       </div>
                       <div className="col-md-8">
                         <div className="card-body">
+                        <div className=" container col-sm-container text-sm-center text-md-center">
                           <h5>{car.name}</h5>
                           <h6>by {car.author}</h6>
                           <p><strong className="fw-medium">{car.salePrice}</strong> <del><span className="text-success">{car.price}</span></del></p>
@@ -85,19 +86,20 @@ export const Cart = () => {
                           <p>Quantity: {quantity()}</p>
                           <div className="container">
                            <Link to="/wishList-page">
-                          <button className="btn btn-outline-secondary " onClick={() => handleMoveWishlist(car._id)}>
+                          <button className="btn btn-outline-secondary ms-lg-1 ms-md-5 ms-sm-5" onClick={() => handleMoveWishlist(car._id)}>
                             {" "}
                             Move to Wishlist <i className="bi bi-suit-heart-fill ms-2"></i>
                           </button>
                           </Link>
 
                           <button
-                            className="btn btn-secondary mb-3"
+                            className="btn btn-secondary mb-3 ms-lg-1 ms-sm-5"
                             onClick={() => cartRemoveHandler(car._id)}
                           >
                             Remove From Cart   <i className="bi bi-cart4"></i>
                           </button>
                           </div>
+                          {/* </div> */}
                         </div>
                       </div>
                     </div>  

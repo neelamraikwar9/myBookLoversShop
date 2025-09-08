@@ -11,13 +11,13 @@ export function BookProvider({ children }) {
   );
   console.log(data);
 
-  const [books, setBooks] = useState(data);
+  const [books, setBooks] = useState([]);
   const [dataget, setDataGet] = useState(data);
   const [cart, setCart] = useState([]);
   const [counter, setCounter] = useState(0);
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
-  const [selectedRating, setSelectedRating] = useState();
+
   
 
   //useStates for filters
@@ -40,10 +40,6 @@ export function BookProvider({ children }) {
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
-
-   
-    // console.log(cart, "Checking cart.... ")
-    // console.log("checking items in cart", cart)
 
     const isInCart = cart?.some((car) => car._id === _id);
     
@@ -108,19 +104,32 @@ export function BookProvider({ children }) {
 
   // Function for Add to Wish List from book detail page.
   function handleAddToWish(_id){
-    console.log(_id, "Checking waht is comig in the id")
-    // const addToWish = list.find((book) => book._id === _id)
-    setList((prev) => [...prev, _id])
+    const addToWish = books?.find((book) => book._id === _id)
+    setList([...list, addToWish])
     console.log(list, "checking list value")
-  }
+  } 
 
+  // Function for Add to Cart from book detail page.
   function handleAddToCart(_id){
-    setCart([...cart, _id])
+    const addToCart = books?.find((book) => book._id === _id)
+    setCart([...cart, addToCart])
     console.log(cart, "checking cart value")
   }
 
 
-  //
+  //Function addWish and addCart for more books which is below to book detail page.
+  function handleAddWish(_id){
+   const addWish = books.find((book) => book._id === _id)
+   setList([...list, addWish])
+  } 
+
+
+
+  function handleAddCart(_id){
+    const addCart = books.find((book) => book._id === _id)
+    setCart([...cart, addCart])
+  }
+
 
 
   // All Filters 
@@ -133,34 +142,7 @@ export function BookProvider({ children }) {
   }, [data, dataTo]);
   console.log(dataTo, "checking dataTo oncontext")
 
-  // function updatedFilter(event){
-  //   const {checked, value} = event.target;
-  //   console.log(checked, "checking checked on fun")
-    
-  //     console.log(dataget, "checing data at funciton")
-  //     console.log(value, "checing valie at funciton")
-  //     const filtered = dataget?.filter((item) => item.category === value)   
-  //     setBooks(filtered)
-  //     // setCatFil([filtered])
-  //     console.log("checking at funct books", books)
-  // }
-
-
-  // function ratingChangeHandler(event){
-  //   setSelectedRating(event.target.value)
-  // };
-
-  // const filteredItem = selectedRating ? dataget?.filter((item) => item.rate >= selectedRating) : dataget;
-  // console.log(filteredItem, "checking filteredd items")
   
-
-
-
-
- 
-
-
-
   
 
 
@@ -184,9 +166,9 @@ export function BookProvider({ children }) {
     quantity,
     handleAddToWish,
     handleAddToCart,
-    dataTo,
-    // ratingChangeHandler
-    
+    handleAddWish, 
+    handleAddCart
+  
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;
