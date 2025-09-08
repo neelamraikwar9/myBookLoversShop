@@ -28,22 +28,24 @@ const CategoryFilter = () => {
 
    const navigate = useNavigate();
 
-  // const handleOnCheck = ( category ) => {
-  //   navigate(`/books/${category}`);
-  // };
-  // console.log("checkding handlecategrory fucti", handleCategoryClick);
-
-
    function updatedFilter(event){
     const {checked, value} = event.target;
     console.log(checked, "checking checked on fun")
-    
-      console.log(dataget, "checing data at funciton")
-      console.log(value, "checing valie at funciton")
-      const filtered = dataget?.filter((item) => item.category === value)   
+
+      // console.log(dataget, "checing data at funciton")
+      // console.log(value, "checing valie at funciton")
+
+      const filtered = dataget?.filter((book) => book.category === value)   
       setBooks(filtered)
 
-      navigate(`/books/${value}`)
+      if(filtered){
+        navigate(`/books/${value}`)
+      }
+
+      else{
+        setBooks(dataget)
+        navigate(`/books`)
+      }
 
       // setCatFil([filtered])
       console.log("checking at funct books", books)
@@ -64,7 +66,9 @@ const CategoryFilter = () => {
       <label htmlFor={cat.category} key={cat.category} className="ms-3">
       <input type="checkbox" onChange={updatedFilter} id={cat.category} value={cat.category} name="Fiction"/>  
       {cat.category}
-      </label> ))
+       <br/>
+      </label> 
+      ))
       }
       </div>
       ) : (

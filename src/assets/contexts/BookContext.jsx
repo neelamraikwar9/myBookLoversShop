@@ -16,7 +16,8 @@ export function BookProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [counter, setCounter] = useState(0);
   const [list, setList] = useState([]);
-  // const [dataTo, setDataTo] = useState(data);
+  const [dataTo, setDataTo] = useState(data);
+  const [selectedRating, setSelectedRating] = useState();
   
 
   //useStates for filters
@@ -105,15 +106,32 @@ export function BookProvider({ children }) {
   }
 
 
+  // Function for Add to Wish List from book detail page.
+  function handleAddToWish(_id){
+    console.log(_id, "Checking waht is comig in the id")
+    // const addToWish = list.find((book) => book._id === _id)
+    setList((prev) => [...prev, _id])
+    console.log(list, "checking list value")
+  }
+
+  function handleAddToCart(_id){
+    setCart([...cart, _id])
+    console.log(cart, "checking cart value")
+  }
+
+
+  //
+
 
   // All Filters 
-  //  useEffect(() => {
-  //   if (data && data.length > 0) {
-  //     setDataTo(data);
-  //   } else {
-  //     data;
-  //   }
-  // }, [data, dataget]);
+   useEffect(() => {
+    if (data && data.length > 0) {
+      setDataTo(data);
+    } else {
+      data;
+    }
+  }, [data, dataTo]);
+  console.log(dataTo, "checking dataTo oncontext")
 
   // function updatedFilter(event){
   //   const {checked, value} = event.target;
@@ -126,6 +144,14 @@ export function BookProvider({ children }) {
   //     // setCatFil([filtered])
   //     console.log("checking at funct books", books)
   // }
+
+
+  // function ratingChangeHandler(event){
+  //   setSelectedRating(event.target.value)
+  // };
+
+  // const filteredItem = selectedRating ? dataget?.filter((item) => item.rate >= selectedRating) : dataget;
+  // console.log(filteredItem, "checking filteredd items")
   
 
 
@@ -156,6 +182,10 @@ export function BookProvider({ children }) {
     handleMoveCart,
     handleMoveWishlist,
     quantity,
+    handleAddToWish,
+    handleAddToCart,
+    dataTo,
+    // ratingChangeHandler
     
   };
 

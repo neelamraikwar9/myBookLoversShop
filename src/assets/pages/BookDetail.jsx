@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useBookContext from "../contexts/BookContext";
 
 const BookDetail = () => {
-    const {dataget} = useBookContext();
+    const {dataget, handleAddToWish, handleAddToCart} = useBookContext();
     console.log(dataget, "amm i getting dataget?")
     console.log(dataget, "checking data in detail page...")
   const { bookId } = useParams();
@@ -33,7 +33,7 @@ const BookDetail = () => {
                 <Link to="/wishList-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100 mb-2"
-                    onClick={() => handleMoveCart(data._id)}
+                    onClick={() => handleAddToWish(data?._id)}
                   >
                   Add to Wishlist
                   <i className="bi bi-suit-heart-fill ms-2"></i>
@@ -42,7 +42,7 @@ const BookDetail = () => {
                 <Link to="/cart-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100"
-                    onClick={() => wishListRemoveHandler(data._id)}
+                    onClick={() => handleAddToCart(data._id)}
                   >
                     Add to Cart<i className="bi bi-cart4 ms-2"></i>
                   </button>
@@ -70,23 +70,24 @@ const BookDetail = () => {
             <hr/>
             <h5>Book Details:-</h5>
             <br/>
-            <p>Book Name: <strong>{data?.name}</strong></p>
-            <p>Author: <strong>{data?.author}</strong></p>
-            <p>Category: <strong>{data?.category}</strong></p>
-            <p>Genre: <strong>{data?.genre}</strong></p>
-            <p>ISBN: <strong>{data?.isbn}</strong></p>
-            <p>Language: <strong>{data?.language}</strong></p>
-            <p>Pages: <strong>{data?.pages}</strong></p>
-            <p>Publish Year: <strong>{data?.publishYear}</strong></p>
-            <p>Publisher: <strong>{data?.publisher}</strong></p>
-            <p>Sub Genre: <strong>{data?.subGenre}</strong></p>
-            <p>Summary of the book: <strong>{data?.summary}</strong></p>
+            <p><strong>Book Name: </strong> <i>{data?.name}</i></p>
+            <p><strong>Author: </strong> <i>{data?.author}</i></p>
+            <p><strong>Category: </strong> <i>{data?.category}</i></p>
+            <p><strong>Genre: </strong> <i>{data?.genre}</i></p>
+            <p><strong>ISBN: </strong>  <i>{data?.isbn}</i></p>
+            <p><strong>Language: </strong> <i>{data?.language}</i></p>
+            <p><strong>Pages: </strong> <i>{data?.pages}</i></p>
+            <p><strong>Publish Year: </strong><i>{data?.publishYear}</i></p>
+            <p><strong>Publisher: </strong><i>{data?.publisher}</i></p>
+            <p><strong>Sub Genre: </strong><i>{data?.subGenre}</i></p>
+            <p><strong>Summary of the book: </strong><i>{data?.summary}</i></p>
           </div>
           </div>
           </div>
           </div>
           <hr/>
           <h3>More books you may like in our store</h3>
+          <br/>
           { dataget && dataget.length > 0 ? (
             <div>
             <div className="row">
@@ -102,7 +103,7 @@ const BookDetail = () => {
                      <Link to="/wishList-page">
                   <button
                     className="btn btn-outline-secondary display-block w-100 mb-2"
-                    onClick={() => handleMoveCart(data._id)}
+                    onClick={() =>handleAddToWish(data._id)}
                   >
                   Add to Wishlist
                   <i className="bi bi-suit-heart-fill ms-2"></i>

@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryFilter from '../components/CategoryFilter';
-// import SliderRating from '../SliderRating';
+import RatingSlider from '../components/RatingSlider';
 
 const FilterPanel = () => {
   
@@ -11,8 +11,10 @@ const FilterPanel = () => {
       {/* Category filter */}
       <CategoryFilter   /> 
 
+
       {/* Ratings: A slider for ratings. */}
-      {/* <SliderRating /> */}
+      <RatingSlider />
+
       
 
       {/* A button to clear filters from where you can clear all the applied filters. */}

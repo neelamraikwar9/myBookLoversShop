@@ -44,7 +44,7 @@ const BookList = () => {
           <div className="row row-cols-lg-4 row-col">
             {books &&
               books?.map((book) => (
-                <div key={book._id} className="col-md-4 container py-3 d-flex">
+                <div key={book._id} className="col-md-4 container px-auto py-3 d-flex">
                   <div className="card h-100">
                     <div className="bg-body-secondary">
                     <Link to={`/book/${book._id}`}>
