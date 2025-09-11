@@ -13,7 +13,7 @@ const Navbar = () => {
     <>
       <header>
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
-          <NavLink to="/" className="navbar-brand ms-md-5 ms-lg-5 ms-lg-5 ps-lg-5 ">
+          <NavLink to="/" className="navbar-brand ms-md-3 ms-lg-3 ms-lg-3 ps-lg-5 ">
             {/* 📚BookLovers */}
             <h1 className="display-4 fw-semibold fst-italic text-dark">
   📚Book<span className="text-secondary">Lovers</span>
@@ -33,13 +33,13 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto flex-row ms-sm-5 ps-sm-5 mx-md-auto ms-lg-5 ps-lg-5 ms-xl-0 ps-xl-0 ">
-              <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5">
+              <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5 ms-xl- ">
                 <NavLink to="/books" className="nav-link">
                 <i className="bi bi-book-fill me-1"></i>
                   Books
                 </NavLink>
               </li>
-              <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
+              <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5 ">
                 <NavLink to="/wishList-page" className="nav-link">
                   <FontAwesomeIcon icon={faHeart} />
                   Wishlist
@@ -58,7 +58,9 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="d-flex justify-content-center me-lg-5">
+            
+            <div className="ms-md-6">
+            <div className="d-flex justify-content-center me-lg-5 me-md-5">
             <i className="bi bi-search left-align"></i>
               <input 
                 className="mx-3"
@@ -66,6 +68,7 @@ const Navbar = () => {
                 placeholder="Search"
                 aria-label="Search"
               />
+            </div>
             </div>
           </div>
         </nav>

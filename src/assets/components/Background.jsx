@@ -1,7 +1,7 @@
 const Background = () => {
   return (
       <div className="container">
-      <h1 className="text-start">WARM WELCOME TO... </h1>
+      <h1 className="text-start"><i>Warm Welcome To... </i></h1>
         <img
           src="https://i.imghippo.com/files/NQ6680lto.jpg"
           alt="bookStore"

@@ -13,7 +13,7 @@ const Books = () => {
 
   return (
     <>
-      <div className="home">
+      <div className="container">
       {/* <Navbar /> */}
 
       <div className="panelListWrap">

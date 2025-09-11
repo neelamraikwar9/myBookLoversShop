@@ -11,10 +11,12 @@ export function BookProvider({ children }) {
   );
   console.log(data);
 
-  const [books, setBooks] = useState([]);
-  const [dataget, setDataGet] = useState(data);
+  const [books, setBooks] = useState(data);
+  const [allData, setAllData] = useState(data);
   const [cart, setCart] = useState([]);
-  const [counter, setCounter] = useState(0);
+
+  // const [counter, setCounter] = useState(0);
+
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
 
@@ -27,19 +29,20 @@ export function BookProvider({ children }) {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      setDataGet(data);
+      setAllData(data);
     } else {
       data;
     }
-  }, [data, dataget]);
+  }, [data, allData]);
 
-  //Function to add Cart in a Cart page.
+  //Function to add Card in a Cart page.
   const bookCartHandler = (_id) => {
     console.log(_id);
     
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
+    console.log(cart, "checking cart...")
 
     const isInCart = cart?.some((car) => car._id === _id);
     
@@ -66,15 +69,15 @@ export function BookProvider({ children }) {
 
   // Quantity Function for Cart Page.
 
-  function quantity(){
-    return (
-      <div className="container">
-        <i className="bi bi-plus-circle ms-5" onClick={() => setCounter((count) => count + 1)}></i>
-         <span>{counter}</span>
-        <i className="bi bi-dash-circle" onClick={() => setCounter((count) => count - 1)}></i>
-      </div>
-    )
-  }
+  // function quantity(){
+  //   return (
+  //     <div className="container mt-0">
+  //       <i className="bi bi-plus-circle ms-5 ps-3" onClick={() => setCounter((count) => count + 1)}></i>
+  //        <span className="ms-2">{counter}</span>
+  //       <i className="bi bi-dash-circle ms-2" onClick={() => setCounter((count) => count - 1)}></i>
+  //     </div>
+  //   )
+  // }
 
 
 
@@ -151,7 +154,7 @@ export function BookProvider({ children }) {
   const value = {
     books,
     setBooks,
-    dataget,
+    allData,
     loading,
     error,
     loading,
@@ -163,7 +166,7 @@ export function BookProvider({ children }) {
     wishListRemoveHandler,
     handleMoveCart,
     handleMoveWishlist,
-    quantity,
+    // quantity,
     handleAddToWish,
     handleAddToCart,
     handleAddWish, 

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import useBookContext from "../contexts/BookContext";
 
 const BookDetail = () => {
-    const {dataget, handleAddToWish, handleAddToCart, handleAddWish, handleAddCart} = useBookContext();
-    console.log(dataget, "amm i getting dataget?")
-    console.log(dataget, "checking data in detail page...")
+    const {allData, handleAddToWish, handleAddToCart, handleAddWish, handleAddCart} = useBookContext();
+    console.log(allData, "amm i getting allData?")
+    console.log(allData, "checking data in detail page...")
   const { bookId } = useParams();
   console.log(bookId);
 
@@ -88,10 +88,10 @@ const BookDetail = () => {
           <hr/>
           <h3>More books you may like in our store</h3>
           <br/>
-          { dataget && dataget.length > 0 ? (
+          { allData && allData.length > 0 ? (
             <div>
             <div className="row">
-            {dataget.map((book) => 
+            {allData.map((book) => 
                 <div key={book._id} className="col-md-3 container d-flex mb-5">
                     <div className="card h-100">
                     <div className="container p-3">

@@ -4,6 +4,7 @@ import RatingSlider from '../components/RatingSlider';
 
 const FilterPanel = () => {
   
+  
   return (
     <div className="d-flex flex-column">   
     {/* flex-sm-column flex-lg-column */}

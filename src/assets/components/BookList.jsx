@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const BookList = () => {
+  
   const {
-    dataget,
+    allData,
     loading,
     error,
     books,
@@ -22,12 +23,12 @@ const BookList = () => {
 
   useEffect(() => {
     if (category) {
-      const filterBooks = dataget?.filter((book) => book.category === category);
+      const filterBooks = allData?.filter((book) => book.category === category);
       setBooks(filterBooks);
     } else {
-      setBooks(dataget);
+      setBooks(allData);
     }
-  }, [dataget, category]);
+  }, [allData, category]);
 
 
   //categoryFilter

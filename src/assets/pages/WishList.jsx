@@ -41,7 +41,7 @@ const WishList = () => {
     ) : (
       <div className='container-fluid'>
           <div className="row justify-content-center">
-          <div className="col-4">
+          <div className="col-md-4">
           <div className="card ">
             <h3 className="text-center py-3">Wishlist is empty!</h3>
             <img

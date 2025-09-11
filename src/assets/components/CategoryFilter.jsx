@@ -2,9 +2,12 @@ import React from 'react'
 import useFetch from '../hook/useFetch';
 import { useState, useEffect}  from 'react';
 import useBookContext from '../contexts/BookContext';
+import { useParams } from "react-router-dom";
+
 
 const CategoryFilter = () => {
-    const {dataget, books, setBooks } = useBookContext();
+    const {allData, books, setBooks} = useBookContext();
+    console.log(books,"books")
 
     const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
@@ -12,10 +15,30 @@ const CategoryFilter = () => {
   console.log("Checking data", data)
 
   const [catData, setCatData] = useState();
+
+  const [checkedCat, setCheckedCat] = useState(false);
+  const { category } = useParams();
+  console.log(category, "checking category useParams")
+    // const  [newData, setNewData] = useState([]);
+
   
     useEffect(() => {
       if(data && data.length > 0){
-        setCatData(data)
+       
+        const addedNewKey = data.map((item) => ({
+          ...item, isChecked : false
+        }))
+        //  setCatData(addedNewKey)
+
+          // console.log(category, "chejkgvhtrfry", catData);
+          const checkedFilter = addedNewKey?.map((b) => b.category === category ? 
+        {...b, isChecked: true} : 
+      {...b});
+          console.log(checkedFilter, "chedkingedkedfiltere");
+
+         setCatData(checkedFilter)
+         console.log(addedNewKey, "Checking newData");
+
       }
       else{
         data
@@ -24,24 +47,36 @@ const CategoryFilter = () => {
   
   console.log(catData, "Checking catData")
 
-   function updatedFilter(event){
-    const {checked, value} = event.target;
-    console.log(checked, "checking checked on fun")
+  function updatedFilter(event, category){
+    setCheckedCat (event.target.checked);                                                             
 
-    const filtered = dataget?.filter((book) => book.category === value)   
-    if(filtered){
-    setBooks(filtered)
-    console.log("checking at funct books", books)
+     const checkedFilter = catData?.map((b) => b.category === category ? 
+        {...b, isChecked: !b?.isChecked} : 
+      {...b});
+          console.log(checkedFilter, "chedkingedkedfiltere");
+
+         setCatData(checkedFilter)
+
+    // if(checkedFilter)
+    
+    // const filtered = allData?.filter((b) => b.category === category) ? setBooks([...books, filtered]: setBooks([...books.filter((b) => b.category !== category)]))
+
+    if(allData){
+      const filtered = allData?.filter((b) => b.category === category)
+      setBooks([...books, filtered])
     } else{
-      setBooks(...books)
-      console.log("checking at funct books", books)
+      const filtered = allData?.filter((b) => b.category !== category)
+      setBooks([...books, filtered])
     }
-    // console.log("checking at funct books", books)
+
+    console.log("checking filtered", filtered)
+    setBooks(filtered)
   }
 
+
+  
+
    
-
-
   return (
     <>
     <div className="container">
@@ -50,13 +85,21 @@ const CategoryFilter = () => {
     {data && data.length > 0 ? (
       <div>
       <h5>Category📙📘📗</h5>
-      {catData?.map((cat) => (
+      {catData?.map((cat) => 
+      {
+        console.log(JSON.stringify(cat), "checking cat")
+        console.log(cat,'jeofiwoeiowfie')
+        
+        return(
       <label htmlFor={cat.category} key={cat.category} className="ms-3">
-      <input type="checkbox" onChange={updatedFilter} id={cat.category} value={cat.category} name="Fiction"/>  
+      <input type="checkbox" onChange={(e) => updatedFilter(e, cat.category)}  id={cat.category} value={true} name={cat.category}
+      checked={cat?.isChecked}
+       />  
       {cat.category}
        <br/>
       </label> 
-      ))
+      )}
+      )
       }
       </div>
       ) : (
