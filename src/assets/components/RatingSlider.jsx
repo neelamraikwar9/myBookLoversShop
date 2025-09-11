@@ -4,14 +4,17 @@ import useBookContext from '../contexts/BookContext';
 
 const RatingSlider = () => {
   const {allData, books, setBooks} = useBookContext();
+
+  const [checkRadio, setCheckRadio] = useState(false);
+
  
 
   // const [selectedRating, setSelectedRating] = useState(null);
 
   function ratingChangeHandler(event){
-    setBooks(event.target.value)
+    setCheckRadio(event.target.check)
     
-      const filteredItem = dataget?.filter((item) => item.rating >= value);
+      const filteredItem = allData?.filter((item) => item.rating >= value);
   console.log(books, "checking books")
   console.log(filteredItem, "checking filteredd items")
     

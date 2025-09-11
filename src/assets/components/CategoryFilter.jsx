@@ -31,12 +31,12 @@ const CategoryFilter = () => {
         //  setCatData(addedNewKey)
 
           // console.log(category, "chejkgvhtrfry", catData);
-          const checkedFilter = addedNewKey?.map((b) => b.category === category ? 
+          const checkedCheck = addedNewKey?.map((b) => b.category === category ? 
         {...b, isChecked: true} : 
       {...b});
-          console.log(checkedFilter, "chedkingedkedfiltere");
+          console.log(checkedCheck, "chedkingedkedfiltere");
 
-         setCatData(checkedFilter)
+         setCatData(checkedCheck)
          console.log(addedNewKey, "Checking newData");
 
       }
@@ -47,31 +47,49 @@ const CategoryFilter = () => {
   
   console.log(catData, "Checking catData")
 
+
+
   function updatedFilter(event, category){
     setCheckedCat (event.target.checked);                                                             
 
-     const checkedFilter = catData?.map((b) => b.category === category ? 
-        {...b, isChecked: !b?.isChecked} : 
-      {...b});
-          console.log(checkedFilter, "chedkingedkedfiltere");
-
-         setCatData(checkedFilter)
-
-    // if(checkedFilter)
-    
-    // const filtered = allData?.filter((b) => b.category === category) ? setBooks([...books, filtered]: setBooks([...books.filter((b) => b.category !== category)]))
-
-    if(allData){
+    // console.log(books, "bjfjdkflk")
       const filtered = allData?.filter((b) => b.category === category)
-      setBooks([...books, filtered])
-    } else{
-      const filtered = allData?.filter((b) => b.category !== category)
-      setBooks([...books, filtered])
-    }
 
-    console.log("checking filtered", filtered)
-    setBooks(filtered)
-  }
+    
+      if(event.target.checked){
+        setBooks([...books, ...filtered])
+      } 
+
+      else{
+        setBooks([...books.filter((b) => b.category !== category)])
+      }
+      
+      // console.log(event.target.checked, "kjdf")
+    
+       console.log(filtered, "dkfjdklf")
+      
+        const checkedCheck = catData?.map((b) => {
+          console.log(
+            "klfjddfkljs",
+            category,
+            b.category,
+            b.category === category
+          );
+
+          return b.category == category ? { ...b, isChecked: !b.isChecked } : {...b};
+        });
+
+        console.log(checkedCheck, "chedkingedkedfiltere");
+        
+        setCatData(checkedCheck)
+        // setBooks([...books, ...filtered])
+        
+        
+      }
+      console.log(books, "ckdjfdkljf")
+
+
+
 
 
   
