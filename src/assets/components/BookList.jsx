@@ -36,7 +36,7 @@ const BookList = () => {
 
   return (
     <>
-      <h1 className="text-center">Books</h1>
+      <h1 className="text-center">Books[{books?.length}]</h1>
       {/* {console.log(books)} */}
       <div>
         {loading && <p>Loading...</p>}
@@ -45,25 +45,25 @@ const BookList = () => {
           <div className="row row-cols-lg-4 row-col">
             {books &&
               books?.map((book) => (
-                <div key={book._id} className="col-md-4 container px-auto py-3 d-flex">
+                <div key={book?._id} className="col-md-4 container px-auto py-3 d-flex">
                   <div className="card h-100">
                     <div className="bg-body-secondary">
-                    <Link to={`/book/${book._id}`}>
+                    <Link to={`/book/${book?._id}`}>
                       <img
-                        src={book.image}
-                        alt={book.name}
+                        src={book?.image}
+                        alt={book?.name}
                         className="img-fluid object-fit-cover border rounded"
                       />
                       </Link>
                     </div>
                     <br />
                     <h5 className="text-center">
-                      {book.name} by {book.author}
+                      {book?.name} by {book?.author}
                     </h5>
                     <h4 className="text-center">
-                      <strong>{book.price}</strong>
+                      <strong>{book?.salePrice}</strong>
                     </h4>
-                    <h5 className="text-center">⭐⭐⭐⭐⭐{book.rating}</h5>
+                    <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
 
                     <div className="mt-auto">
                       {isInCart ? (
@@ -74,7 +74,7 @@ const BookList = () => {
                       ) : (
                         <button
                           className="btn btn-primary w-100 mb-1"
-                          onClick={() => bookCartHandler(book._id)}
+                          onClick={() => bookCartHandler(book?._id)}
                         >
                           Add to Cart
                            <i className="bi bi-cart4 ms-2"></i>
@@ -83,7 +83,7 @@ const BookList = () => {
                     
                     <br />
                     <Link to="/wishList-page">
-                    <button className="btn btn-primary display-block w-100" onClick={() => addToWishlist(book._id)}>
+                    <button className="btn btn-primary display-block w-100" onClick={() => addToWishlist(book?._id)}>
                       Add to Wishlist
                       <i className="bi bi-suit-heart-fill ms-2"></i>
                     </button>

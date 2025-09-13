@@ -34,7 +34,7 @@ export const Cart = () => {
 
   return (
     <main className="container">
-      <h1 className="text-center">My Cart()</h1>
+      <h1 className="text-center">My Cart({cart?.length})</h1>
       <br />
       <br />
       <div className="container">

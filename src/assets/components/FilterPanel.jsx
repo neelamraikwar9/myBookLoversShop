@@ -1,24 +1,34 @@
 import React from "react";
 import CategoryFilter from '../components/CategoryFilter';
-import RatingSlider from '../components/RatingSlider';
+import RatingButtons from '../components/RatingButtons';
+import SortPrice from '../components/SortPrice';
+import PriceSlider from "./PriceSlider";
 
 const FilterPanel = () => {
   
   
   return (
-    <div className="d-flex flex-column">   
-    {/* flex-sm-column flex-lg-column */}
-      <h2 className="container">Filters</h2>
+    <div className="container">   
+    
+    <div className="d-flex  align-items-center">
+      <h2 className="mb-0">Filters</h2>
+      <button type="button" class="btn btn-outline-dark  mx-auto">Clear</button>
+    </div>
+      
+       {/* Price Slider */}
+       <PriceSlider />
+
+       <br/>
+
       {/* Category filter */}
       <CategoryFilter   /> 
 
 
       {/* Ratings: A slider for ratings. */}
-      <RatingSlider />
-
-      
+      <RatingButtons />
 
       {/* A button to clear filters from where you can clear all the applied filters. */}
+      <SortPrice/>
       {/* I will create her./ */}
      
     </div>

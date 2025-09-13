@@ -9,7 +9,7 @@ const WishList = () => {
   console.log(list, "chicking list")
   return (
     <main className="container">
-    <h1 className="text-center">My Wishlist</h1>
+    <h1 className="text-center">My Wishlist({list?.length})</h1>
     <br/>
     {list && list.length > 0 ? (
       <div>

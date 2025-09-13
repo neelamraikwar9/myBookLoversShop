@@ -3,9 +3,11 @@ import useFetch from '../hook/useFetch';
 import { useState, useEffect}  from 'react';
 import useBookContext from '../contexts/BookContext';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 const CategoryFilter = () => {
+  
     const {allData, books, setBooks} = useBookContext();
     console.log(books,"books")
 
@@ -16,10 +18,11 @@ const CategoryFilter = () => {
 
   const [catData, setCatData] = useState();
 
-  const [checkedCat, setCheckedCat] = useState(false);
+  const [checkedTrue, setCheckedTrue] = useState([]);
   const { category } = useParams();
   console.log(category, "checking category useParams")
     // const  [newData, setNewData] = useState([]);
+    // const [checkedItems, setCheckedItems] = useState([]);
 
   
     useEffect(() => {
@@ -34,6 +37,7 @@ const CategoryFilter = () => {
           const checkedCheck = addedNewKey?.map((b) => b.category === category ? 
         {...b, isChecked: true} : 
       {...b});
+
           console.log(checkedCheck, "chedkingedkedfiltere");
 
          setCatData(checkedCheck)
@@ -50,12 +54,12 @@ const CategoryFilter = () => {
 
 
   function updatedFilter(event, category){
-    setCheckedCat (event.target.checked);                                                             
-
+    // setCheckedCat (event.target.checked);   Now not exists.
+    // console.log(checkedCat, "kdfjkd")
+  
     // console.log(books, "bjfjdkflk")
       const filtered = allData?.filter((b) => b.category === category)
 
-    
       if(event.target.checked){
         setBooks([...books, ...filtered])
       } 
@@ -79,22 +83,42 @@ const CategoryFilter = () => {
           return b.category == category ? { ...b, isChecked: !b.isChecked } : {...b};
         });
 
+
+         const trueChecked = checkedCheck?.filter((item) => item.isChecked === true);
+         console.log(trueChecked, "chdfdkj")
+
+         console.log(books, "y67r4")
+         if(trueChecked.length > 0){
+           console.log(books, "yr4", trueChecked, trueChecked==true)
+           setCheckedTrue(trueChecked)
+          const filter = allData.filter((b) => b.category === category)
+          // console.log(books, "djkertyoiu")
+          console.log(filter, "roeiut")
+          // setBooks(filter)       
+
+
+
+          // setBooks([...books.filter((book) => book.category !== category)])
+         }else{
+         console.log(trueChecked, "chdfjnkwefwjedfdkj")
+          setBooks(allData)
+         }
+         console.log(checkedTrue, 'uerwi',)
+
+         
+
+
+
         console.log(checkedCheck, "chedkingedkedfiltere");
         
         setCatData(checkedCheck)
         // setBooks([...books, ...filtered])
-        
+
         
       }
+
       console.log(books, "ckdjfdkljf")
 
-
-
-
-
-  
-
-   
   return (
     <>
     <div className="container">
@@ -113,7 +137,7 @@ const CategoryFilter = () => {
       <input type="checkbox" onChange={(e) => updatedFilter(e, cat.category)}  id={cat.category} value={true} name={cat.category}
       checked={cat?.isChecked}
        />  
-      {cat.category}
+      {cat?.category}
        <br/>
       </label> 
       )}
@@ -130,3 +154,5 @@ const CategoryFilter = () => {
 }
 
 export default CategoryFilter;
+
+

@@ -8,13 +8,16 @@ const BookDetail = () => {
     const {allData, handleAddToWish, handleAddToCart, handleAddWish, handleAddCart} = useBookContext();
     console.log(allData, "amm i getting allData?")
     console.log(allData, "checking data in detail page...")
-  const { bookId } = useParams();
+  const { bookId, category } = useParams();
   console.log(bookId);
 
   const { data, loading, error } = useFetch(
     `https://selling-books-data.vercel.app/books/getBooks/${bookId}`
   );
   console.log(data);
+
+  // const {data2} = useFetch(`https://selling-books-data.vercel.app/books/${category}`)
+  // console.log(data2, "outr")
 
   return (
     <>
@@ -52,7 +55,7 @@ const BookDetail = () => {
                <div className="col-md-8 ">
           <div className=" py-3 mt-5 container">
             <h3>{data?.name} - {data?.author}</h3>
-            <p>{data?.rating}</p>
+            <h5>Rating: <i><strong>{data?.rating}</strong></i></h5>
             <h2>{data?.salePrice} <del><span className="text-success">{data?.price}</span></del></h2>
             <h4 className="text-success">{data?.discount}</h4>
             <p>Quantity: </p>

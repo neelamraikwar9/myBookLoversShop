@@ -14,6 +14,7 @@ export function BookProvider({ children }) {
   const [books, setBooks] = useState(data);
   const [allData, setAllData] = useState(data);
   const [cart, setCart] = useState([]);
+  
 
   // const [counter, setCounter] = useState(0);
 

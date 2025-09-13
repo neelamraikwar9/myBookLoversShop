@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";  
 import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+// import WishListCount from './WishListCount';
+
 // import useBookContext from "../contexts/BookContext";
 
 
@@ -36,13 +38,14 @@ const Navbar = () => {
               <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5 ms-xl- ">
                 <NavLink to="/books" className="nav-link">
                 <i className="bi bi-book-fill me-1"></i>
-                  Books
+                  Books 
+                  {/* WishListCount */}
                 </NavLink>
               </li>
               <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5 ">
                 <NavLink to="/wishList-page" className="nav-link">
                   <FontAwesomeIcon icon={faHeart} />
-                  Wishlist
+                  Wishlist 
                 </NavLink>
               </li>
               <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
