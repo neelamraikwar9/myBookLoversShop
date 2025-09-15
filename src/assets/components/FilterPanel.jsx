@@ -26,6 +26,7 @@ const FilterPanel = () => {
     setPrice(100)
     setRatingg("0")
     setSortOrder("Default")
+    setBooks(allData)
     // const data1 = datafromcat()
 
     //  const addedNewKey = newData.map((item) => ({
@@ -46,9 +47,9 @@ const FilterPanel = () => {
   return (
     <div className="container">   
     
-    <div className="d-flex  align-items-center">
-      <h2 className="">Filters</h2>
-      <button type="button" className="btn btn-outline-dark  ms-5" onClick={clearFilters}>Clear</button>
+    <div className="d-flex align-items-center">
+      <h2>Filters</h2>
+      <button type="button" className="btn btn-outline-dark  ms-auto" onClick={clearFilters}>Clear</button>
     </div>
       
        {/* Price Slider */}

@@ -10,7 +10,7 @@ import Books from './assets/pages/Books'
 
 import WishList from './assets/pages/WishList';
 import Cart from './assets/pages/Cart';
-import Login from './assets/pages/Login';
+import Login from './assets/pages/Profile';
 import BookDetail from './assets/pages/BookDetail';
 
 

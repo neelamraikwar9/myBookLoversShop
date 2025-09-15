@@ -12,25 +12,23 @@ const Books = () => {
   
 
   return (
-    <>
+    <main>
       <div className="container">
-      {/* <Navbar /> */}
-
-      <div className="panelListWrap">
-        <div className="filterPanelWrap">
+      <div className='row'>
+      <div className="col-md-3">
+      <div className="card py-3">
           <FilterPanel/>
-          {/* // Category vise filter
-    //genre vise filter
-    //slidebar of rating 
-    // Buton to clear filter */}
-        </div>
-
-        <div className="py-3 px-5">
+      </div>
+      </div>
+      
+      <div className="col-md-9">
+      <div className="container">
           <BookList/>
-        </div>
+      </div>
       </div>
     </div>
-    </>
+    </div>
+    </main>
   );
 };
 

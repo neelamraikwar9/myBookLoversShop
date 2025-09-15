@@ -31,8 +31,8 @@ export const Cart = () => {
   // console.log(cartDiscount, "yutiee")
  
  
-  const cartDeliveryCharges = cart?.reduce((acc, curr) => curr.deliveryCharges + acc, '');
-  console.log(cartDeliveryCharges, "dkju")
+  // const cartDeliveryCharges = cart?.reduce((acc, curr) => curr.deliveryCharges + acc, );
+  // console.log(cartDeliveryCharges, "dkju")
   
   const totalAmount = cart?.reduce(
     (acc, curr) => acc + parsePrice(curr.salePrice),
@@ -157,7 +157,7 @@ export const Cart = () => {
                           <p className="d-flex justify-content-between">
                             Delivery Charges{" "}                 
                               <span className="text">
-                                {cartDeliveryCharges}
+                               Free
                               </span> 
                           </p>
                           <hr />

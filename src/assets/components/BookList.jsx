@@ -36,7 +36,7 @@ const BookList = () => {
 
   return (
     <>
-      <h1 className="text-center">Books[{books?.length}]</h1>
+      <h1 className="">Books[{books?.length}]</h1>
       {/* {console.log(books)} */}
       <div>
         {loading && <p>Loading...</p>}
