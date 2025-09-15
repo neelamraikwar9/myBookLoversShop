@@ -1,12 +1,18 @@
 import React from 'react'
-import { useState } from 'react';
-import useBookContext from '../contexts/BookContext'
+// import { useState } from 'react';
+import  useBookContext  from '../contexts/BookContext';
+import { useParams } from 'react-router-dom';
 
-const PriceSlider = () => {
-    const {allData, books, setBooks } = useBookContext();
+const PriceSlider = ({price, setPrice}) => {
+    const {allData, books, setBooks} = useBookContext();
+    const { category } = useParams();
+    console.log(category, "fkdgkdfs")
     // console.log( books && books.length, books, "uyeri")
 
-    const [price, setPrice] = useState(100); 
+    // const [price, setPrice] = useState(100); 
+
+    const boooks = allData?.filter((b) => b.category == category)
+    console.log(boooks, "hirek")
 
     function parsePrice(price) {
     if (typeof price === "string") {
@@ -20,12 +26,13 @@ const PriceSlider = () => {
     const handlePriceChange = (event) => {
         setPrice(event.target.value)
         console.log(price, "tioyui")
-        const dragSlider =  allData?.filter((b) => parsePrice(b.salePrice) <= price);
+         console.log(books, "kvcklityjdsfklj")
+        const dragSlider =  boooks?.filter((b) => parsePrice(b.salePrice) <= price);
         console.log(dragSlider, "dfkj6789");
-        setBooks(dragSlider)
+        console.log(books, "kvckljdsfklj")
 
-
-        
+        setBooks(dragSlider) 
+        console.log(books, "kdjhf")
     }
 
 
@@ -41,4 +48,4 @@ const PriceSlider = () => {
   )
 }
 
-export default PriceSlider
+export default PriceSlider;

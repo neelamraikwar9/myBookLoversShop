@@ -1,11 +1,15 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
+// import { useParams } from 'react-router-dom';
 
 const BookContext = createContext();
 
 const useBookContext = () => useContext(BookContext);
 
 export function BookProvider({ children }) {
+  // const {category} = useParams();
+  // console.log(category, "kdjfjkchagkcjf")
+  
   const { data, loading, error } = useFetch(
     "https://selling-books-data.vercel.app/books"
   );
@@ -25,6 +29,9 @@ export function BookProvider({ children }) {
 
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
+
+  // const [price, setPrice] = useState(100); 
+  //  const [ratingg, setRatingg] = useState("0");
 
   //useStates for filters
   // const [catFil, setCatFil] = useState();
@@ -181,6 +188,63 @@ useEffect(() => {
   }, [data, dataTo]);
   console.log(dataTo, "checking dataTo oncontext");
 
+
+
+
+  //filteres
+  
+  //for all converting price to price removing it's rupee sign
+    //   function parsePrice(price) {
+    //   if (typeof price === "string") {
+    //     price = price.replace(/[^0-9.-]+/g, "");
+    //   }
+    //   const parsed = Number(price);
+    //   return isNaN(parsed) ? 0 : parsed;
+    // }
+
+// price slider filter
+  
+    // const handlePriceChange = (event) => {
+    //     setPrice(event.target.value)
+    //     console.log(price, "tioyui")
+    //     const dragSlider =  allData?.filter((b) => parsePrice(b.salePrice) <= price);
+    //     console.log(dragSlider, "dfkj6789");
+    //     setBooks(dragSlider) 
+    // }
+
+    // rating change filter function.
+  
+
+
+
+  //    function ratingChangeHandler(event){
+  //   const selectedRate = event.target.value
+  //   console.log(selectedRate, "uyr4", books)
+  //   setRatingg(selectedRate)
+
+
+  //   const updateRating = allData?.filter((b) => b.category === category);
+  // console.log(updateRating, "dlkfj")
+
+    
+  // const filteredItem = updateRating?.filter((item) => {
+  //   // console.log(
+  //   //   item.rating, 
+  //   //   rate,
+  //   //   item.rating, rate,
+  //   //    "outi")
+
+  //   // console.log(Number(selectedRate), Number(item.rating), 'diofjoweifwo')
+  //   return Number(item.rating) >= Number(selectedRate)});
+  
+  // console.log(filteredItem, "checking filteredd items");
+  // setBooks([...filteredItem]);
+    
+  // };
+
+  
+
+
   const value = {
     books,
     setBooks,
@@ -201,6 +265,15 @@ useEffect(() => {
     handleAddToCart,
     handleAddWish,
     handleAddCart,
+
+    // price,
+    // setPrice,
+    // parsePrice,
+    // handlePriceChange,
+    // ratingg,
+    // setRatingg,
+    // ratingChangeHandler
+
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

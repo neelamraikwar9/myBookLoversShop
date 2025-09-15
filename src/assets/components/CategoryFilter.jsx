@@ -5,7 +5,7 @@ import useBookContext from "../contexts/BookContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({datafromcat, checkedTrue, setCheckedTrue, catData, setCatData}) => {
   const { allData, books, setBooks } = useBookContext();
   console.log(books, "books");
 
@@ -14,9 +14,9 @@ const CategoryFilter = () => {
   );
   console.log("Checking data", data);
 
-  const [catData, setCatData] = useState();
+  // const [catData, setCatData] = useState();
 
-  const [checkedTrue, setCheckedTrue] = useState([]);
+  // const [checkedTrue, setCheckedTrue] = useState([]);
   const { category } = useParams();
   console.log(category, "checking category useParams");
   // const  [newData, setNewData] = useState([]);
@@ -29,6 +29,7 @@ const CategoryFilter = () => {
         isChecked: false,
       }));
       //  setCatData(addedNewKey)
+    datafromcat(addedNewKey)
 
       // console.log(category, "chejkgvhtrfry", catData);
       const checkedCheck = addedNewKey?.map((b) =>

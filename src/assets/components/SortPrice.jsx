@@ -1,12 +1,14 @@
 import React from 'react'
 import useBookContext from '../contexts/BookContext';
-import  { useState, useEffect } from 'react';
+import  { useEffect } from 'react';
 
 
-const SortPrize = () => {
+const SortPrize = ({sortOrder, setSortOrder}) => {
   const {allData, books, setBooks} = useBookContext();
 
-  const [sortOrder, setSortOrder] = useState("Default");
+  // const [sortOrder, setSortOrder] = useState("Default");
+
+
   // const [bookSort, setBookSort ] = useState(allData);
   // console.log(bookSort, "dlfkj")
 
@@ -36,6 +38,7 @@ const SortPrize = () => {
       // console.log(sortedBooks, "547fkj")
 
        if(sortOrder === "Default"){
+        console.log(safeAllData, "dkljdf")
         sortedBooks = [...safeAllData];
         }
         else if(sortOrder === "Low to High"){
