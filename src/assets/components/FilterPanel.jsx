@@ -11,8 +11,8 @@ const FilterPanel = () => {
     <div className="container">   
     
     <div className="d-flex  align-items-center">
-      <h2 className="mb-0">Filters</h2>
-      <button type="button" class="btn btn-outline-dark  mx-auto">Clear</button>
+      <h2 className="">Filters</h2>
+      <button type="button" className="btn btn-outline-dark  ms-5">Clear</button>
     </div>
       
        {/* Price Slider */}

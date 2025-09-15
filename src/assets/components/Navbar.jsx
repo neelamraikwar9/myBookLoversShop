@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";  
 import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-// import WishListCount from './WishListCount';
+import WishListCount from './WishListCount';
+import CartListCount from "./CartListCount";
 
-// import useBookContext from "../contexts/BookContext";
+
 
 
 
@@ -38,26 +39,33 @@ const Navbar = () => {
               <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5 ms-xl- ">
                 <NavLink to="/books" className="nav-link">
                 <i className="bi bi-book-fill me-1"></i>
-                  Books 
-                  {/* WishListCount */}
+                  <strong>Books</strong>
                 </NavLink>
               </li>
               <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5 ">
                 <NavLink to="/wishList-page" className="nav-link">
-                  <FontAwesomeIcon icon={faHeart} />
-                  Wishlist 
+                <strong>Wishlist</strong>
+                  <span className="position-relative">
+                  <FontAwesomeIcon icon={faHeart}/>
+                  <span className="position-absolute top-0 start-1 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle">
+                  <WishListCount /> </span>
+                  </span>
                 </NavLink>
               </li>
               <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
                 <NavLink to="/cart-page" className="nav-link">
+                  <strong>Cart</strong>
+                 <span className="position-relative">
                   <FontAwesomeIcon icon={faCartShopping} />
-                  Cart
+                   <span className="position-absolute top-0 start-1 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle">
+                  <CartListCount /> </span>
+                  </span>
                 </NavLink>
               </li>
               <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
                 <NavLink to="/login-page" className="nav-link">
                   <FontAwesomeIcon icon={faUser} />
-                  Profile
+                  <strong>Profile</strong>
                 </NavLink>
               </li>
             </ul>

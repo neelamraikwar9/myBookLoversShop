@@ -47,7 +47,7 @@ const WishList = () => {
             <img
               src="https://i.imghippo.com/files/Mv9162SM.jpg"
               alt="Empty Cart"
-              className="img-fluid"
+              className="img-fluid mb-5"
             />
             <Link to="/books">
               <button className="btn btn-primary display-block w-100 ">Shop Now</button>

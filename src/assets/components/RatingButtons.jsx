@@ -21,7 +21,7 @@ const RatingButtons = () => {
 
 
     const updateRating = allData.filter((b) => b.category === category);
-  // console.log(updateRating, "dlkfj")
+  console.log(updateRating, "dlkfj")
 
     
   const filteredItem = updateRating?.filter((item) => {

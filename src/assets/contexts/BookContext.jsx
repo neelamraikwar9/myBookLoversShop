@@ -13,15 +13,18 @@ export function BookProvider({ children }) {
 
   const [books, setBooks] = useState(data);
   const [allData, setAllData] = useState(data);
-  const [cart, setCart] = useState([]);
-  
 
-  // const [counter, setCounter] = useState(0);
+  const [cart, setCart] = useState(() => {
+  const savedCart = localStorage.getItem("cart");
+  return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+
+
+  const [counter, setCounter] = useState(0);
 
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
-
-  
 
   //useStates for filters
   // const [catFil, setCatFil] = useState();
@@ -39,16 +42,56 @@ export function BookProvider({ children }) {
   //Function to add Card in a Cart page.
   const bookCartHandler = (_id) => {
     console.log(_id);
-    
+
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
-    console.log(cart, "checking cart...")
+    console.log(cart, "checking cart...");
+
+    //local storage..
+    // localStorage.setItem('user', JSON.stringify(cartItem));
+    // console.log(cart, "dfjkstoreu")
 
     const isInCart = cart?.some((car) => car._id === _id);
-    
-    console.log(isInCart, "checking cart")
+
+    console.log(isInCart, "checking cart");
   };
+
+
+
+  //with the local storage I updated the function which is above.
+    // const bookCartHandler = (bookId) => {
+      // console.log(bookId, "fdk1jl")
+
+       // Find the book object from data by ID
+//   const book = data?.find((item) => item._id === bookId);
+//   if (!book) {
+//     console.warn("Book not found for id:", bookId);
+//     return;
+//   }
+
+
+
+//       setCart((prevCart) => {
+//         const exists = data?.find((item) => item._id == bookId);
+//         console.log(exists, "exists")
+//         if(exists) return prevCart;
+
+//         if (prevCart.length <= 4) {
+//       return [...prevCart, book];
+//     } else {
+//       alert('Cart limit reached (4 items max)');
+//       return prevCart;
+//     }
+//   });
+// };
+
+
+useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}, [cart]);
+
+
 
 
 
@@ -58,99 +101,85 @@ export function BookProvider({ children }) {
     setCart(updatedCart);
   }
 
-  function handleMoveWishlist(_id){
-    const moveWish = cart?.find((book) => book._id === _id)
-    setList([...list, moveWish])
+  function handleMoveWishlist(_id) {
+    const moveWish = cart?.find((book) => book._id === _id);
+    setList([...list, moveWish]);
 
-    const autoRemoveCart = cart?.filter((book) => book._id !== _id)
-    setCart(autoRemoveCart)
-
+    const autoRemoveCart = cart?.filter((book) => book._id !== _id);
+    setCart(autoRemoveCart);
   }
-
 
   // Quantity Function for Cart Page.
 
-  // function quantity(){
-  //   return (
-  //     <div className="container mt-0">
-  //       <i className="bi bi-plus-circle ms-5 ps-3" onClick={() => setCounter((count) => count + 1)}></i>
-  //        <span className="ms-2">{counter}</span>
-  //       <i className="bi bi-dash-circle ms-2" onClick={() => setCounter((count) => count - 1)}></i>
-  //     </div>
-  //   )
-  // }
-
-
-
-
-
-
-
-  //Function to add card in a wishlist.
-  function addToWishlist(_id){
-    const wishList = data?.find((book) => book._id === _id)
-    setList([...list, wishList])
+  function quantity() {
+    return (
+      <span className="container ms-3">
+        <i
+          className="bi bi-plus-circle ms-5 ps-3"
+          onClick={() => setCounter((count) => count + 1)}
+        ></i>
+        <span className="ms-2">{counter}</span>
+        <i
+          className="bi bi-dash-circle ms-2"
+          onClick={() => setCounter((count) => count - 1)}
+        ></i>
+      </span>
+    );
   }
 
-  function wishListRemoveHandler(_id){
-    const updateWishList = list?.filter((book) => book._id !== _id)
+  //Function to add card in a wishlist.
+  function addToWishlist(_id) {
+    const wishList = data?.find((book) => book._id === _id);
+    setList([...list, wishList]);
+  }
+
+  function wishListRemoveHandler(_id) {
+    const updateWishList = list?.filter((book) => book._id !== _id);
     setList(updateWishList);
   }
 
-  function handleMoveCart(_id){
-    const moveCart = list?.find((book) => book._id === _id)
-    setCart([...cart, moveCart])
+  function handleMoveCart(_id) {
+    const moveCart = list?.find((book) => book._id === _id);
+    setCart([...cart, moveCart]);
 
-    const autoRemoveList = list?.filter((book) => book._id !== _id)
-    setList(autoRemoveList)
+    const autoRemoveList = list?.filter((book) => book._id !== _id);
+    setList(autoRemoveList);
   }
-
 
   // Function for Add to Wish List from book detail page.
-  function handleAddToWish(_id){
-    const addToWish = books?.find((book) => book._id === _id)
-    setList([...list, addToWish])
-    console.log(list, "checking list value")
-  } 
+  function handleAddToWish(_id) {
+    const addToWish = books?.find((book) => book._id === _id);
+    setList([...list, addToWish]);
+    console.log(list, "checking list value");
+  }
 
   // Function for Add to Cart from book detail page.
-  function handleAddToCart(_id){
-    const addToCart = books?.find((book) => book._id === _id)
-    setCart([...cart, addToCart])
-    console.log(cart, "checking cart value")
+  function handleAddToCart(_id) {
+    const addToCart = books?.find((book) => book._id === _id);
+    setCart([...cart, addToCart]);
+    console.log(cart, "checking cart value");
   }
-
 
   //Function addWish and addCart for more books which is below to book detail page.
-  function handleAddWish(_id){
-   const addWish = books.find((book) => book._id === _id)
-   setList([...list, addWish])
-  } 
-
-
-
-  function handleAddCart(_id){
-    const addCart = books.find((book) => book._id === _id)
-    setCart([...cart, addCart])
+  function handleAddWish(_id) {
+    const addWish = books.find((book) => book._id === _id);
+    setList([...list, addWish]);
   }
 
+  function handleAddCart(_id) {
+    const addCart = books.find((book) => book._id === _id);
+    setCart([...cart, addCart]);
+  }
 
-
-  // All Filters 
-   useEffect(() => {
+  // All Filters
+  useEffect(() => {
     if (data && data.length > 0) {
       setDataTo(data);
     } else {
       data;
     }
   }, [data, dataTo]);
-  console.log(dataTo, "checking dataTo oncontext")
-
-  
-  
-
-
-
+  console.log(dataTo, "checking dataTo oncontext");
 
   const value = {
     books,
@@ -167,12 +196,11 @@ export function BookProvider({ children }) {
     wishListRemoveHandler,
     handleMoveCart,
     handleMoveWishlist,
-    // quantity,
+    quantity,
     handleAddToWish,
     handleAddToCart,
-    handleAddWish, 
-    handleAddCart
-  
+    handleAddWish,
+    handleAddCart,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

@@ -7,7 +7,7 @@ import {Routes, Route} from 'react-router-dom'
 import Category from './assets/pages/Category'
 import Books from './assets/pages/Books'
 
-import { BookProvider } from './assets/contexts/BookContext'
+
 import WishList from './assets/pages/WishList';
 import Cart from './assets/pages/Cart';
 import Login from './assets/pages/Login';
@@ -16,12 +16,17 @@ import BookDetail from './assets/pages/BookDetail';
 
 
 function App() {
+
+//Checking local storage.
+//     if (typeof(Storage) !== "undefined") {
+//   console.log("localStorage is supported")
+// } else {
+//   console.log("localStorage is not supported")
+// }
  
 
   return (
     <>
-    
-    <BookProvider>
       <Routes>
       <Route path="/" element={<Category/>}></Route>
       <Route path="/books" element={<Books />}></Route>
@@ -31,7 +36,6 @@ function App() {
       <Route path="/login-page" element={<Login />}></Route>
       <Route path="/book/:bookId" element={<BookDetail/>}></Route>
       </Routes>
-    </BookProvider>
     </>
   )
 }
