@@ -5,13 +5,14 @@ import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import WishListCount from './WishListCount';
 import CartListCount from "./CartListCount";
+import useBookContext from "../contexts/BookContext";
 
 
 
 
 
 const Navbar = () => {
-  // const {reloadHandler} = useBookContext();
+  const {searchInput, searchBarHandler} = useBookContext();
   return (
     <>
       <header>
@@ -76,8 +77,10 @@ const Navbar = () => {
               <input 
                 className="mx-3"
                 type="search"
-                placeholder="Search"
+                placeholder="Search books..."
                 aria-label="Search"
+                onChange={(e) => searchBarHandler(e.target.value)}
+                value={searchInput}
               />
             </div>
             </div>

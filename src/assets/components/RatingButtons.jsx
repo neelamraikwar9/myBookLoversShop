@@ -1,7 +1,8 @@
 import React from 'react'
-// import { useState } from 'react';
+import { useEffect } from 'react';
 import useBookContext from '../contexts/BookContext';
 import { useParams } from 'react-router-dom';
+
 
 const RatingButtons = ( {ratingg, setRatingg} ) => {
   const {allData, books, setBooks} = useBookContext();
@@ -10,34 +11,45 @@ const RatingButtons = ( {ratingg, setRatingg} ) => {
   console.log(category, "gjkri")
 
 
-  // const [ratingg, setRatingg] = useState("0");
+  // const [ratingg, setRatingg] = useState("0"); //lifted up to filter panel.
 
-  // const [selectedRating, setSelectedRating] = useState(null);
-
+  
   function ratingChangeHandler(event){
     const selectedRate = event.target.value;
     console.log(selectedRate, "uyr4")
     setRatingg(selectedRate)
 
-  console.log(allData, "gjkh")
-    const updateRating = allData?.filter((b) => b.category === category);
-  console.log(updateRating, "dlkfj")
+  // console.log(allData, "gjkh")
+  //   const updateRating = allData?.filter((b) => b.category === category);
+  // console.log(updateRating, "dlkfj")
 
-    
-  const filteredItem = books?.filter((item) => {
-  //   // console.log(
-  //   //   item.rating, 
-  //   //   rate,
-  //   //   item.rating, rate,
-  //   //    "outi")
 
-  //   // console.log(Number(selectedRate), Number(item.rating), 'diofjoweifwo')
-    return Number(item.rating) >= Number(selectedRate)});
+
+  // const filteredItem = books?.filter((item) => {
+  // //   // console.log(
+  // //   //   item.rating, 
+  // //   //   rate,
+  // //   //   item.rating, rate,
+  // //   //    "outi")
+
+  // //   // console.log(Number(selectedRate), Number(item.rating), 'diofjoweifwo')
+  //   return Number(item.rating) >= Number(selectedRate)});
   
-  console.log(filteredItem, "checking filteredd items");
-  setBooks([...filteredItem]);
-    
+  // console.log(filteredItem, "checking filteredd items");
+  // setBooks([...filteredItem]);
   };
+
+
+  useEffect(() => {
+    if(ratingg !== null){
+    const filteredItem = (books ?? []).filter((item) => {
+
+    return Number(item.rating) >= Number(ratingg)});
+  
+  // console.log(filteredItem, "checking filteredd items");
+  setBooks([...filteredItem]);
+    }
+  }, [ratingg, allData])  
 
 
   

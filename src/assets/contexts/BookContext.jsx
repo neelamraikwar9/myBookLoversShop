@@ -29,14 +29,9 @@ export function BookProvider({ children }) {
 
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
+  const [searchInput, setSearchInput] = useState('');
 
-  // const [price, setPrice] = useState(100); 
-  //  const [ratingg, setRatingg] = useState("0");
-
-  //useStates for filters
-  // const [catFil, setCatFil] = useState();
-
-  // const [inCart, setInCart] = useState([]);
+ 
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -189,58 +184,19 @@ useEffect(() => {
   console.log(dataTo, "checking dataTo oncontext");
 
 
+  //Function for search bar.
 
+  function searchBarHandler(value){
+    setSearchInput(value);
+    console.log(searchInput, "frljkgd")
+    // const filterData = allData.filter((item) => typeof item ==="string" && item.toLowerCase().includes(searchInput.toLowerCase()));
+    const filterData = allData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()));
+    // console.log(allData, "gkkdf")
+    console.log(filterData, "fjlkdf")
+    setBooks(filterData);
 
-  //filteres
-  
-  //for all converting price to price removing it's rupee sign
-    //   function parsePrice(price) {
-    //   if (typeof price === "string") {
-    //     price = price.replace(/[^0-9.-]+/g, "");
-    //   }
-    //   const parsed = Number(price);
-    //   return isNaN(parsed) ? 0 : parsed;
-    // }
+  } 
 
-// price slider filter
-  
-    // const handlePriceChange = (event) => {
-    //     setPrice(event.target.value)
-    //     console.log(price, "tioyui")
-    //     const dragSlider =  allData?.filter((b) => parsePrice(b.salePrice) <= price);
-    //     console.log(dragSlider, "dfkj6789");
-    //     setBooks(dragSlider) 
-    // }
-
-    // rating change filter function.
-  
-
-
-
-  //    function ratingChangeHandler(event){
-  //   const selectedRate = event.target.value
-  //   console.log(selectedRate, "uyr4", books)
-  //   setRatingg(selectedRate)
-
-
-  //   const updateRating = allData?.filter((b) => b.category === category);
-  // console.log(updateRating, "dlkfj")
-
-    
-  // const filteredItem = updateRating?.filter((item) => {
-  //   // console.log(
-  //   //   item.rating, 
-  //   //   rate,
-  //   //   item.rating, rate,
-  //   //    "outi")
-
-  //   // console.log(Number(selectedRate), Number(item.rating), 'diofjoweifwo')
-  //   return Number(item.rating) >= Number(selectedRate)});
-  
-  // console.log(filteredItem, "checking filteredd items");
-  // setBooks([...filteredItem]);
-    
-  // };
 
   
 
@@ -265,15 +221,8 @@ useEffect(() => {
     handleAddToCart,
     handleAddWish,
     handleAddCart,
-
-    // price,
-    // setPrice,
-    // parsePrice,
-    // handlePriceChange,
-    // ratingg,
-    // setRatingg,
-    // ratingChangeHandler
-
+    searchBarHandler,
+    searchInput
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+// import { useSearchParams } from 'react-router-dom';
+
 const BookList = () => {
   
   const {
@@ -17,6 +19,21 @@ const BookList = () => {
     addToWishlist
   } = useBookContext();
   console.log(books);
+
+
+
+
+    // const [searchParams, setSearchParams] = useSearchParams();
+
+    //  const selectedCategories = searchParams.getAll("category");
+
+    //  const filteredBooks = selectedCategories.length > 0
+    // ? allBooks.filter(book => selectedCategories.includes(book.category))
+    // : allBooks;
+
+
+   
+
 
   const { category } = useParams();
   console.log(category, "checking category on bookCOntext");
@@ -36,10 +53,10 @@ const BookList = () => {
 
   return (
     <>
-      <h1 className="">Books[{books?.length}]</h1>
+      <h1 className="py-2">Books[{books?.length}]</h1>
       {/* {console.log(books)} */}
       <div>
-        {loading && <p>Loading...</p>}
+        {loading && <h3 className="py-3"><i>Books are Loading...📙📘📗📙</i></h3>}
         {error && <p>An error occured while fetching books.</p>}
         {books && books?.length > 0 ? (
           <div className="row row-cols-lg-4 row-col">

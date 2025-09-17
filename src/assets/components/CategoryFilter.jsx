@@ -1,160 +1,92 @@
+
 import React from "react";
 import useFetch from "../hook/useFetch";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; 
+
 
 const CategoryFilter = ({datafromcat, checkedTrue, setCheckedTrue, catData, setCatData}) => {
+const navigate = useNavigate();
+
   const { allData, books, setBooks } = useBookContext();
-  console.log(books, "books");
+  // console.log(books, "books");
 
   const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
   );
-  console.log("Checking data", data);
+  // console.log("Checking data", data);
 
-  // const [catData, setCatData] = useState();
-
+  // const [catData, setCatData] = useState();  //uplifted to filter panel.
   // const [checkedTrue, setCheckedTrue] = useState([]);
+
+
   const { category } = useParams();
   console.log(category, "checking category useParams");
-  // const  [newData, setNewData] = useState([]);
-  // const [checkedItems, setCheckedItems] = useState([]);
+
+  // maybe not using 
+  // // const  [newData, setNewData] = useState([]);
+  // // const [checkedItems, setCheckedItems] = useState([]);
 
   useEffect(() => {
     if (data && data.length > 0) {
+
       const addedNewKey = data.map((item) => ({
         ...item,
         isChecked: false,
       }));
       //  setCatData(addedNewKey)
     datafromcat(addedNewKey)
+     // console.log(addedNewKey, "Checking newData");
 
       // console.log(category, "chejkgvhtrfry", catData);
       const checkedCheck = addedNewKey?.map((b) =>
         b.category === category ? { ...b, isChecked: true } : { ...b }
       );
-
-      console.log(checkedCheck, "chedkingedkedfiltere");
+      // console.log(checkedCheck, "chedkingedkedfiltere");
 
       setCatData(checkedCheck);
-      console.log(addedNewKey, "Checking newData");
+     
     } else {
       data;
     }
   }, [data]);
 
-  console.log(catData, "Checking catData");
+  // console.log(catData, "Checking catData");
 
   function updatedFilter(event, category) {
-    // setCheckedCat (event.target.checked);   Now not exists.
-    // console.log(checkedCat, "kdfjkd")
 
-    // console.log(books, "bjfjdkflk")
-    const filtered = allData?.filter((b) => b.category === category);
+    // const filtered = allData?.filter((b) => b.category === category);
 
-    // console.log(event.target.checked, "kjdf")
+   const checked = event.target.checked;
+    // console.log(filtered, "dkfjdklf");
+    // console.log(catData, "fkj")
 
-    console.log(filtered, "dkfjdklf");
+// Here we are updating to toggle isChecked of clicked category which is checked. when coming from landing page categories to the books page where we saw checked. 
+   const updatedCatData = catData?.map((b) => b.category === category ? {...b, isChecked: checked} : b);
 
-    const checkedCheck = catData?.map((b) => {
-      console.log("klfjddfkljs", category, b.category, b.category === category);
+   setCatData(updatedCatData)
 
-      return b.category == category
-        ? { ...b, isChecked: !b.isChecked }
-        : { ...b };
-    });
+//finding all checked categories.
+   const checkedCategories = updatedCatData.filter(cat => cat.isChecked).map(cat => cat.category);
+   console.log(checkedCategories, "yurifkjdf")
 
-    const trueChecked = checkedCheck?.filter((item) => item.isChecked === true);
-    console.log(trueChecked, "chdfdkj");
+   setCheckedTrue(updatedCatData.filter(cat => cat.isChecked));
 
-
-
-    console.log(books, "y67r4");
-    if (trueChecked.length > 0) {
-      console.log(books, "yr4", trueChecked, trueChecked == true);
-      setCheckedTrue(trueChecked);
-     
-
-              if(event.target.checked){
-          setBooks([...books, ...filtered])
-        }
-
-        else{
-          setBooks([...books.filter((b) => b.category !== category)])
-        }
-
-    } 
-    else {
-      // console.log(trueChecked, "chdfjnkwefwjedfdkj");
-      setBooks(allData);
-
-
-
-        // if(event.target.value){
-        //   setBooks([...books.filter((b) => b.category !== category)])
-        // }
-
-
-
-
-
-
-      // const againChecked = checkedCheck?.filter((item) => item.isChecked === true);
-      // console.log("fkdj", againChecked)
-
-
-
-      // const filtered = allData?.map((b) => {
-      //   console.log(
-      //     trueChecked.map((item) => {
-      //       return item.category === b.category;
-      //     }),
-
-      //     "sneiurhwieufhiwerfu"
-      //   );
-
-      //   trueChecked.filter((item) => {
-      //     console.log(
-      //       item.category === b.category,
-      //       item.category,
-      //       b.category,
-      //       "fwiejfowiewew"
-      //     );
-      //     return item.category === b.category;
-      //   });
-      // });
-
-
-    //  const trueChecked = checkedCheck?.filter((item) => item.isChecked === true);
-    // console.log(trueChecked, "chdfdkj");
-
-
-
-
-      const filterr = allData?.filter((b) => {
-        // console.log(checkedTrue, "58y9to")
-        checkedTrue?.filter((item) => console.log(item.category, "kjahfgl") === b.category);
-      });
-      console.log(filterr, "fdjkl5");
-      // checkedTrue.map
-
-      if (filterr) {
-        // console.log(filterr, "gilti");
-        // setBooks(filterr)
-      }
-    }
-    console.log(checkedTrue, "uerwi");
-
-    console.log(checkedCheck, "chedkingedkedfiltere");
-
-    setCatData(checkedCheck);
-    console.log(catData, "58y")
-    // setBooks([...books, ...filtered])
+  if (checkedCategories.length > 0) {
+    // Filter books by checked categories
+    const filteredBooks = allData.filter(book =>
+      checkedCategories.includes(book.category)
+    );
+    setBooks(filteredBooks);
+  } else {
+    // If no categories checked, reset to show all books
+    setBooks(allData);
+    navigate('/books'); // optional: to clear filters route
   }
-
-  console.log(books, "ckdjfdkljf");
+}
 
   return (
     <>
@@ -189,7 +121,7 @@ const CategoryFilter = ({datafromcat, checkedTrue, setCheckedTrue, catData, setC
             })}
           </div>
         ) : (
-          <p>No categories found.</p>
+          <p></p>
         )}
       </div>
     </>
@@ -197,3 +129,4 @@ const CategoryFilter = ({datafromcat, checkedTrue, setCheckedTrue, catData, setC
 };
 
 export default CategoryFilter;
+

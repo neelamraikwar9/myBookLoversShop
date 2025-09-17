@@ -3,30 +3,46 @@ import CategoryFilter from '../components/CategoryFilter';
 import RatingButtons from '../components/RatingButtons';
 import SortPrice from '../components/SortPrice';
 import PriceSlider from "./PriceSlider";
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useBookContext from "../contexts/BookContext";
 
 
 const FilterPanel = () => {
+  const { setBooks, allData } = useBookContext();
+
+   const navigate = useNavigate();
+
     const [checkedTrue, setCheckedTrue] = useState([]);
     const [price, setPrice] = useState(100); 
     const [ratingg, setRatingg] = useState("0");
     const [sortOrder, setSortOrder] = useState("Default");
     const [catData, setCatData] = useState([]);
     const [newData, setNewData] = useState([]);
-     
-      const datafromcat = (data) => {
+
+    // const [shouldNavigate, setShouldNavigate] = useState(false);
+
+   
+    const datafromcat = (data) => {
     console.log(data,'fweifjowei')
     setNewData(data)
     // return data
+    
   }
   
 
   function clearFilters(){
+    navigate('/books')
     setCheckedTrue([])
     setPrice(100)
     setRatingg("0")
     setSortOrder("Default")
     setBooks(allData)
+    // setShouldNavigate(true)
+    
+    
+    
+    
     // const data1 = datafromcat()
 
     //  const addedNewKey = newData.map((item) => ({
@@ -41,6 +57,14 @@ const FilterPanel = () => {
     console.log(checkedCheck, "kjhfg")
 
   }
+
+  // useEffect(() => {
+  //   if(shouldNavigate){
+  //     navigate('/books');
+  //     // setShouldNavigate(false);
+  //     setTimeout(() => setShouldNavigate(false), 0);
+  //   }
+  // }, [shouldNavigate, navigate])
 
 
   

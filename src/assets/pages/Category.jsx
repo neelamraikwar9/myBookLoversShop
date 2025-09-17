@@ -27,7 +27,7 @@ const Category = () => {
     <br/>
     <br/>
 
-      {loading && <p>Loading...</p>}
+      {loading && <h4>Loading categories...</h4>}
       {error && <p>An error occured while fetching books.</p>}
       {data && data.length > 0 ? (
         <div className="row">

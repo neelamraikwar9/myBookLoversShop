@@ -6,13 +6,8 @@ import  { useEffect } from 'react';
 const SortPrize = ({sortOrder, setSortOrder}) => {
   const {allData, books, setBooks} = useBookContext();
 
-  // const [sortOrder, setSortOrder] = useState("Default");
+  // const [sortOrder, setSortOrder] = useState("Default");    //uplifted this state to Filter Panel.
 
-
-  // const [bookSort, setBookSort ] = useState(allData);
-  // console.log(bookSort, "dlfkj")
-
- 
 
   const sortByPrice = (event) => {
     // const selectedRadio = event.target.value;
