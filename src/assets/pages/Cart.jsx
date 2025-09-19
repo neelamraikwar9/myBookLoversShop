@@ -5,9 +5,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect } from "react";
 
 export const Cart = () => {
-  const { cart, cartRemoveHandler, handleMoveWishlist, quantity } =
+  const { cart, cartRemoveHandler, handleMoveWishlist, QuantityFunction, incrementQuantity, decrementQuantity } =
     useBookContext();
-  console.log(cart, "cart checking on cart page....");
+  console.log(cart, "cartpage");
 
   function parsePrice(price) {
     if (typeof price === "string") {
@@ -19,34 +19,36 @@ export const Cart = () => {
 
  
   const cartPrice = cart?.reduce(
-    (acc, curr) => acc + parsePrice(curr.price),
+    (acc, curr) => acc + parsePrice(curr.price) * curr.quantity,
     0
   );
-  // console.log(cartPrice, "678")
+  
+  console.log(cartPrice, "hri678")
 
   const cartDiscount = cart?.reduce(
-    (acc, curr) => acc + parsePrice(curr.discountPrice),
-    0
+    (acc, curr) => {
+    const calDiscount =  acc + (parsePrice(curr.discountPrice) * curr.quantity)
+    console.log(calDiscount, "oikdf")
+    return calDiscount
+    }, 0
   );
-  // console.log(cartDiscount, "yutiee")
+  console.log(cartDiscount, "yutiee")
  
  
-  // const cartDeliveryCharges = cart?.reduce((acc, curr) => curr.deliveryCharges + acc, );
-  // console.log(cartDeliveryCharges, "dkju")
-  
   const totalAmount = cart?.reduce(
-    (acc, curr) => acc + parsePrice(curr.salePrice),
+    (acc, curr) => acc + parsePrice(curr.salePrice) * Number(curr.quantity),
     0
   );
 
   const save = cart?.reduce(
-    (acc, curr) => acc + parsePrice(curr.discountPrice),
+    (acc, curr) => acc + parsePrice(curr.discountPrice) * Number(curr.quantity),
     0
   );
   // console.log(save, "cartPrice")
-  
 
-  
+  const totalItems = cart.reduce((acc, curr) => acc + Number(curr.quantity), 0 )
+  // console.log(totalItems, "dkhdfkj")
+
 
   return (
     <main className="container">
@@ -75,7 +77,8 @@ export const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className=" d-flex justify-content-between border border-primary">
+          <div className='row'>
+          <div className="col-sm-row d-flex justify-content-between border border-primary">
             {/* border border-primary */}
 
             <div className="container">
@@ -108,7 +111,12 @@ export const Cart = () => {
                           </p>
                           <p className="text-success">{car.discount}</p>
 
-                          <p>Quantity: {quantity()}</p>
+                          {/* <p>Quantity: {quantityFunction(car.quantity, car.price)}</p> */}
+                          <QuantityFunction
+                            quantity={car.quantity}
+                             onIncrement={() => incrementQuantity(car._id)} 
+                             onDecrement={() => decrementQuantity(car._id)} 
+                          />
 
                           <div className="">
                             <Link to="/wishList-page">
@@ -146,8 +154,8 @@ export const Cart = () => {
                       <>
                         <div className="card._id">
                           <p className="card-text d-flex justify-content-between">
-                            Price(price item){" "}                  
-                              <strong className="text-end">₹{cartPrice}</strong>
+                            Price({totalItems}){" "}                  
+                             <span className="text-end">₹{cartPrice}</span>
                           </p>
                           <p className="d-flex justify-content-between">
                             Discount <span className="text-success">-
@@ -178,11 +186,15 @@ export const Cart = () => {
                           </p>
                         </div>
                       </>
+                      <Link to="/profile-page">
+                      <button className="btn btn-primary w-100 text-uppercase">Place Order</button>
+                      </Link>
                   </div>
                 </div>
               </div>
             </div>
             {/* </div> */}
+          </div>
           </div>
         )}
 

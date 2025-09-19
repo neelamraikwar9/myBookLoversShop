@@ -9,29 +9,59 @@ const useBookContext = () => useContext(BookContext);
 export function BookProvider({ children }) {
   // const {category} = useParams();
   // console.log(category, "kdjfjkchagkcjf")
-  
+
   const { data, loading, error } = useFetch(
     "https://selling-books-data.vercel.app/books"
   );
-  console.log(data);
+  console.log(data, "fdjklkjfd");
 
   const [books, setBooks] = useState(data);
   const [allData, setAllData] = useState(data);
 
+  //  const [cart, setCart] = useState([]); // early state without using local storage.
+
   const [cart, setCart] = useState(() => {
-  const savedCart = localStorage.getItem("cart");
-  return savedCart ? JSON.parse(savedCart) : [];
+    const savedCart = localStorage.getItem("cart");
+    // console.log(savedCart, "kjhfkljdf")
+    return savedCart ? JSON.parse(savedCart) : [];
+    console.log(savedCart, "kjhfkljdf");
   });
 
-
-
-  const [counter, setCounter] = useState(0);
-
+  // const [counter, setCounter] = useState(1);
   const [list, setList] = useState([]);
   const [dataTo, setDataTo] = useState(data);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
- 
+
+  //Kept out from Profile page.
+   const initial = {
+       name: "",
+       phoneNo: "",
+       selectedAddress: "",
+       country: "",
+       stateName: "",
+       city: "",
+       zipCode: "",
+       streetAddress: ""
+    }
+  
+    
+  
+    const [form, setForm] = useState(initial);
+  
+     const formStorageData = localStorage.getItem('formData');
+     console.log(formStorageData, "dkjfiuuyudjkl")
+  
+    const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
+    console.log(saveData, "dkjfdjkl")
+  
+    //useStates for editing;
+    const [isEditing, setIsEditing] = useState(false);
+  const [currentEditIndex, setCurrentEditIndex] = useState(null);
+
+
+
+
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -49,53 +79,23 @@ export function BookProvider({ children }) {
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
     console.log(cart, "checking cart...");
-
-    //local storage..
-    // localStorage.setItem('user', JSON.stringify(cartItem));
-    // console.log(cart, "dfjkstoreu")
-
-    const isInCart = cart?.some((car) => car._id === _id);
-
-    console.log(isInCart, "checking cart");
   };
 
+  //local storage..    Adding cart to local storage.
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart, "dfjkstoreu");
+  }, [cart]);
 
-  //with the local storage I updated the function which is above.
-    // const bookCartHandler = (bookId) => {
-      // console.log(bookId, "fdk1jl")
+  //For changing from Add to cart  to go to cart.
 
-       // Find the book object from data by ID
-//   const book = data?.find((item) => item._id === bookId);
-//   if (!book) {
-//     console.warn("Book not found for id:", bookId);
-//     return;
-//   }
+  // {data?.map((book) => {
+  // const isInCart = cart?.some((car) => car._id === book._id);
+  // console.log(isInCart, "checkinart");
+  // })}
 
-
-
-//       setCart((prevCart) => {
-//         const exists = data?.find((item) => item._id == bookId);
-//         console.log(exists, "exists")
-//         if(exists) return prevCart;
-
-//         if (prevCart.length <= 4) {
-//       return [...prevCart, book];
-//     } else {
-//       alert('Cart limit reached (4 items max)');
-//       return prevCart;
-//     }
-//   });
-// };
-
-
-useEffect(() => {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}, [cart]);
-
-
-
-
+  
 
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
@@ -113,21 +113,65 @@ useEffect(() => {
 
   // Quantity Function for Cart Page.
 
-  function quantity() {
+  // function quantityFunction({quantity, onIncrement, onDecrement}) {
+  //   return (
+  //     <span className="container ms-3">
+  //       <i
+  //         className="bi bi-plus-circle ms-5 ps-3"
+  //         onClick={() => setCounter((quantity) => quantity + 1)
+  //         }
+  //       ></i>
+  //       <span className="ms-2">{counter}</span>
+  //       <i
+  //         className="bi bi-dash-circle ms-2"
+  //         // onClick={() => setCounter((count) => count - 1)} // earliar
+  //         onClick={() => setCounter((quantity) => quantity - 1)}
+  //       ></i>
+  //     </span>
+  //   );
+  // }
+
+  function QuantityFunction({ quantity, onIncrement, onDecrement }) {
     return (
+      
       <span className="container ms-3">
+      <div className="d-flex align-items-center gap-3 me-5">
+      <p className="mb-0">Quantity</p>
         <i
-          className="bi bi-plus-circle ms-5 ps-3"
-          onClick={() => setCounter((count) => count + 1)}
+          className="bi bi-dash-circle "
+          // onClick={() => setCounter((count) => count - 1)} // earliar
+          onClick={onDecrement}
         ></i>
-        <span className="ms-2">{counter}</span>
+        <span className="fs-5">{quantity}</span>
         <i
-          className="bi bi-dash-circle ms-2"
-          onClick={() => setCounter((count) => count - 1)}
+          className="bi bi-plus-circle "
+          onClick={onIncrement}
         ></i>
+        </div>
       </span>
     );
   }
+
+  // Functions to handle increment or decrement of a particular product in the cart.
+  
+  function incrementQuantity(bookId){
+    const increment = cart.map((item) => item._id === bookId ? {...item, quantity : Number(item.quantity) + 1} : item)
+    console.log(increment, "fkjfkd")
+    setCart(increment)
+  }
+
+  function decrementQuantity(bookId){
+    const decrement = cart.map((item) => item._id === bookId && item.quantity > 1 ? {...item, quantity: Number(item.quantity) - 1} : item)
+    setCart(decrement)
+  }
+
+
+  // Function for books if 
+
+
+
+
+
 
   //Function to add card in a wishlist.
   function addToWishlist(_id) {
@@ -173,7 +217,6 @@ useEffect(() => {
     setCart([...cart, addCart]);
   }
 
-  // All Filters
   useEffect(() => {
     if (data && data.length > 0) {
       setDataTo(data);
@@ -183,23 +226,61 @@ useEffect(() => {
   }, [data, dataTo]);
   console.log(dataTo, "checking dataTo oncontext");
 
-
   //Function for search bar.
 
-  function searchBarHandler(value){
+  function searchBarHandler(value) {
     setSearchInput(value);
-    console.log(searchInput, "frljkgd")
+    console.log(searchInput, "frljkgd");
     // const filterData = allData.filter((item) => typeof item ==="string" && item.toLowerCase().includes(searchInput.toLowerCase()));
-    const filterData = allData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()));
+    const filterData = allData.filter((item) =>
+      item.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
     // console.log(allData, "gkkdf")
-    console.log(filterData, "fjlkdf")
+    console.log(filterData, "fjlkdf");
     setBooks(filterData);
+  }
 
-  } 
 
 
-  
 
+
+
+  const handleInputOnChange = (e) => {
+    const {name, value} = e.target;
+    console.log(name, value, "kfd")
+    setForm((prev) => ({...prev, [name]: value}));
+  }
+
+
+   function addressFormHandler(event) {
+    event.preventDefault();
+    
+    const savedForm = form;
+    console.log(savedForm, "dkffljkd")
+
+    setSaveData((prev) => ([...prev, savedForm]))
+    console.log(saveData, "dflkj... ")
+
+    const StringifyData = JSON.stringify([...saveData, savedForm])
+    console.log("checking stringify data: ", StringifyData)
+    localStorage.setItem('formData', StringifyData)
+
+
+
+
+  //   if(isEditing){
+  //     setSaveData(prev => prev.map((user, index) => index === index ? form : user))
+  //   } else{
+  //     setSaveData(prev => [...prev, form]);
+  //   }
+
+  //    setIsEditing(false);
+  //  setCurrentEditIndex(null);
+
+
+
+    window.location.reload();
+  }
 
   const value = {
     books,
@@ -216,13 +297,20 @@ useEffect(() => {
     wishListRemoveHandler,
     handleMoveCart,
     handleMoveWishlist,
-    quantity,
+    QuantityFunction,
     handleAddToWish,
     handleAddToCart,
     handleAddWish,
     handleAddCart,
     searchBarHandler,
-    searchInput
+    searchInput,
+    incrementQuantity,
+    decrementQuantity,
+    addressFormHandler,
+    handleInputOnChange,
+    saveData,
+    setSaveData
+
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

@@ -64,17 +64,22 @@ const PriceSlider = ({ price, setPrice }) => {
     <div className="container">
       <h5>Price Slider</h5>
       <h6>₹100 - ₹{price}</h6>
-      <label html="ran">
+
+      <form>
+      <label htmlFor="rangeInput">
         <input
           type="range"
-          id="ran"
-          defaultValue={price}
+          id="rangeInput"
+          // defaultValue={price}
+          value={price}
           onChange={handlePriceChange}
           min={100}
           max={1600}
           step={100}
         />
       </label>
+       {/* <button type="button" onClick={() => setPrice(price)}>Clear Slider🧹</button> */}
+      </form>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Navbar = () => {
     <>
       <header>
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
-          <NavLink to="/" className="navbar-brand ms-md-3 ms-lg-3 ms-lg-3 ps-lg-5 ">
+          <NavLink to="/" className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 ">
             {/* 📚BookLovers */}
             <h1 className="display-4 fw-semibold fst-italic text-dark">
   📚Book<span className="text-secondary">Lovers</span>
@@ -64,9 +64,9 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
-                <NavLink to="/login-page" className="nav-link">
+                <NavLink to="/profile-page" className="nav-link">
                   <FontAwesomeIcon icon={faUser} />
-                  <strong>Profile</strong>
+                  <strong>Profile</strong>  
                 </NavLink>
               </li>
             </ul>

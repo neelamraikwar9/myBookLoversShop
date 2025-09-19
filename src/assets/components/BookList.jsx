@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-
-// import { useSearchParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const BookList = () => {
-  
   const {
     allData,
     loading,
@@ -16,24 +13,10 @@ const BookList = () => {
     setBooks,
     bookCartHandler,
     isInCart,
-    addToWishlist
+    addToWishlist,
+    cart,
   } = useBookContext();
   console.log(books);
-
-
-
-
-    // const [searchParams, setSearchParams] = useSearchParams();
-
-    //  const selectedCategories = searchParams.getAll("category");
-
-    //  const filteredBooks = selectedCategories.length > 0
-    // ? allBooks.filter(book => selectedCategories.includes(book.category))
-    // : allBooks;
-
-
-   
-
 
   const { category } = useParams();
   console.log(category, "checking category on bookCOntext");
@@ -47,30 +30,38 @@ const BookList = () => {
     }
   }, [allData, category]);
 
+  //  let isInCart =
+  //  cart.?some((item) => item._id === book._id))
 
-  //categoryFilter
-
+ let isInCat = cart.some((item) => item._id === books?._id)
 
   return (
     <>
       <h1 className="py-2">Books[{books?.length}]</h1>
       {/* {console.log(books)} */}
       <div>
-        {loading && <h3 className="py-3"><i>Books are Loading...📙📘📗📙</i></h3>}
+        {loading && (
+          <h3 className="py-3">
+            <i>Books are Loading...📙📘📗📙</i>
+          </h3>
+        )}
         {error && <p>An error occured while fetching books.</p>}
         {books && books?.length > 0 ? (
           <div className="row row-cols-lg-4 row-col">
             {books &&
               books?.map((book) => (
-                <div key={book?._id} className="col-md-4 container px-auto py-3 d-flex">
+                <div
+                  key={book?._id}
+                  className="col-md-4 container px-auto py-3 d-flex"
+                >
                   <div className="card h-100">
                     <div className="bg-body-secondary">
-                    <Link to={`/book/${book?._id}`}>
-                      <img
-                        src={book?.image}
-                        alt={book?.name}
-                        className="img-fluid object-fit-cover border rounded"
-                      />
+                      <Link to={`/book/${book?._id}`}>
+                        <img
+                          src={book?.image}
+                          alt={book?.name}
+                          className="img-fluid object-fit-cover border rounded"
+                        />
                       </Link>
                     </div>
                     <br />
@@ -82,8 +73,11 @@ const BookList = () => {
                     </h4>
                     <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
 
-                    <div className="mt-auto">
-                      {isInCart ? (
+      
+                
+                    <div key={book?._id} className="mt-auto">
+                      { 
+                         isInCart  ? (
                         <Link to="/cart-page" className="btn btn-primary">
                           Go to Cart
                           <i className="bi bi-cart4"></i>
@@ -94,17 +88,20 @@ const BookList = () => {
                           onClick={() => bookCartHandler(book?._id)}
                         >
                           Add to Cart
-                           <i className="bi bi-cart4 ms-2"></i>
+                          <i className="bi bi-cart4 ms-2"></i>
                         </button>
                       )}
-                    
-                    <br />
-                    <Link to="/wishList-page">
-                    <button className="btn btn-primary display-block w-100" onClick={() => addToWishlist(book?._id)}>
-                      Add to Wishlist
-                      <i className="bi bi-suit-heart-fill ms-2"></i>
-                    </button>
-                    </Link>
+
+                      <br />
+                      <Link to="/wishList-page">
+                        <button
+                          className="btn btn-primary display-block w-100"
+                          onClick={() => addToWishlist(book?._id)}
+                        >
+                          Add to Wishlist
+                          <i className="bi bi-suit-heart-fill ms-2"></i>
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -10,7 +10,7 @@ import Books from './assets/pages/Books'
 
 import WishList from './assets/pages/WishList';
 import Cart from './assets/pages/Cart';
-import Login from './assets/pages/Profile';
+import Profile from './assets/pages/Profile';
 import BookDetail from './assets/pages/BookDetail';
 
 
@@ -33,7 +33,7 @@ function App() {
       <Route path="/books/:category" element={<Books />}></Route>
       <Route path="/wishList-page" element={<WishList />}></Route>
       <Route path="/cart-page" element={<Cart />}></Route>
-      <Route path="/login-page" element={<Login />}></Route>
+      <Route path="/profile-page" element={<Profile />}></Route>
       <Route path="/book/:bookId" element={<BookDetail/>}></Route>
       </Routes>
     </>
