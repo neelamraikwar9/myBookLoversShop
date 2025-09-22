@@ -18,7 +18,7 @@ const WishList = () => {
           list?.map((book) => 
           <div key={book._id} className='container col-md-4'>
           
-         <div className="card h-100">
+         <div className="card h-100 ">
          <div className="container p-3">
          <img src={book.image} alt={book.name} className="img-fluid"/>
          </div>

@@ -32,36 +32,29 @@ export function BookProvider({ children }) {
   const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
 
-
   //Kept out from Profile page.
-   const initial = {
-       name: "",
-       phoneNo: "",
-       selectedAddress: "",
-       country: "",
-       stateName: "",
-       city: "",
-       zipCode: "",
-       streetAddress: ""
-    }
-  
-    
-  
-    const [form, setForm] = useState(initial);
-  
-     const formStorageData = localStorage.getItem('formData');
-     console.log(formStorageData, "dkjfiuuyudjkl")
-  
-    const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
-    console.log(saveData, "dkjfdjkl")
-  
-    //useStates for editing;
-    const [isEditing, setIsEditing] = useState(false);
-  const [currentEditIndex, setCurrentEditIndex] = useState(null);
+  const initial = {
+    name: "",
+    phoneNo: "",
+    selectedAddress: "",
+    country: "",
+    stateName: "",
+    city: "",
+    zipCode: "",
+    streetAddress: "",
+  };
 
+  // const [addressData, setAddressData] = useState([initial]);
+  const [form, setForm] = useState(initial);
 
+  const formStorageData = localStorage.getItem("formData");
+  console.log(formStorageData, "dkjfiuuyudjkl");
 
+  const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
+  console.log(saveData, "dkjfdjkl");
 
+  //useStates for editing in checkout page;
+  const [editAddressIndex, setEditAddressIndex] = useState([]);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -94,8 +87,6 @@ export function BookProvider({ children }) {
   // const isInCart = cart?.some((car) => car._id === book._id);
   // console.log(isInCart, "checkinart");
   // })}
-
-  
 
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
@@ -133,45 +124,43 @@ export function BookProvider({ children }) {
 
   function QuantityFunction({ quantity, onIncrement, onDecrement }) {
     return (
-      
       <span className="container ms-3">
-      <div className="d-flex align-items-center gap-3 me-5">
-      <p className="mb-0">Quantity</p>
-        <i
-          className="bi bi-dash-circle "
-          // onClick={() => setCounter((count) => count - 1)} // earliar
-          onClick={onDecrement}
-        ></i>
-        <span className="fs-5">{quantity}</span>
-        <i
-          className="bi bi-plus-circle "
-          onClick={onIncrement}
-        ></i>
+        <div className="d-flex align-items-center gap-3 me-5">
+          <p className="mb-0">Quantity</p>
+          <i
+            className="bi bi-dash-circle "
+            // onClick={() => setCounter((count) => count - 1)} // earliar
+            onClick={onDecrement}
+          ></i>
+          <span className="fs-5">{quantity}</span>
+          <i className="bi bi-plus-circle " onClick={onIncrement}></i>
         </div>
       </span>
     );
   }
 
   // Functions to handle increment or decrement of a particular product in the cart.
-  
-  function incrementQuantity(bookId){
-    const increment = cart.map((item) => item._id === bookId ? {...item, quantity : Number(item.quantity) + 1} : item)
-    console.log(increment, "fkjfkd")
-    setCart(increment)
+
+  function incrementQuantity(bookId) {
+    const increment = cart.map((item) =>
+      item._id === bookId
+        ? { ...item, quantity: Number(item.quantity) + 1 }
+        : item
+    );
+    console.log(increment, "fkjfkd");
+    setCart(increment);
   }
 
-  function decrementQuantity(bookId){
-    const decrement = cart.map((item) => item._id === bookId && item.quantity > 1 ? {...item, quantity: Number(item.quantity) - 1} : item)
-    setCart(decrement)
+  function decrementQuantity(bookId) {
+    const decrement = cart.map((item) =>
+      item._id === bookId && item.quantity > 1
+        ? { ...item, quantity: Number(item.quantity) - 1 }
+        : item
+    );
+    setCart(decrement);
   }
 
-
-  // Function for books if 
-
-
-
-
-
+  // Function for books if
 
   //Function to add card in a wishlist.
   function addToWishlist(_id) {
@@ -240,46 +229,70 @@ export function BookProvider({ children }) {
     setBooks(filterData);
   }
 
-
-
-
-
-
   const handleInputOnChange = (e) => {
-    const {name, value} = e.target;
-    console.log(name, value, "kfd")
-    setForm((prev) => ({...prev, [name]: value}));
-  }
+    const { name, value } = e.target;
+    console.log(name, value, "kfd");
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-
-   function addressFormHandler(event) {
+  function addressFormHandler(event) {
     event.preventDefault();
+
+    console.log(editAddressIndex, "kfdfkf")
+    if (editAddressIndex) {
+      console.log(form, "dfjklldkjf");
+      setSaveData((prevformData) =>
+        prevformData.map((address) => {
+
+          if (address.index === editAddressIndex) {
+            console.log(form, "dkf45")
+            return { ...address};
+          }
+          return form;
+        })
+      );
+      setEditAddressIndex("");
     
+      window.location.reload();
+
+      return 
+    }
+
     const savedForm = form;
-    console.log(savedForm, "dkffljkd")
+    console.log(savedForm, "dkffljkd");
 
-    setSaveData((prev) => ([...prev, savedForm]))
-    console.log(saveData, "dflkj... ")
+    setSaveData((prev) => [...prev, savedForm]);
+    console.log(saveData, "dflkj... ");
 
-    const StringifyData = JSON.stringify([...saveData, savedForm])
-    console.log("checking stringify data: ", StringifyData)
-    localStorage.setItem('formData', StringifyData)
-
-
-
-
-  //   if(isEditing){
-  //     setSaveData(prev => prev.map((user, index) => index === index ? form : user))
-  //   } else{
-  //     setSaveData(prev => [...prev, form]);
-  //   }
-
-  //    setIsEditing(false);
-  //  setCurrentEditIndex(null);
-
-
+    const StringifyData = JSON.stringify([...saveData, savedForm]);
+    console.log("checkingdata: ", StringifyData);
+    localStorage.setItem("formData", StringifyData);
 
     window.location.reload();
+  }
+
+  const handleEdit = (index) => {
+    setForm(saveData[index]); // load entyr data in the form.
+    // setEditAddressIndex(index);
+    setEditAddressIndex(saveData[index]);
+
+    // const findEditAddress = saveData.find((add) => add.index === index)
+    // console.log(findEditAddress, "gfkjklfd")
+    // setForm(findEditAddress)
+
+    console.log(editAddressIndex, "edidfifj");
+
+    // if(editIndex >= 0 ){
+    //   setSaveData()
+    // }
+  };
+
+  function parsePrice(price) {
+    if (typeof price === "string") {
+      price = price.replace(/[^0-9.-]+/g, "");
+    }
+    const parsed = Number(price);
+    return isNaN(parsed) ? 0 : parsed;
   }
 
   const value = {
@@ -309,8 +322,12 @@ export function BookProvider({ children }) {
     addressFormHandler,
     handleInputOnChange,
     saveData,
-    setSaveData
-
+    setSaveData,
+    form,
+    setForm,
+    parsePrice,
+    handleEdit,
+    setEditAddressIndex,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

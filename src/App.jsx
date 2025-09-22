@@ -12,6 +12,8 @@ import WishList from './assets/pages/WishList';
 import Cart from './assets/pages/Cart';
 import Profile from './assets/pages/Profile';
 import BookDetail from './assets/pages/BookDetail';
+import CheckOut from './assets/pages/CheckOut';
+import Order from './assets/pages/Order';
 
 
 
@@ -35,6 +37,8 @@ function App() {
       <Route path="/cart-page" element={<Cart />}></Route>
       <Route path="/profile-page" element={<Profile />}></Route>
       <Route path="/book/:bookId" element={<BookDetail/>}></Route>
+      <Route path="/CheckOut-page" element={<CheckOut/>}></Route>
+      <Route path="/Order" element={<Order/>}></Route>
       </Routes>
     </>
   )
