@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
-  const {addressFormHandler, handleInputOnChange, saveData, setSaveData, handleEdit, form, setForm, editAddressIndex} = useBookContext();
+  const {addressFormSubmitHandler, handleInputOnChange, saveData, setSaveData, handleEdit, form, setForm, editAddressIndex} = useBookContext();
 
 
   useEffect(() => {
@@ -41,14 +41,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
         <br />
         <br />
 
 
         <div className="card col-md-4 container py-3 text-center">
           <h3>Address Form</h3>
-          <form onSubmit={addressFormHandler}>
+          <form onSubmit={addressFormSubmitHandler}>
 
             <label htmlFor="nam">
               Name:-
@@ -170,11 +169,9 @@ const Profile = () => {
             <br />
             <br />
     
-            <button type="submit" className="btn btn-primary">
-             {/* {editAddressIndex === false ? 'Add Address' :  'Save Address'} */}
-             {editAddressIndex ? 'Save Address' :  'Add Address' }
-             {/* {editAddressIndex  !== null ? 'Save Address' :  'Add Address' } */}
-
+            <button type="submit" className="btn btn-primary"> Add Form
+            {editAddressIndex !== "" ? 'Save Address' : 'Add Address'}
+            
 
             </button>
           </form>
@@ -202,7 +199,7 @@ const Profile = () => {
                   <p>Zip Code:- {user.zipCode}</p>
                   <p>Street Address:- {user.streetAddress}</p>
                   <div className="d-flex d-grid gap-3">
-                    <button type="button" onClick={() => handleEdit(index)} className="btn btn-outline-secondary"><i className="bi bi-pen-fill" ></i>Edit</button>
+                    <button type="button" onClick={() => handleEdit(user.phoneNo)} className="btn btn-outline-secondary"><i className="bi bi-pen-fill" ></i>Edit</button>
                     <button type="button" onClick={() => handleDelete(user.name)} className="btn btn-outline-danger" ><i className="bi bi-trash"></i>Delete</button>
                   </div>
                 </div>

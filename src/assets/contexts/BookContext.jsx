@@ -27,8 +27,12 @@ export function BookProvider({ children }) {
     console.log(savedCart, "kjhfkljdf");
   });
 
-  // const [counter, setCounter] = useState(1);
-  const [list, setList] = useState([]);
+  // const [list, setList] = useState();
+  const [list, setList] = useState(() => {
+   const savedList =  localStorage.getItem("wishList")
+   return savedList ? JSON.parse(savedList) : [];
+  });
+
   const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
 
@@ -54,7 +58,7 @@ export function BookProvider({ children }) {
   console.log(saveData, "dkjfdjkl");
 
   //useStates for editing in checkout page;
-  const [editAddressIndex, setEditAddressIndex] = useState([]);
+  const [editAddressIndex, setEditAddressIndex] = useState('');
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -101,6 +105,11 @@ export function BookProvider({ children }) {
     const autoRemoveCart = cart?.filter((book) => book._id !== _id);
     setCart(autoRemoveCart);
   }
+
+   useEffect(() => {
+    localStorage.setItem("wishList", JSON.stringify(list));
+    console.log(list, "dfjkstoreu");
+  }, [list]);
 
   // Quantity Function for Cart Page.
 
@@ -188,6 +197,10 @@ export function BookProvider({ children }) {
     console.log(list, "checking list value");
   }
 
+  //local storage..    Adding cart to local storage.
+
+ 
+
   // Function for Add to Cart from book detail page.
   function handleAddToCart(_id) {
     const addToCart = books?.find((book) => book._id === _id);
@@ -235,31 +248,43 @@ export function BookProvider({ children }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  function addressFormHandler(event) {
+
+
+    // if (editAddressIndex) {
+    //   console.log(form, "dfjklldkjf");
+    //   setSaveData((prevformData) =>
+    //     prevformData.map((address) => {
+
+    //       if (address.index === editAddressIndex) {
+    //         console.log(form, "dkf45")
+    //         return { ...address};
+    //       }
+    //       return form;
+    //     })
+    //   );
+
+  
+  function addressFormSubmitHandler(event) {
     event.preventDefault();
 
-    console.log(editAddressIndex, "kfdfkf")
-    if (editAddressIndex) {
-      console.log(form, "dfjklldkjf");
-      setSaveData((prevformData) =>
-        prevformData.map((address) => {
+    // console.log(editAddressIndex, "kfdfkf")
 
-          if (address.index === editAddressIndex) {
-            console.log(form, "dkf45")
-            return { ...address};
-          }
-          return form;
-        })
-      );
-      setEditAddressIndex("");
-    
-      window.location.reload();
-
-      return 
+    if(editAddressIndex){
+      console.log(editAddressIndex, "kdjkjfd")
+      setSaveData(prevData => prevData.find((address) => {
+        console.log(address.phoneNo, "kflkjdf")
+          console.log(editAddressIndex, "kfdkdf")
+        if(address.phoneNo === editAddressIndex){
+          return {...saveData, id: editAddressIndex}
+        }
+        return address
+        }))
+        setEditAddressIndex()
+       
     }
 
     const savedForm = form;
-    console.log(savedForm, "dkffljkd");
+    // console.log(savedForm, "dkffljkd");
 
     setSaveData((prev) => [...prev, savedForm]);
     console.log(saveData, "dflkj... ");
@@ -268,24 +293,31 @@ export function BookProvider({ children }) {
     console.log("checkingdata: ", StringifyData);
     localStorage.setItem("formData", StringifyData);
 
+
     window.location.reload();
-  }
 
-  const handleEdit = (index) => {
-    setForm(saveData[index]); // load entyr data in the form.
-    // setEditAddressIndex(index);
-    setEditAddressIndex(saveData[index]);
 
-    // const findEditAddress = saveData.find((add) => add.index === index)
-    // console.log(findEditAddress, "gfkjklfd")
-    // setForm(findEditAddress)
 
-    console.log(editAddressIndex, "edidfifj");
+    
+    }
+  
+  
 
-    // if(editIndex >= 0 ){
-    //   setSaveData()
-    // }
+  // const handleEdit = (index) => {
+  //   setForm(saveData[index]); // load entyr data in the form.
+  //   setEditAddressIndex(index);
+  // };
+
+
+   const handleEdit = (phoneNo) => {
+
+    const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo)
+    setForm(selectedAddress); // load entyr data in the form.
+    //  setForm({ phoneNo: selectedData.phoneNo })
+    setEditAddressIndex(phoneNo);
+    console.log(setEditAddressIndex, "edjitjitj")
   };
+
 
   function parsePrice(price) {
     if (typeof price === "string") {
@@ -319,7 +351,7 @@ export function BookProvider({ children }) {
     searchInput,
     incrementQuantity,
     decrementQuantity,
-    addressFormHandler,
+    addressFormSubmitHandler,
     handleInputOnChange,
     saveData,
     setSaveData,
@@ -327,7 +359,7 @@ export function BookProvider({ children }) {
     setForm,
     parsePrice,
     handleEdit,
-    setEditAddressIndex,
+    // setEditAddressIndex,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;
