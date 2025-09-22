@@ -86,11 +86,12 @@ export function BookProvider({ children }) {
   }, [cart]);
 
   //For changing from Add to cart  to go to cart.
-
-  // {data?.map((book) => {
-  // const isInCart = cart?.some((car) => car._id === book._id);
-  // console.log(isInCart, "checkinart");
-  // })}
+  function buttonLabel(){
+  { data?.map((book) => {
+  const isInCart = cart?.some((car) => car._id === book._id);
+  console.log(isInCart, "checkinart");
+  })}
+}
 
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
@@ -359,7 +360,8 @@ export function BookProvider({ children }) {
     setForm,
     parsePrice,
     handleEdit,
-    // setEditAddressIndex,
+    setEditAddressIndex,
+    buttonLabel
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

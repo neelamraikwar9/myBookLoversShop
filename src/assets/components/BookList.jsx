@@ -78,7 +78,7 @@ const BookList = () => {
                     <div key={book?._id} className="mt-auto">
                       { 
                          isInCart  ? (
-                        <Link to="/cart-page" className="btn btn-primary">
+                        <Link to="/cart-page" className="btn btn-success">
                           Go to Cart
                           <i className="bi bi-cart4"></i>
                         </Link>
