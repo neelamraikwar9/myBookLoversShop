@@ -1,33 +1,42 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 const Profile = () => {
-
-  const {addressFormSubmitHandler, handleInputOnChange, saveData, setSaveData, handleEdit, form, setForm, editAddressIndex} = useBookContext();
-
-
+  const {
+    addressFormSubmitHandler,
+    handleInputOnChange,
+    saveData,
+    setSaveData,
+    handleEdit,
+    form,
+    setForm,
+    buttonLabel,
+  } = useBookContext();
+  console.log(form, "checkinform");
+  console.log(saveData, "dright");
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
 
-    if(savedData){
-      setForm(JSON.parse(savedData))
+    if (savedData) {
+      setForm(JSON.parse(savedData));
     }
-  }, [])
+  }, []);
 
-
-  function handleDelete(name){
-    console.log(name, "kjhdfkjdfs")
-    const updateDelete = saveData.filter((user) => user.name != name)
-    setSaveData(updateDelete)
-    localStorage.setItem("formData", JSON.stringify(updateDelete))
+  function handleDelete(name) {
+    console.log(name, "kjhdfkjdfs");
+    const updateDelete = saveData.filter((user) => user.name != name);
+    setSaveData(updateDelete);
+    localStorage.setItem("formData", JSON.stringify(updateDelete));
   }
+    console.log(saveData, "dflkj ");
 
-  
+ 
+
   return (
-    <main>  
+    <main>
       <div className="container">
         <div className="col-md-12">
           <div className="card">
@@ -44,38 +53,30 @@ const Profile = () => {
         <br />
         <br />
 
-
         <div className="card col-md-4 container py-3 text-center">
           <h3>Address Form</h3>
-          <form onSubmit={addressFormSubmitHandler}>
-
-            <label htmlFor="nam">
-              Name:-
-            </label>
+          <form onSubmit={ addressFormSubmitHandler}>
+            <label htmlFor="nam">Name:-</label>
             <input
               type="text"
               id="nam"
               className="ms-2"
               name="name"
-              value={form.name || ""}
+              value={form?.name || ""}
               required
-              // onChange={(e) => setName(e.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
             <br />
 
-            <label htmlFor="phn">
-              Phone No:-
-            </label>
+            <label htmlFor="phn">Phone No:-</label>
             <input
               type="number"
               id="phn"
               className="ms-2"
               name="phoneNo"
-              value={form.phoneNo || ""}
+              value={form?.phoneNo || ""}
               required
-              // onChange={(e) => setPhoneNo(e.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
@@ -86,9 +87,8 @@ const Profile = () => {
               id="add"
               className="ms-2"
               name="selectedAddress"
-              value={form.selectedAddress}
+              value={form?.selectedAddress}
               required
-              // onChange={(e) => setAddress(e.target.value)}
               onChange={handleInputOnChange}
             >
               {/* <option value="">Home</option> */}
@@ -105,9 +105,8 @@ const Profile = () => {
               id="con"
               className="ms-2"
               name="country"
-              value={form.country || ""}
+              value={form?.country || ""}
               required
-              // onChange={(event) => setCountry(event.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
@@ -119,7 +118,7 @@ const Profile = () => {
               id="stat"
               className="ms-2"
               name="stateName"
-              value={form.stateName || ""}
+              value={form?.stateName || ""}
               required
               // onChange={(event) => setNameState(event.target.value)}
               onChange={handleInputOnChange}
@@ -133,7 +132,7 @@ const Profile = () => {
               id="cit"
               className="ms-2"
               name="city"
-              value={form.city || " "}
+              value={form?.city || " "}
               required
               // onChange={(event) => setCity(event.target.value)}
               onChange={handleInputOnChange}
@@ -147,9 +146,8 @@ const Profile = () => {
               id="zip"
               className="ms-2"
               name="zipCode"
-              value={form.zipCode || ""}
+              value={form?.zipCode || ""}
               required
-              // onChange={(event) => setZip(event.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
@@ -161,18 +159,16 @@ const Profile = () => {
               id="str"
               className="ms-2"
               name="streetAddress"
-              value={form.streetAddress || ""}
+              value={form?.streetAddress || ""}
               required
-              // onChange={(event) => setStreet(event.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
             <br />
-    
-            <button type="submit" className="btn btn-primary"> Add Form
-            {editAddressIndex !== "" ? 'Save Address' : 'Add Address'}
-            
 
+            {console.log(buttonLabel, "dfjkjdfjk")}
+            <button type="submit" className="btn btn-primary">
+              {!buttonLabel ? "Add Address" : "Save Address"}
             </button>
           </form>
         </div>
@@ -184,30 +180,51 @@ const Profile = () => {
             <div className="card-header">
               <h3>Manage Address</h3>
             </div>
-            
+
             <h5 className="container py-2">Address:-</h5>
             {saveData.length > 0 &&
-              saveData?.map((user, index) => (
+              saveData?.map((user, index) => 
+                {
+                  console.log(user,'hifuhiwuuiefu')
+                  return(
+
                 <div key={index} className="container card col-md-8 mt-4 fs-6">
-                <div className="container py-3">
-                  <p>Name:- {user.name}</p>
-                  <p>Phone No:- {user.phoneNo}</p>
-                  <p>Selected Address:- {user.selectedAddress}</p>
-                  <p>Country:- {user.country}</p>
-                  <p>State:- {user.stateName}</p>
-                  <p>City:- {user.city}</p>
-                  <p>Zip Code:- {user.zipCode}</p>
-                  <p>Street Address:- {user.streetAddress}</p>
-                  <div className="d-flex d-grid gap-3">
-                    <button type="button" onClick={() => handleEdit(user.phoneNo)} className="btn btn-outline-secondary"><i className="bi bi-pen-fill" ></i>Edit</button>
-                    <button type="button" onClick={() => handleDelete(user.name)} className="btn btn-outline-danger" ><i className="bi bi-trash"></i>Delete</button>
+                  <div className="container py-3">
+                    <p>Name:- {user.name}</p>
+                    <p>Phone No:- {user.phoneNo}</p>
+                    <p>Selected Address:- {user.selectedAddress}</p>
+                    <p>Country:- {user.country}</p>
+                    <p>State:- {user.stateName}</p>
+                    <p>City:- {user.city}</p>
+                    <p>Zip Code:- {user.zipCode}</p>
+                    <p>Street Address:- {user.streetAddress}</p>
+                    <div className="d-flex d-grid gap-3">
+                      <button
+                        type="button"
+                        // onClick={() => handleEdit(user?.id)}
+                        onClick={() => handleEdit(user?.phoneNo)}
+
+                        className="btn btn-outline-secondary"
+                      >
+                        <i className="bi bi-pen-fill"></i>Edit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(user.name)}
+                        className="btn btn-outline-danger"
+                      >
+                        <i className="bi bi-trash"></i>Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
-                 </div> 
-              ))}
-              <Link to="/CheckOut-page">
+                  )
+
+            }
+              )}
+            <Link to="/CheckOut-page">
               <button className="btn btn-primary mt-5 w-100">Checkout</button>
-              </Link>
+            </Link>
           </div>
         </div>
       </div>

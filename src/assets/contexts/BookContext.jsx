@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
 // import { useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const BookContext = createContext();
 
@@ -29,8 +30,8 @@ export function BookProvider({ children }) {
 
   // const [list, setList] = useState();
   const [list, setList] = useState(() => {
-   const savedList =  localStorage.getItem("wishList")
-   return savedList ? JSON.parse(savedList) : [];
+    const savedList = localStorage.getItem("wishList");
+    return savedList ? JSON.parse(savedList) : [];
   });
 
   const [dataTo, setDataTo] = useState(data);
@@ -38,14 +39,15 @@ export function BookProvider({ children }) {
 
   //Kept out from Profile page.
   const initial = {
-    name: "",
-    phoneNo: "",
-    selectedAddress: "",
-    country: "",
-    stateName: "",
-    city: "",
-    zipCode: "",
-    streetAddress: "",
+    id: uuidv4(),
+    name: "1",
+    phoneNo: "333",
+    selectedAddress: "fwe",
+    country: "effe",
+    stateName: "fefe",
+    city: "efe232",
+    zipCode: "222",
+    streetAddress: "fwefw",
   };
 
   // const [addressData, setAddressData] = useState([initial]);
@@ -54,11 +56,21 @@ export function BookProvider({ children }) {
   const formStorageData = localStorage.getItem("formData");
   console.log(formStorageData, "dkjfiuuyudjkl");
 
-  const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
-  console.log(saveData, "dkjfdjkl");
+  // const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
+  // console.log(saveData, "dkjfdjkl");
+
+const [saveData, setSaveData] = useState(() => {
+  const stored = localStorage.getItem("formData");
+  return stored ? JSON.parse(stored) : [];
+});
+
+
+
+
 
   //useStates for editing in checkout page;
-  const [editAddressIndex, setEditAddressIndex] = useState('');
+  const [editAddressIndex, setEditAddressIndex] = useState();
+  const [buttonLabel, setButtonLabel] = useState(false);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -86,12 +98,14 @@ export function BookProvider({ children }) {
   }, [cart]);
 
   //For changing from Add to cart  to go to cart.
-  function buttonLabel(){
-  { data?.map((book) => {
-  const isInCart = cart?.some((car) => car._id === book._id);
-  console.log(isInCart, "checkinart");
-  })}
-}
+  function buttonName() {
+    {
+      data?.map((book) => {
+        const isInCart = cart?.some((car) => car._id === book._id);
+        console.log(isInCart, "checkinart");
+      });
+    }
+  }
 
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
@@ -107,7 +121,7 @@ export function BookProvider({ children }) {
     setCart(autoRemoveCart);
   }
 
-   useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("wishList", JSON.stringify(list));
     console.log(list, "dfjkstoreu");
   }, [list]);
@@ -200,8 +214,6 @@ export function BookProvider({ children }) {
 
   //local storage..    Adding cart to local storage.
 
- 
-
   // Function for Add to Cart from book detail page.
   function handleAddToCart(_id) {
     const addToCart = books?.find((book) => book._id === _id);
@@ -249,75 +261,299 @@ export function BookProvider({ children }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // if (editAddressIndex) {
+  //   console.log(form, "dfjklldkjf");
+  //   setSaveData((prevformData) =>
+  //     prevformData.map((address) => {
 
+  //       if (address.index === editAddressIndex) {
+  //         console.log(form, "dkf45")
+  //         return { ...address};
+  //       }
+  //       return form;
+  //     })
+  //   );
 
-    // if (editAddressIndex) {
-    //   console.log(form, "dfjklldkjf");
-    //   setSaveData((prevformData) =>
-    //     prevformData.map((address) => {
-
-    //       if (address.index === editAddressIndex) {
-    //         console.log(form, "dkf45")
-    //         return { ...address};
-    //       }
-    //       return form;
-    //     })
-    //   );
-
-  
-  function addressFormSubmitHandler(event) {
-    event.preventDefault();
+  // function addressFormSubmitHandler(event) {
+  //   event.preventDefault();
+  //   console.log(form, "jyiouou898")
 
     // console.log(editAddressIndex, "kfdfkf")
 
-    if(editAddressIndex){
-      console.log(editAddressIndex, "kdjkjfd")
-      setSaveData(prevData => prevData.find((address) => {
-        console.log(address.phoneNo, "kflkjdf")
-          console.log(editAddressIndex, "kfdkdf")
-        if(address.phoneNo === editAddressIndex){
-          return {...saveData, id: editAddressIndex}
-        }
-        return address
-        }))
-        setEditAddressIndex()
-       
-    }
+    // if (editAddressIndex) {
+    //   console.log(editAddressIndex, "kdjkjfd");
+    //   setSaveData((prevData) =>
+    //     prevData.map((address) => {
+    //       console.log(address.id, "kflkjdf");
+    //       console.log(editAddressIndex, "kfdkdf");
+    //       if (address.id === editAddressIndex) {
+    //         // return {...address, id: editAddressIndex}
+    //         return { ...address, ...form };
+    //       }
+    //       return address;
+    //     })
+    //   );
+    //   setEditAddressIndex();
+    // }
+
+
+    // console.log(saveData, "jkfkjfld898")
 
     const savedForm = form;
     // console.log(savedForm, "dkffljkd");
 
-    setSaveData((prev) => [...prev, savedForm]);
-    console.log(saveData, "dflkj... ");
 
-    const StringifyData = JSON.stringify([...saveData, savedForm]);
-    console.log("checkingdata: ", StringifyData);
-    localStorage.setItem("formData", StringifyData);
+    console.log(saveData, "savekfkjfkjdfk");
+
+      //   const id = form.id;
+      //   const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
+      //   {id:uuidv4(), ...form}
+      // )
+      // setSaveData((prev) => [...prev, ...edited])
 
 
-    window.location.reload();
+      //moni did above code/...............................
 
 
+
+  //     setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
+  //   setSaveData([savedForm]);
+
+  //   console.log(setSaveData, "fdkjkjfkfdfkj")
+
+
+  //   const StringifyData = JSON.stringify([...saveData, savedForm]);
+  //   // const StringifyData = JSON.stringify([savedForm]);
+
+  //   console.log("checkingdata: ", StringifyData);
+  //   localStorage.setItem("formData", StringifyData);
+  //   console.log(form, "jyiouoyuiyoi")
 
     
-    }
   
+  //   window.location.reload();
+  // }
+
+//   useEffect(() => {
+//   localStorage.setItem("formData", JSON.stringify(saveData));
+// }, [saveData])
+
+
+
+
+
+
+
+
+
+// Here again trying submit and edit functionality.
+
+
+//  function addressFormSubmitHandler(event) {
+//     event.preventDefault();
+//     console.log(form, "jyiouou898")
+
+//     // console.log(editAddressIndex, "kfdfkf")
+
+//     if (editAddressIndex) {
+//       console.log(editAddressIndex, "kdjkjfd");
+//       setSaveData((prevData) =>
+//         prevData.map((address) => {
+//           console.log(address.id, "kflkjdf");
+//           console.log(editAddressIndex, "kfdkdf");
+//           if (address.id === editAddressIndex) {
+//             // return {...address, id: editAddressIndex}
+//             return { ...address, ...form };
+//           }
+//           return address;
+//         })
+//       );
+//       setEditAddressIndex();
+//     }
+
+
+//     // console.log(saveData, "jkfkjfld898")
+
+//     const savedForm = form;
+//     // console.log(savedForm, "dkffljkd");
+
+
+//     console.log(saveData, "savekfkjfkjdfk");
+
+//         const id = form.id;
+//         console.log(id, "dfk")
+//         const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
+//         {id:uuidv4(), ...form}
+//       )
+//       setSaveData((prev) => [...prev, ...edited])
+
+
+//       // did above code/...............................
+
+//     setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
+//     setSaveData([savedForm]);
+
+//     console.log(setSaveData, "fdkjkjfkfdfkj")
+
+//     const StringifyData = JSON.stringify([...saveData, savedForm]);
+//     // const StringifyData = JSON.stringify([savedForm]);
+
+//     console.log("checkingdata: ", StringifyData);
+//     localStorage.setItem("formData", StringifyData);
+//     console.log(form, "jyiouoyuiyoi")
   
+//     window.location.reload();
+//   }
+
+
 
   // const handleEdit = (index) => {
   //   setForm(saveData[index]); // load entyr data in the form.
   //   setEditAddressIndex(index);
   // };
 
+  
 
-   const handleEdit = (phoneNo) => {
+  // const handleEdit = (id) => {
+  //   setButtonLabel(true);
+  //   console.log('dfoeifw',id)
+  //   const selectedAddress = saveData.find((add) => add.id === id);
+  //   console.log('selectedAddress', selectedAddress)
 
-    const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo)
+  //   setForm(selectedAddress); // load entyr data in the form.
+  //   //  setForm({ phoneNo: selectedData.phoneNo })
+
+  //   setEditAddressIndex(id);
+
+
+  //   console.log(setEditAddressIndex, "edjitjitj");
+  // };
+
+
+  //  const handleEdit = (id) => {
+  //   setButtonLabel(true);
+  //   console.log('dfoeifw',id)
+  //   const selectedAddress = saveData.find((add) => add.id === id);
+  //   console.log('selectedAddress', selectedAddress)
+
+  //   setForm(selectedAddress); // load entyr data in the form.
+  //   //  setForm({ phoneNo: selectedData.phoneNo })
+
+  //   setEditAddressIndex(id);
+
+  //   console.log(setEditAddressIndex, "edjitjitj");
+  // };
+
+
+
+  const handleEdit = (phoneNo) => {
+    setButtonLabel(true);
+    console.log('dfoeifw',phoneNo)
+    const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo);
+    console.log('selectedAddress', selectedAddress)
+
     setForm(selectedAddress); // load entyr data in the form.
     //  setForm({ phoneNo: selectedData.phoneNo })
+
     setEditAddressIndex(phoneNo);
-    console.log(setEditAddressIndex, "edjitjitj")
+
+    console.log(setEditAddressIndex, "edjitjitj");
   };
+
+
+
+  function addressFormSubmitHandler(event) {
+    event.preventDefault();
+    console.log(form, "jyiouou898")
+
+    // console.log(editAddressIndex, "kfdfkf")
+
+    if (editAddressIndex) {
+      console.log(editAddressIndex, "kdjkjfd");
+      setSaveData((prevData) =>
+        prevData.map((address) => {
+          console.log(address.phoneNo, "kflkjdf");
+          console.log(editAddressIndex, "kfdkdf");
+          if (address.phoneNo === editAddressIndex) {
+            return { ...address, ...form };
+          } 
+          // else{
+          // return address;
+          // }
+
+          return address;
+
+        })
+      );
+      
+    }
+
+
+
+
+
+      // const savedForm = form;
+    // console.log(savedForm, "dkffljkd");
+
+    // setSaveData((prev) => [...prev, savedForm]);
+    console.log(saveData, "dflkjrry");
+
+    // const addresses = JSON.parse(localStorage.getItem("formData")) || [];
+
+//     addresses.push(newFormData);
+// localStorage.setItem("formData", JSON.stringify(addresses));
+
+
+//     console.log(saveData, "dflkj... ");
+// setSaveData.push(form);
+
+setSaveData(prev => [...prev, form]);
+
+localStorage.setItem("formData", JSON.stringify([...saveData, form]));
+
+
+
+    // const StringifyData = JSON.stringify([...saveData, savedForm]);
+    // console.log("checkingdata: ", StringifyData);
+    // localStorage.setItem("formData", StringifyData);
+
+
+    window.location.reload();
+
+
+    // console.log(saveData, "jkfkjfld898")
+    // const savedForm = form;
+    // console.log(savedForm, "dkffljkd");
+
+    // console.log(saveData, "savekfkjfkjdfk");
+
+
+    //     const id = form.id;
+    //     console.log(id, "dfk")
+    //     const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
+    //     {id:uuidv4(), ...form}
+    //   )
+    //   setSaveData((prev) => [...prev, ...edited])
+
+
+    //   //moni did above code/...............................
+
+    // setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
+    // setSaveData([savedForm]);
+
+    // console.log(setSaveData, "fdkjkjfkfdfkj")
+
+    // const StringifyData = JSON.stringify([...saveData, savedForm]);
+    // // const StringifyData = JSON.stringify([savedForm]);
+
+    // console.log("checkingdata: ", StringifyData);
+    // localStorage.setItem("formData", StringifyData);
+    // console.log(form, "jyiouoyuiyoi")
+  
+    // window.location.reload();
+  }
+
+
 
 
   function parsePrice(price) {
@@ -361,7 +597,9 @@ export function BookProvider({ children }) {
     parsePrice,
     handleEdit,
     setEditAddressIndex,
-    buttonLabel
+    buttonName,
+    buttonLabel,
+    setButtonLabel,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

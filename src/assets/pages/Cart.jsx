@@ -78,7 +78,8 @@ export const Cart = () => {
           </div>
         ) : (
           <div className='row'>
-          <div className="col-sm-row d-flex justify-content-between border border-primary">
+          <div className="col-sm-row d-flex justify-content-between ">  
+          {/* border border-primary */}
             {/* border border-primary */}
 
             <div className="container">
