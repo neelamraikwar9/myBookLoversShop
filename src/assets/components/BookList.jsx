@@ -12,9 +12,9 @@ const BookList = () => {
     books,
     setBooks,
     bookCartHandler,
-    isInCart,
     addToWishlist,
     cart,
+    btnName,
     buttonName
   } = useBookContext();
   console.log(books);
@@ -31,10 +31,6 @@ const BookList = () => {
     }
   }, [allData, category]);
 
-  //  let isInCart =
-  //  cart.?some((item) => item._id === book._id))
-
- let isInCat = cart.some((item) => item._id === books?._id)
 
   return (
     <>
@@ -76,9 +72,9 @@ const BookList = () => {
 
       
                 
-                    <div key={book?._id} className="mt-auto">
+                    <div key={book?._id} className="mt-auto" onClick={buttonName(book?._id)}>
                       { 
-                             buttonName  ? (
+                             !btnName  ? (
                         <Link to="/cart-page" className="btn btn-success">
                           Go to Cart
                           <i className="bi bi-cart4"></i>

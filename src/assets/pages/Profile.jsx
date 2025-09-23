@@ -201,8 +201,8 @@ const Profile = () => {
                     <div className="d-flex d-grid gap-3">
                       <button
                         type="button"
-                        // onClick={() => handleEdit(user?.id)}
-                        onClick={() => handleEdit(user?.phoneNo)}
+                        onClick={() => handleEdit(user?.id)}
+                        // onClick={() => handleEdit(user?.phoneNo)}
 
                         className="btn btn-outline-secondary"
                       >

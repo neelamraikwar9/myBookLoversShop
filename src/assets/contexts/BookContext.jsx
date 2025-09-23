@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
 // import { useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const BookContext = createContext();
 
@@ -36,18 +36,19 @@ export function BookProvider({ children }) {
 
   const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
+  const [btnName, setBtnName] = useState(false);
 
   //Kept out from Profile page.
   const initial = {
     id: uuidv4(),
-    name: "1",
-    phoneNo: "333",
-    selectedAddress: "fwe",
-    country: "effe",
-    stateName: "fefe",
-    city: "efe232",
-    zipCode: "222",
-    streetAddress: "fwefw",
+    name: "",
+    phoneNo: "",
+    selectedAddress: "",
+    country: "",
+    stateName: "",
+    city: "",
+    zipCode: "",
+    streetAddress: "",
   };
 
   // const [addressData, setAddressData] = useState([initial]);
@@ -59,14 +60,10 @@ export function BookProvider({ children }) {
   // const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
   // console.log(saveData, "dkjfdjkl");
 
-const [saveData, setSaveData] = useState(() => {
-  const stored = localStorage.getItem("formData");
-  return stored ? JSON.parse(stored) : [];
-});
-
-
-
-
+  const [saveData, setSaveData] = useState(() => {
+    const stored = localStorage.getItem("formData");
+    return stored ? JSON.parse(stored) : [];
+  });
 
   //useStates for editing in checkout page;
   const [editAddressIndex, setEditAddressIndex] = useState();
@@ -98,13 +95,11 @@ const [saveData, setSaveData] = useState(() => {
   }, [cart]);
 
   //For changing from Add to cart  to go to cart.
-  function buttonName() {
-    {
-      data?.map((book) => {
-        const isInCart = cart?.some((car) => car._id === book._id);
-        console.log(isInCart, "checkinart");
-      });
-    }
+  function buttonName(bookId) {
+    const isInCart = cart?.some((car) => car._id === bookId);
+    console.log(isInCart, "checkinart");
+
+    setBtnName(true);
   }
 
   //  function to remove cart from cart page.
@@ -278,49 +273,43 @@ const [saveData, setSaveData] = useState(() => {
   //   event.preventDefault();
   //   console.log(form, "jyiouou898")
 
-    // console.log(editAddressIndex, "kfdfkf")
+  // console.log(editAddressIndex, "kfdfkf")
 
-    // if (editAddressIndex) {
-    //   console.log(editAddressIndex, "kdjkjfd");
-    //   setSaveData((prevData) =>
-    //     prevData.map((address) => {
-    //       console.log(address.id, "kflkjdf");
-    //       console.log(editAddressIndex, "kfdkdf");
-    //       if (address.id === editAddressIndex) {
-    //         // return {...address, id: editAddressIndex}
-    //         return { ...address, ...form };
-    //       }
-    //       return address;
-    //     })
-    //   );
-    //   setEditAddressIndex();
-    // }
+  // if (editAddressIndex) {
+  //   console.log(editAddressIndex, "kdjkjfd");
+  //   setSaveData((prevData) =>
+  //     prevData.map((address) => {
+  //       console.log(address.id, "kflkjdf");
+  //       console.log(editAddressIndex, "kfdkdf");
+  //       if (address.id === editAddressIndex) {
+  //         // return {...address, id: editAddressIndex}
+  //         return { ...address, ...form };
+  //       }
+  //       return address;
+  //     })
+  //   );
+  //   setEditAddressIndex();
+  // }
 
+  // console.log(saveData, "jkfkjfld898")
 
-    // console.log(saveData, "jkfkjfld898")
+  const savedForm = form;
+  // console.log(savedForm, "dkffljkd");
 
-    const savedForm = form;
-    // console.log(savedForm, "dkffljkd");
+  console.log(saveData, "savekfkjfkjdfk");
 
+  //   const id = form.id;
+  //   const edited = saveData.map((item) => item.id === id ? {...item, ...form} :
+  //   {id:uuidv4(), ...form}
+  // )
+  // setSaveData((prev) => [...prev, ...edited])
 
-    console.log(saveData, "savekfkjfkjdfk");
-
-      //   const id = form.id;
-      //   const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
-      //   {id:uuidv4(), ...form}
-      // )
-      // setSaveData((prev) => [...prev, ...edited])
-
-
-      //moni did above code/...............................
-
-
+  //moni did above code/...............................
 
   //     setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
   //   setSaveData([savedForm]);
 
   //   console.log(setSaveData, "fdkjkjfkfdfkj")
-
 
   //   const StringifyData = JSON.stringify([...saveData, savedForm]);
   //   // const StringifyData = JSON.stringify([savedForm]);
@@ -329,232 +318,76 @@ const [saveData, setSaveData] = useState(() => {
   //   localStorage.setItem("formData", StringifyData);
   //   console.log(form, "jyiouoyuiyoi")
 
-    
-  
   //   window.location.reload();
   // }
 
-//   useEffect(() => {
-//   localStorage.setItem("formData", JSON.stringify(saveData));
-// }, [saveData])
+  //   useEffect(() => {
+  //   localStorage.setItem("formData", JSON.stringify(saveData));
+  // }, [saveData])
 
-
-
-
-
-
-
-
-
-// Here again trying submit and edit functionality.
-
-
-//  function addressFormSubmitHandler(event) {
-//     event.preventDefault();
-//     console.log(form, "jyiouou898")
-
-//     // console.log(editAddressIndex, "kfdfkf")
-
-//     if (editAddressIndex) {
-//       console.log(editAddressIndex, "kdjkjfd");
-//       setSaveData((prevData) =>
-//         prevData.map((address) => {
-//           console.log(address.id, "kflkjdf");
-//           console.log(editAddressIndex, "kfdkdf");
-//           if (address.id === editAddressIndex) {
-//             // return {...address, id: editAddressIndex}
-//             return { ...address, ...form };
-//           }
-//           return address;
-//         })
-//       );
-//       setEditAddressIndex();
-//     }
-
-
-//     // console.log(saveData, "jkfkjfld898")
-
-//     const savedForm = form;
-//     // console.log(savedForm, "dkffljkd");
-
-
-//     console.log(saveData, "savekfkjfkjdfk");
-
-//         const id = form.id;
-//         console.log(id, "dfk")
-//         const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
-//         {id:uuidv4(), ...form}
-//       )
-//       setSaveData((prev) => [...prev, ...edited])
-
-
-//       // did above code/...............................
-
-//     setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
-//     setSaveData([savedForm]);
-
-//     console.log(setSaveData, "fdkjkjfkfdfkj")
-
-//     const StringifyData = JSON.stringify([...saveData, savedForm]);
-//     // const StringifyData = JSON.stringify([savedForm]);
-
-//     console.log("checkingdata: ", StringifyData);
-//     localStorage.setItem("formData", StringifyData);
-//     console.log(form, "jyiouoyuiyoi")
-  
-//     window.location.reload();
-//   }
-
-
-
-  // const handleEdit = (index) => {
-  //   setForm(saveData[index]); // load entyr data in the form.
-  //   setEditAddressIndex(index);
-  // };
-
-  
-
-  // const handleEdit = (id) => {
-  //   setButtonLabel(true);
-  //   console.log('dfoeifw',id)
-  //   const selectedAddress = saveData.find((add) => add.id === id);
-  //   console.log('selectedAddress', selectedAddress)
-
-  //   setForm(selectedAddress); // load entyr data in the form.
-  //   //  setForm({ phoneNo: selectedData.phoneNo })
-
-  //   setEditAddressIndex(id);
-
-
-  //   console.log(setEditAddressIndex, "edjitjitj");
-  // };
-
-
-  //  const handleEdit = (id) => {
-  //   setButtonLabel(true);
-  //   console.log('dfoeifw',id)
-  //   const selectedAddress = saveData.find((add) => add.id === id);
-  //   console.log('selectedAddress', selectedAddress)
-
-  //   setForm(selectedAddress); // load entyr data in the form.
-  //   //  setForm({ phoneNo: selectedData.phoneNo })
-
-  //   setEditAddressIndex(id);
-
-  //   console.log(setEditAddressIndex, "edjitjitj");
-  // };
-
-
-
-  const handleEdit = (phoneNo) => {
+  const handleEdit = (id) => {
     setButtonLabel(true);
-    console.log('dfoeifw',phoneNo)
-    const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo);
-    console.log('selectedAddress', selectedAddress)
+    console.log("dfoeifw", id);
+    const selectedAddress = saveData.find((add) => add.id === id);
+    console.log("selectedAddress", selectedAddress);
 
     setForm(selectedAddress); // load entyr data in the form.
     //  setForm({ phoneNo: selectedData.phoneNo })
 
-    setEditAddressIndex(phoneNo);
+    setEditAddressIndex(id);
 
     console.log(setEditAddressIndex, "edjitjitj");
   };
 
+  // const handleEdit = (phoneNo) => {
+  //   setButtonLabel(true);
+  //   console.log('dfoeifw',phoneNo)
+  //   const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo);
+  //   console.log('selectedAddress', selectedAddress)
 
+  //   setForm(selectedAddress); // load entyr data in the form.
+  //   //  setForm({ phoneNo: selectedData.phoneNo })
+
+  //   setEditAddressIndex(phoneNo);
+
+  //   console.log(setEditAddressIndex, "edjitjitj");
+  // };
 
   function addressFormSubmitHandler(event) {
     event.preventDefault();
-    console.log(form, "jyiouou898")
+    console.log(form, "jyiouou898");
 
     // console.log(editAddressIndex, "kfdfkf")
 
     if (editAddressIndex) {
+      //update existing address
       console.log(editAddressIndex, "kdjkjfd");
       setSaveData((prevData) =>
-        prevData.map((address) => {
-          console.log(address.phoneNo, "kflkjdf");
-          console.log(editAddressIndex, "kfdkdf");
-          if (address.phoneNo === editAddressIndex) {
-            return { ...address, ...form };
-          } 
-          // else{
-          // return address;
-          // }
-
-          return address;
-
-        })
+        prevData.map((address) =>
+          address.id === editAddressIndex ? { ...address, ...form } : address
+        )
       );
-      
+      setEditAddressIndex(null);
+    } else {
+      // Add new address with unique id
+      setSaveData((prev) => [...prev, { ...form, id: uuidv4() }]);
     }
 
+    localStorage.setItem(
+      "formData",
+      JSON.stringify(
+        editAddressIndex
+          ? saveData.map((address) =>
+              address.id === editAddressIndex
+                ? { ...address, ...form }
+                : address
+            )
+          : [...saveData, { ...form, id: uuidv4() }]
+      )
+    );
 
-
-
-
-      // const savedForm = form;
-    // console.log(savedForm, "dkffljkd");
-
-    // setSaveData((prev) => [...prev, savedForm]);
-    console.log(saveData, "dflkjrry");
-
-    // const addresses = JSON.parse(localStorage.getItem("formData")) || [];
-
-//     addresses.push(newFormData);
-// localStorage.setItem("formData", JSON.stringify(addresses));
-
-
-//     console.log(saveData, "dflkj... ");
-// setSaveData.push(form);
-
-setSaveData(prev => [...prev, form]);
-
-localStorage.setItem("formData", JSON.stringify([...saveData, form]));
-
-
-
-    // const StringifyData = JSON.stringify([...saveData, savedForm]);
-    // console.log("checkingdata: ", StringifyData);
-    // localStorage.setItem("formData", StringifyData);
-
-
-    window.location.reload();
-
-
-    // console.log(saveData, "jkfkjfld898")
-    // const savedForm = form;
-    // console.log(savedForm, "dkffljkd");
-
-    // console.log(saveData, "savekfkjfkjdfk");
-
-
-    //     const id = form.id;
-    //     console.log(id, "dfk")
-    //     const edited = saveData.map((item) => item.id === id ? {...item, ...form} : 
-    //     {id:uuidv4(), ...form}
-    //   )
-    //   setSaveData((prev) => [...prev, ...edited])
-
-
-    //   //moni did above code/...............................
-
-    // setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
-    // setSaveData([savedForm]);
-
-    // console.log(setSaveData, "fdkjkjfkfdfkj")
-
-    // const StringifyData = JSON.stringify([...saveData, savedForm]);
-    // // const StringifyData = JSON.stringify([savedForm]);
-
-    // console.log("checkingdata: ", StringifyData);
-    // localStorage.setItem("formData", StringifyData);
-    // console.log(form, "jyiouoyuiyoi")
-  
-    // window.location.reload();
+    setForm(initial); // Reset form after submit;
   }
-
-
-
 
   function parsePrice(price) {
     if (typeof price === "string") {
@@ -584,7 +417,6 @@ localStorage.setItem("formData", JSON.stringify([...saveData, form]));
     handleAddToCart,
     handleAddWish,
     handleAddCart,
-    searchBarHandler,
     searchInput,
     incrementQuantity,
     decrementQuantity,
@@ -600,6 +432,9 @@ localStorage.setItem("formData", JSON.stringify([...saveData, form]));
     buttonName,
     buttonLabel,
     setButtonLabel,
+    btnName,
+    buttonName,
+    searchBarHandler,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

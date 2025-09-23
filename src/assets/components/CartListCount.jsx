@@ -1,13 +1,13 @@
-import React from 'react'
-import useBookContext from '../contexts/BookContext';
+import React from "react";
+import useBookContext from "../contexts/BookContext";
 
 const CartListCount = () => {
-    const {cart} = useBookContext();
+  const { cart } = useBookContext();
   return (
     <>
-    <span>{cart?.length}</span>
+      <span>{cart?.length}</span>
     </>
-  )
-}
+  );
+};
 
 export default CartListCount;

@@ -1,31 +1,30 @@
 import React from "react";
 import useFetch from "../hook/useFetch";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Background from "../components/Background";
-// import useBookContext from "../contexts/BookContext";
 
 const Category = () => {
   const navigate = useNavigate();
   const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
   );
-  console.log( "checking data on cte..", data);
+  console.log("checking data on cte..", data);
 
-  const handleCategoryClick = ( category ) => {
+  const handleCategoryClick = (category) => {
     navigate(`/books/${category}`);
   };
   console.log("checkding handlecategrory fucti", handleCategoryClick);
 
   return (
     <div>
-    <br/>
-    <br/>
+      <br />
+      <br />
 
-    <Background />
-    <br/>
-    <br/>
+      <Background />
+      <br />
+      <br />
 
       {loading && <h4>Loading categories...</h4>}
       {error && <p>An error occured while fetching books.</p>}
@@ -53,19 +52,22 @@ const Category = () => {
       ) : (
         <p></p>
       )}
-      <br/>
-       <div className="container col-md-4 py-5">
-       <div className="card">
-       <Link to="/books">
-        <img src="https://i.imghippo.com/files/yUC9826KOw.png" alt="All" className="img-fluid"/>
-       </Link>
-      <h4 className="text-center">📔All Books...📖</h4>
-       </div>
-       </div>
-       <div>
-       </div>
-       <br/>
-       <Footer />
+      <br />
+      <div className="container col-md-4 py-5">
+        <div className="card">
+          <Link to="/books">
+            <img
+              src="https://i.imghippo.com/files/yUC9826KOw.png"
+              alt="All"
+              className="img-fluid"
+            />
+          </Link>
+          <h4 className="text-center">📔All Books...📖</h4>
+        </div>
+      </div>
+      <div></div>
+      <br />
+      <Footer />
     </div>
   );
 };
