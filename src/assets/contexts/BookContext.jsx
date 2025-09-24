@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
-// import { useParams } from 'react-router-dom';
-import { v4 as uuidv4 } from "uuid";
+
 
 const BookContext = createContext();
 
@@ -36,38 +35,15 @@ export function BookProvider({ children }) {
 
   const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
-  const [btnName, setBtnName] = useState(false);
-
-  //Kept out from Profile page.
-  const initial = {
-    id: uuidv4(),
-    name: "",
-    phoneNo: "",
-    selectedAddress: "",
-    country: "",
-    stateName: "",
-    city: "",
-    zipCode: "",
-    streetAddress: "",
-  };
-
-  // const [addressData, setAddressData] = useState([initial]);
-  const [form, setForm] = useState(initial);
-
-  const formStorageData = localStorage.getItem("formData");
-  console.log(formStorageData, "dkjfiuuyudjkl");
-
-  // const [saveData, setSaveData] = useState(JSON.parse(formStorageData) || []);
-  // console.log(saveData, "dkjfdjkl");
+  
+  
 
   const [saveData, setSaveData] = useState(() => {
     const stored = localStorage.getItem("formData");
     return stored ? JSON.parse(stored) : [];
   });
 
-  //useStates for editing in checkout page;
-  const [editAddressIndex, setEditAddressIndex] = useState();
-  const [buttonLabel, setButtonLabel] = useState(false);
+
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -94,27 +70,39 @@ export function BookProvider({ children }) {
     console.log(cart, "dfjkstoreu");
   }, [cart]);
 
-  //For changing from Add to cart  to go to cart.
-  function buttonName(bookId) {
-    const isInCart = cart?.some((car) => car._id === bookId);
-    console.log(isInCart, "checkinart");
-
-    setBtnName(true);
-  }
-
+  
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
     const updatedCart = cart.filter((car) => car._id !== _id);
     setCart(updatedCart);
   }
 
+  // function handleMoveWishlist(_id) {
+  //   const moveWish = cart?.find((book) => book._id === _id);
+  //   setList([...list, moveWish]);
+
+  //   const autoRemoveCart = cart?.filter((book) => book._id !== _id);
+  //   setCart(autoRemoveCart);
+  // }
+
+
   function handleMoveWishlist(_id) {
     const moveWish = cart?.find((book) => book._id === _id);
-    setList([...list, moveWish]);
+    const existingInWishlist = list?.find((book) => book._id === _id);
+
+    let updatedWishlist;
+    if(existingInWishlist){
+      updatedWishlist = list.map((b) => b._id === _id ? {...b, quantity: (Number(b.quantity) || 1) + 1 } : b)
+    } else{
+      updatedWishlist = [...list, moveWish]
+    }
+    setList(updatedWishlist);
 
     const autoRemoveCart = cart?.filter((book) => book._id !== _id);
     setCart(autoRemoveCart);
   }
+
+
 
   useEffect(() => {
     localStorage.setItem("wishList", JSON.stringify(list));
@@ -179,8 +167,6 @@ export function BookProvider({ children }) {
     setCart(decrement);
   }
 
-  // Function for books if
-
   //Function to add card in a wishlist.
   function addToWishlist(_id) {
     const wishList = data?.find((book) => book._id === _id);
@@ -192,18 +178,56 @@ export function BookProvider({ children }) {
     setList(updateWishList);
   }
 
-  function handleMoveCart(_id) {
+  // function handleMoveCart(_id) {
+  //   const moveCart = list?.find((book) => book._id === _id);
+  //   console.log(moveCart, "ckljk")
+  //   setCart([...cart, moveCart]);
+
+  //   const autoRemoveList = list?.filter((book) => book._id !== _id);
+  //   setList(autoRemoveList);
+  // }
+
+
+    function handleMoveCart(_id) {
+    // const moveCart = list?.find((book) => book._id === _id);
     const moveCart = list?.find((book) => book._id === _id);
-    setCart([...cart, moveCart]);
+    const existingInCart = cart?.find((book) => book._id === _id);
+
+
+    let updatedCart; 
+
+    if(existingInCart){
+      updatedCart = cart.map((book) => book._id === _id ? {...book, quantity: (Number(book.quantity) || 1) + 1 } : book)
+    } else{
+      updatedCart = [...cart, {...moveCart, quantity : 1}]
+    }
+    console.log(updatedCart, "ckljk")
+
+    setCart(updatedCart);
 
     const autoRemoveList = list?.filter((book) => book._id !== _id);
     setList(autoRemoveList);
   }
 
+
+  
+
+
+
+
+
   // Function for Add to Wish List from book detail page.
   function handleAddToWish(_id) {
     const addToWish = books?.find((book) => book._id === _id);
-    setList([...list, addToWish]);
+    const existingWish = list?.find((b) => b._id === _id)
+
+    let updateWishlist;
+    if(existingWish){
+      updateWishlist = list?.map((b) => b._id === _id ? {...b, quantity : (Number (b.quantity) || 1) + 1 } : b)
+    } else{
+      updateWishlist = [...list, addToWish]
+    }
+    setList(updateWishlist);
     console.log(list, "checking list value");
   }
 
@@ -212,8 +236,18 @@ export function BookProvider({ children }) {
   // Function for Add to Cart from book detail page.
   function handleAddToCart(_id) {
     const addToCart = books?.find((book) => book._id === _id);
-    setCart([...cart, addToCart]);
-    console.log(cart, "checking cart value");
+    console.log(addToCart, "djf")
+    const existingCart = cart?.find((b) => b._id === _id);
+
+    let updateCart;
+    if(existingCart){
+      updateCart = cart?.map((b) => b._id === _id ? {...b, quantity: (Number(b.quantity) || 1) + 1 } : b )
+    } else{
+      updateCart = [...cart, {...addToCart, quantity : 1}]
+    }
+    setCart(updateCart);
+    // console.log(cart, "checking cart value");
+      alert("Book moved to cart successfully!");
   }
 
   //Function addWish and addCart for more books which is below to book detail page.
@@ -250,145 +284,7 @@ export function BookProvider({ children }) {
     setBooks(filterData);
   }
 
-  const handleInputOnChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value, "kfd");
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // if (editAddressIndex) {
-  //   console.log(form, "dfjklldkjf");
-  //   setSaveData((prevformData) =>
-  //     prevformData.map((address) => {
-
-  //       if (address.index === editAddressIndex) {
-  //         console.log(form, "dkf45")
-  //         return { ...address};
-  //       }
-  //       return form;
-  //     })
-  //   );
-
-  // function addressFormSubmitHandler(event) {
-  //   event.preventDefault();
-  //   console.log(form, "jyiouou898")
-
-  // console.log(editAddressIndex, "kfdfkf")
-
-  // if (editAddressIndex) {
-  //   console.log(editAddressIndex, "kdjkjfd");
-  //   setSaveData((prevData) =>
-  //     prevData.map((address) => {
-  //       console.log(address.id, "kflkjdf");
-  //       console.log(editAddressIndex, "kfdkdf");
-  //       if (address.id === editAddressIndex) {
-  //         // return {...address, id: editAddressIndex}
-  //         return { ...address, ...form };
-  //       }
-  //       return address;
-  //     })
-  //   );
-  //   setEditAddressIndex();
-  // }
-
-  // console.log(saveData, "jkfkjfld898")
-
-  const savedForm = form;
-  // console.log(savedForm, "dkffljkd");
-
-  console.log(saveData, "savekfkjfkjdfk");
-
-  //   const id = form.id;
-  //   const edited = saveData.map((item) => item.id === id ? {...item, ...form} :
-  //   {id:uuidv4(), ...form}
-  // )
-  // setSaveData((prev) => [...prev, ...edited])
-
-  //moni did above code/...............................
-
-  //     setSaveData((prev) => [...prev, {id:uuidv4(), ...form}])
-  //   setSaveData([savedForm]);
-
-  //   console.log(setSaveData, "fdkjkjfkfdfkj")
-
-  //   const StringifyData = JSON.stringify([...saveData, savedForm]);
-  //   // const StringifyData = JSON.stringify([savedForm]);
-
-  //   console.log("checkingdata: ", StringifyData);
-  //   localStorage.setItem("formData", StringifyData);
-  //   console.log(form, "jyiouoyuiyoi")
-
-  //   window.location.reload();
-  // }
-
-  //   useEffect(() => {
-  //   localStorage.setItem("formData", JSON.stringify(saveData));
-  // }, [saveData])
-
-  const handleEdit = (id) => {
-    setButtonLabel(true);
-    console.log("dfoeifw", id);
-    const selectedAddress = saveData.find((add) => add.id === id);
-    console.log("selectedAddress", selectedAddress);
-
-    setForm(selectedAddress); // load entyr data in the form.
-    //  setForm({ phoneNo: selectedData.phoneNo })
-
-    setEditAddressIndex(id);
-
-    console.log(setEditAddressIndex, "edjitjitj");
-  };
-
-  // const handleEdit = (phoneNo) => {
-  //   setButtonLabel(true);
-  //   console.log('dfoeifw',phoneNo)
-  //   const selectedAddress = saveData.find((add) => add.phoneNo === phoneNo);
-  //   console.log('selectedAddress', selectedAddress)
-
-  //   setForm(selectedAddress); // load entyr data in the form.
-  //   //  setForm({ phoneNo: selectedData.phoneNo })
-
-  //   setEditAddressIndex(phoneNo);
-
-  //   console.log(setEditAddressIndex, "edjitjitj");
-  // };
-
-  function addressFormSubmitHandler(event) {
-    event.preventDefault();
-    console.log(form, "jyiouou898");
-
-    // console.log(editAddressIndex, "kfdfkf")
-
-    if (editAddressIndex) {
-      //update existing address
-      console.log(editAddressIndex, "kdjkjfd");
-      setSaveData((prevData) =>
-        prevData.map((address) =>
-          address.id === editAddressIndex ? { ...address, ...form } : address
-        )
-      );
-      setEditAddressIndex(null);
-    } else {
-      // Add new address with unique id
-      setSaveData((prev) => [...prev, { ...form, id: uuidv4() }]);
-    }
-
-    localStorage.setItem(
-      "formData",
-      JSON.stringify(
-        editAddressIndex
-          ? saveData.map((address) =>
-              address.id === editAddressIndex
-                ? { ...address, ...form }
-                : address
-            )
-          : [...saveData, { ...form, id: uuidv4() }]
-      )
-    );
-
-    setForm(initial); // Reset form after submit;
-  }
-
+ 
   function parsePrice(price) {
     if (typeof price === "string") {
       price = price.replace(/[^0-9.-]+/g, "");
@@ -396,6 +292,7 @@ export function BookProvider({ children }) {
     const parsed = Number(price);
     return isNaN(parsed) ? 0 : parsed;
   }
+
 
   const value = {
     books,
@@ -420,20 +317,9 @@ export function BookProvider({ children }) {
     searchInput,
     incrementQuantity,
     decrementQuantity,
-    addressFormSubmitHandler,
-    handleInputOnChange,
     saveData,
     setSaveData,
-    form,
-    setForm,
     parsePrice,
-    handleEdit,
-    setEditAddressIndex,
-    buttonName,
-    buttonLabel,
-    setButtonLabel,
-    btnName,
-    buttonName,
     searchBarHandler,
   };
 

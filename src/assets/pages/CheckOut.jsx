@@ -50,7 +50,7 @@ const CheckOut = () => {
                   </button>
                 </Link>
               </div>
-              {saveData && saveData.length > 1 ? (
+              {saveData && saveData.length > 0 ? (
                 saveData.map((user, index) => (
                   <div
                     key={index}

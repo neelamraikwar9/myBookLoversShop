@@ -11,8 +11,11 @@ const BookDetail = () => {
     handleAddWish,
     handleAddCart,
   } = useBookContext();
-  console.log(allData, "amm i getting allData?");
-  console.log(allData, "checking data in detail page...");
+
+  // console.log(allData, "amm i getting allData?");
+  // console.log(allData, "checking data in detail page...");
+
+
   const { bookId, category } = useParams();
   console.log(bookId);
 
@@ -26,7 +29,7 @@ const BookDetail = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <h2 className="container py-5"><i>Book Details are Loading...🌸🌸</i></h2>}
       {error && <p>An error occured while fetching books.</p>}
       {data && data ? (
         <div>

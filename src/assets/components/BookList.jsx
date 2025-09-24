@@ -14,8 +14,7 @@ const BookList = () => {
     bookCartHandler,
     addToWishlist,
     cart,
-    btnName,
-    buttonName
+    list
   } = useBookContext();
   console.log(books);
 
@@ -71,11 +70,10 @@ const BookList = () => {
                     <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
 
       
-                
-                    <div key={book?._id} className="mt-auto" onClick={buttonName(book?._id)}>
+                    <div key={book?._id} className="mt-auto">
                       { 
-                             !btnName  ? (
-                        <Link to="/cart-page" className="btn btn-success">
+                        (cart.find((car) => car?._id === book?._id)) ? (
+                        <Link to="/cart-page" className="btn btn-success w-100">
                           Go to Cart
                           <i className="bi bi-cart4"></i>
                         </Link>
@@ -90,15 +88,24 @@ const BookList = () => {
                       )}
 
                       <br />
-                      <Link to="/wishList-page">
-                        <button
-                          className="btn btn-primary display-block w-100"
+
+                      <div className="mt-auto" key={book?._id}>
+                      {list.find((li) => li._id === book._id) ? 
+                       (<Link to="/wishList-page" className = "btn btn-outline-success w-100">
+                        Go to Wishlist
+                        <i className="bi bi-suit-heart-fill ms-2"></i>
+                      </Link>) :
+
+                      (<button
+                          className="btn btn-primary w-100"
                           onClick={() => addToWishlist(book?._id)}
                         >
                           Add to Wishlist
                           <i className="bi bi-suit-heart-fill ms-2"></i>
                         </button>
-                      </Link>
+                      )
+                       }
+                         </div>
                     </div>
                   </div>
                 </div>

@@ -10,23 +10,35 @@ export const Cart = () => {
     QuantityFunction,
     incrementQuantity,
     decrementQuantity,
+    parsePrice
   } = useBookContext();
   console.log(cart, "cartpage");
 
-  function parsePrice(price) {
-    if (typeof price === "string") {
-      price = price.replace(/[^0-9.-]+/g, "");
-    }
-    const parsed = Number(price);
-    return isNaN(parsed) ? 0 : parsed;
-  }
+  // function parsePrice(price) {
+  //   if (typeof price === "string") {
+  //     price = price.replace(/[^0-9.-]+/g, "");
+  //   }
+  //   const parsed = Number(price);
+  //   return isNaN(parsed) ? 0 : parsed;
+  // }
 
-  const cartPrice = cart?.reduce(
-    (acc, curr) => acc + parsePrice(curr.price) * curr.quantity,
+  console.log(cart, "cfkfk")
+
+  // const cartPrice = cart?.reduce(
+  //   (acc, curr) => acc + (parsePrice(curr?.price) * curr.quantity),
+  //   0
+  // );
+
+  // console.log(cartPrice, "hri678");
+
+
+    const cartPrice = cart?.reduce(
+    (acc, curr) => acc + (parsePrice(curr?.price) * curr.quantity),
     0
   );
 
   console.log(cartPrice, "hri678");
+
 
   const cartDiscount = cart?.reduce((acc, curr) => {
     const calDiscount = acc + parsePrice(curr.discountPrice) * curr.quantity;
@@ -85,7 +97,7 @@ export const Cart = () => {
                 {cart.length &&
                   cart?.map((car) => (
                     <div
-                      key={car._id}
+                      key={car?._id}
                       className="card mt-2 w-auto mt-auto mb-3"
                       // style={{ maxWidth: "1050px" }}
                     >

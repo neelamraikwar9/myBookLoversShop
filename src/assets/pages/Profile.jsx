@@ -1,22 +1,53 @@
-import React from "react";
+
 import { useState, useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import React, { useRef } from 'react';
+
+
+
 
 
 const Profile = () => {
+
+  const inputRef = useRef(null);
+
   const {
-    addressFormSubmitHandler,
-    handleInputOnChange,
     saveData,
     setSaveData,
-    handleEdit,
-    form,
-    setForm,
-    buttonLabel,
   } = useBookContext();
+
+
+  
+  const initial = {
+    id: uuidv4(),
+    name: "",
+    phoneNo: "",
+    selectedAddress: "",
+    country: "",
+    stateName: "",
+    city: "",
+    zipCode: "",
+    streetAddress: "",
+  };
+
+  
+  const [form, setForm] = useState(initial);
+
+  const formStorageData = localStorage.getItem("formData");
+  console.log(formStorageData, "dkjfiuuyudjkl");
+
+
+    //useStates for editing in checkout page;
+  const [editAddressIndex, setEditAddressIndex] = useState();
+  const [buttonLabel, setButtonLabel] = useState(false);
+
+
   console.log(form, "checkinform");
   console.log(saveData, "dright");
+
+
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
 
@@ -33,8 +64,74 @@ const Profile = () => {
   }
     console.log(saveData, "dflkj ");
 
- 
 
+
+    const handleEdit = (id) => {
+     inputRef.current?.focus();
+    setButtonLabel(true);
+    console.log("dfoeifw", id);
+    const selectedAddress = saveData.find((add) => add.id === id);
+    console.log("selectedAddress", selectedAddress);
+
+    setForm(selectedAddress); // load entyr data in the form.
+    //  setForm({ phoneNo: selectedData.phoneNo })
+
+    setEditAddressIndex(id);
+
+    console.log(setEditAddressIndex, "edjitjitj");
+  };
+
+
+
+   const handleInputOnChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value, "kfd");
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+
+
+
+  function formSubmitHandler(event) {
+    event.preventDefault();
+
+    console.log(form, "jyiouou898");
+
+    // console.log(editAddressIndex, "kfdfkf")
+
+    if (editAddressIndex) {
+      //update existing address
+      console.log(editAddressIndex, "kdjkjfd");
+      setSaveData((prevData) =>
+        prevData.map((address) =>
+          address.id === editAddressIndex ? { ...address, ...form } : address
+        )
+      );
+      setEditAddressIndex(null);
+    } else {
+      // Add new address with unique id
+      setSaveData((prev) => [...prev, { ...form, id: uuidv4() }]);
+    }
+
+    localStorage.setItem(
+      "formData",
+      JSON.stringify(
+        editAddressIndex
+          ? saveData.map((address) =>
+              address.id === editAddressIndex
+                ? { ...address, ...form }
+                : address
+            )
+          : [...saveData, { ...form, id: uuidv4() }]
+      )
+    );
+
+    setForm(initial); // Reset form after submit;
+    setButtonLabel(false);  //reset button.
+
+  }
+
+  
   return (
     <main>
       <div className="container">
@@ -55,7 +152,7 @@ const Profile = () => {
 
         <div className="card col-md-4 container py-3 text-center">
           <h3>Address Form</h3>
-          <form onSubmit={ addressFormSubmitHandler}>
+          <form onSubmit={ formSubmitHandler}>
             <label htmlFor="nam">Name:-</label>
             <input
               type="text"
@@ -65,6 +162,7 @@ const Profile = () => {
               value={form?.name || ""}
               required
               onChange={handleInputOnChange}
+              ref={inputRef}
             />
             <br />
             <br />
