@@ -29,12 +29,12 @@ const WishList = () => {
                     <h4>{book?.salePrice}</h4>
                   </div>
                   {/* <Link to="/cart-page"> */}
-                    <button
-                      className="btn btn-outline-secondary display-block w-100 mb-2"
-                      onClick={() => handleMoveCart(book?._id)}
-                    >
-                      Move to Cart <i className="bi bi-cart4"></i>
-                    </button>
+                  <button
+                    className="btn btn-outline-secondary display-block w-100 mb-2"
+                    onClick={() => handleMoveCart(book?._id)}
+                  >
+                    Move to Cart <i className="bi bi-cart4"></i>
+                  </button>
                   {/* </Link> */}
                   <button
                     className="btn btn-secondary display-block w-100"

@@ -15,7 +15,6 @@ const BookDetail = () => {
   // console.log(allData, "amm i getting allData?");
   // console.log(allData, "checking data in detail page...");
 
-
   const { bookId, category } = useParams();
   console.log(bookId);
 
@@ -29,7 +28,11 @@ const BookDetail = () => {
 
   return (
     <>
-      {loading && <h2 className="container py-5"><i>Book Details are Loading...🌸🌸</i></h2>}
+      {loading && (
+        <h2 className="container py-5">
+          <i>Book Details are Loading...🌸🌸</i>
+        </h2>
+      )}
       {error && <p>An error occured while fetching books.</p>}
       {data && data ? (
         <div>
@@ -46,21 +49,21 @@ const BookDetail = () => {
                       />
                     </div>
                     {/* <Link to="/wishList-page"> */}
-                      <button
-                        className="btn btn-outline-secondary display-block w-100 mb-2"
-                        onClick={() => handleAddToWish(data._id)}
-                      >
-                        Add to Wishlist
-                        <i className="bi bi-suit-heart-fill ms-2"></i>
-                      </button>
+                    <button
+                      className="btn btn-outline-secondary display-block w-100 mb-2"
+                      onClick={() => handleAddToWish(data._id)}
+                    >
+                      Add to Wishlist
+                      <i className="bi bi-suit-heart-fill ms-2"></i>
+                    </button>
                     {/* </Link> */}
                     {/* <Link to="/cart-page"> */}
-                      <button
-                        className="btn btn-outline-secondary display-block w-100"
-                        onClick={() => handleAddToCart(data._id)}
-                      >
-                        Add to Cart<i className="bi bi-cart4 ms-2"></i>
-                      </button>
+                    <button
+                      className="btn btn-outline-secondary display-block w-100"
+                      onClick={() => handleAddToCart(data._id)}
+                    >
+                      Add to Cart<i className="bi bi-cart4 ms-2"></i>
+                    </button>
                     {/* </Link> */}
                   </div>
                 </div>

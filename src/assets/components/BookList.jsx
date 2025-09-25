@@ -14,7 +14,7 @@ const BookList = () => {
     bookCartHandler,
     addToWishlist,
     cart,
-    list
+    list,
   } = useBookContext();
   console.log(books);
 
@@ -29,7 +29,6 @@ const BookList = () => {
       setBooks(allData);
     }
   }, [allData, category]);
-
 
   return (
     <>
@@ -69,10 +68,8 @@ const BookList = () => {
                     </h4>
                     <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
 
-      
                     <div key={book?._id} className="mt-auto">
-                      { 
-                        (cart.find((car) => car?._id === book?._id)) ? (
+                      {cart.find((car) => car?._id === book?._id) ? (
                         <Link to="/cart-page" className="btn btn-success w-100">
                           Go to Cart
                           <i className="bi bi-cart4"></i>
@@ -90,22 +87,24 @@ const BookList = () => {
                       <br />
 
                       <div className="mt-auto" key={book?._id}>
-                      {list.find((li) => li?._id === book?._id) ? 
-                       (<Link to="/wishList-page" className = "btn btn-outline-success w-100">
-                        Go to Wishlist
-                        <i className="bi bi-suit-heart-fill ms-2"></i>
-                      </Link>) :
-
-                      (<button
-                          className="btn btn-primary w-100"
-                          onClick={() => addToWishlist(book?._id)}
-                        >
-                          Add to Wishlist
-                          <i className="bi bi-suit-heart-fill ms-2"></i>
-                        </button>
-                      )
-                       }
-                         </div>
+                        {list.find((li) => li?._id === book?._id) ? (
+                          <Link
+                            to="/wishList-page"
+                            className="btn btn-outline-success w-100"
+                          >
+                            Go to Wishlist
+                            <i className="bi bi-suit-heart-fill ms-2"></i>
+                          </Link>
+                        ) : (
+                          <button
+                            className="btn btn-primary w-100"
+                            onClick={() => addToWishlist(book?._id)}
+                          >
+                            Add to Wishlist
+                            <i className="bi bi-suit-heart-fill ms-2"></i>
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

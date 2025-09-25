@@ -1,7 +1,7 @@
 import React from "react";
 import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const CheckOut = () => {
   const { saveData, cart, parsePrice } = useBookContext();
@@ -30,17 +30,16 @@ const CheckOut = () => {
   );
   console.log(totalAmount, "hgj");
 
-
-   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('selectedAddress');
+    const saved = localStorage.getItem("selectedAddress");
     if (saved) {
       setSelectedAddress(JSON.parse(saved));
     }
   }, []);
 
-  console.log(selectedAddress, "lkjfkjljkkl")
+  console.log(selectedAddress, "lkjfkjljkkl");
 
   return (
     <main className="container">
@@ -110,46 +109,46 @@ const CheckOut = () => {
             </div>
           </div> */}
 
-           {/* {saveData && saveData.length > 0 ? (
+              {/* {saveData && saveData.length > 0 ? (
                 saveData.map((user, index) => ( */}
-                  <div
-                    key={selectedAddress?.id}
-                    className="container card col-md-10 py-3 mt-3 mb-3"
-                  >
-                    <p>
-                      <strong>Name:- </strong>
-                      {selectedAddress?.name}
-                    </p>
-                    <p>
-                      <strong>Phone No:- </strong>
-                      {selectedAddress?.phoneNo}
-                    </p>
-                    <p>
-                      <strong>Selected Address:- </strong>
-                      {selectedAddress?.selectedAddress}
-                    </p>
-                    <p>
-                      <strong>Country:- </strong>
-                      {selectedAddress?.country}
-                    </p>
-                    <p>
-                      <strong>State:- </strong>
-                      {selectedAddress?.stateName}
-                    </p>
-                    <p>
-                      <strong>City:- </strong>
-                      {selectedAddress?.city}
-                    </p>
-                    <p>
-                      <strong>Zip Code:- </strong>
-                      {selectedAddress?.zipCode}
-                    </p>
-                    <p>
-                      <strong>Street Address:- </strong>
-                      {selectedAddress?.streetAddress}
-                    </p>
-                  </div>
-                {/* )) */}
+              <div
+                key={selectedAddress?.id}
+                className="container card col-md-10 py-3 mt-3 mb-3"
+              >
+                <p>
+                  <strong>Name:- </strong>
+                  {selectedAddress?.name}
+                </p>
+                <p>
+                  <strong>Phone No:- </strong>
+                  {selectedAddress?.phoneNo}
+                </p>
+                <p>
+                  <strong>Selected Address:- </strong>
+                  {selectedAddress?.selectedAddress}
+                </p>
+                <p>
+                  <strong>Country:- </strong>
+                  {selectedAddress?.country}
+                </p>
+                <p>
+                  <strong>State:- </strong>
+                  {selectedAddress?.stateName}
+                </p>
+                <p>
+                  <strong>City:- </strong>
+                  {selectedAddress?.city}
+                </p>
+                <p>
+                  <strong>Zip Code:- </strong>
+                  {selectedAddress?.zipCode}
+                </p>
+                <p>
+                  <strong>Street Address:- </strong>
+                  {selectedAddress?.streetAddress}
+                </p>
+              </div>
+              {/* )) */}
               {/* ) : (
                 <p></p>
               )} */}

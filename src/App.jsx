@@ -12,9 +12,8 @@ import Profile from "./assets/pages/Profile";
 import BookDetail from "./assets/pages/BookDetail";
 import CheckOut from "./assets/pages/CheckOut";
 import Order from "./assets/pages/Order";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   //Checking local storage.

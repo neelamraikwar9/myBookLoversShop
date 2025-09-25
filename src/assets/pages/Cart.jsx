@@ -10,7 +10,7 @@ export const Cart = () => {
     QuantityFunction,
     incrementQuantity,
     decrementQuantity,
-    parsePrice
+    parsePrice,
   } = useBookContext();
   console.log(cart, "cartpage");
 
@@ -22,7 +22,7 @@ export const Cart = () => {
   //   return isNaN(parsed) ? 0 : parsed;
   // }
 
-  console.log(cart, "cfkfk")
+  console.log(cart, "cfkfk");
 
   // const cartPrice = cart?.reduce(
   //   (acc, curr) => acc + (parsePrice(curr?.price) * curr.quantity),
@@ -31,14 +31,12 @@ export const Cart = () => {
 
   // console.log(cartPrice, "hri678");
 
-
-    const cartPrice = cart?.reduce(
-    (acc, curr) => acc + (parsePrice(curr?.price) * curr.quantity),
+  const cartPrice = cart?.reduce(
+    (acc, curr) => acc + parsePrice(curr?.price) * curr.quantity,
     0
   );
 
   console.log(cartPrice, "hri678");
-
 
   const cartDiscount = cart?.reduce((acc, curr) => {
     const calDiscount = acc + parsePrice(curr.discountPrice) * curr.quantity;
@@ -134,14 +132,14 @@ export const Cart = () => {
 
                             <div className="">
                               {/* <Link to="/wishList-page"> */}
-                                <button
-                                  className="btn btn-outline-secondary "
-                                  onClick={() => handleMoveWishlist(car._id)}
-                                >
-                                  {" "}
-                                  Move to Wishlist{" "}
-                                  <i className="bi bi-suit-heart-fill ms-2"></i>
-                                </button>
+                              <button
+                                className="btn btn-outline-secondary "
+                                onClick={() => handleMoveWishlist(car._id)}
+                              >
+                                {" "}
+                                Move to Wishlist{" "}
+                                <i className="bi bi-suit-heart-fill ms-2"></i>
+                              </button>
                               {/* </Link> */}
 
                               <button

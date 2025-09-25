@@ -36,7 +36,6 @@ const Profile = () => {
   // const handleSelect = (addressSelectedId) => {
   //   localStorage.setItem('selectedAddress', JSON.stringify(addressObj));
   // }
-  
 
   console.log(form, "checkinform");
   console.log(saveData, "dright");
@@ -116,11 +115,9 @@ const Profile = () => {
     setButtonLabel(false); //reset button.
   }
 
-
-
   const handleSelect = (addressObj) => {
-    localStorage.setItem('selectedAddress', JSON.stringify(addressObj));
-  }
+    localStorage.setItem("selectedAddress", JSON.stringify(addressObj));
+  };
 
   return (
     <main>
@@ -311,13 +308,13 @@ const Profile = () => {
                         name="address"
                         checked={addressSelectedId === user.id}
                         value={user.id}
-                        onChange={() => {setAddressSelectedId(user.id)
-                         handleSelect(user);   
+                        onChange={() => {
+                          setAddressSelectedId(user.id);
+                          handleSelect(user);
                         }}
                         style={{ marginRight: 8 }}
-      
                       />
-                        {console.log(addressSelectedId, "dfsk")}
+                      {console.log(addressSelectedId, "dfsk")}
                       <h4>Select {user.name}</h4>
                       {/* <div>{user.details}</div> */}
                     </div>
