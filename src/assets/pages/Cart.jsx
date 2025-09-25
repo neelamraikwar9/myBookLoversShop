@@ -133,7 +133,7 @@ export const Cart = () => {
                             />
 
                             <div className="">
-                              <Link to="/wishList-page">
+                              {/* <Link to="/wishList-page"> */}
                                 <button
                                   className="btn btn-outline-secondary "
                                   onClick={() => handleMoveWishlist(car._id)}
@@ -142,7 +142,7 @@ export const Cart = () => {
                                   Move to Wishlist{" "}
                                   <i className="bi bi-suit-heart-fill ms-2"></i>
                                 </button>
-                              </Link>
+                              {/* </Link> */}
 
                               <button
                                 className="btn btn-secondary"

@@ -1,15 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../hook/useFetch";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BookContext = createContext();
 
 const useBookContext = () => useContext(BookContext);
 
 export function BookProvider({ children }) {
-  // const {category} = useParams();
-  // console.log(category, "kdjfjkchagkcjf")
-
   const { data, loading, error } = useFetch(
     "https://selling-books-data.vercel.app/books"
   );
@@ -35,15 +33,11 @@ export function BookProvider({ children }) {
 
   const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
-  
-  
 
   const [saveData, setSaveData] = useState(() => {
     const stored = localStorage.getItem("formData");
     return stored ? JSON.parse(stored) : [];
   });
-
-
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -55,12 +49,16 @@ export function BookProvider({ children }) {
 
   //Function to add Card in a Cart page.
   const bookCartHandler = (_id) => {
-    console.log(_id);
+    // console.log(_id);
 
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
     console.log(cart, "checking cart...");
+
+    toast.success("Book added to Cart.", {
+      autoClose: 3000, // 3 seconds
+    });
   };
 
   //local storage..    Adding cart to local storage.
@@ -70,7 +68,6 @@ export function BookProvider({ children }) {
     console.log(cart, "dfjkstoreu");
   }, [cart]);
 
-  
   //  function to remove cart from cart page.
   function cartRemoveHandler(_id) {
     const updatedCart = cart.filter((car) => car._id !== _id);
@@ -85,24 +82,30 @@ export function BookProvider({ children }) {
   //   setCart(autoRemoveCart);
   // }
 
-
-  function handleMoveWishlist(_id) {
-    const moveWish = cart?.find((book) => book._id === _id);
-    const existingInWishlist = list?.find((book) => book._id === _id);
+  function handleMoveWishlist(bookId) {
+    const moveWish = cart?.find((book) => book._id === bookId);
+    const existingInWishlist = list?.find((book) => book._id === bookId);
 
     let updatedWishlist;
-    if(existingInWishlist){
-      updatedWishlist = list.map((b) => b._id === _id ? {...b, quantity: (Number(b.quantity) || 1) + 1 } : b)
-    } else{
-      updatedWishlist = [...list, moveWish]
+    if (existingInWishlist) {
+      updatedWishlist = list?.map((b) =>
+        b?._id === bookId
+          ? { ...b, quantity: (Number(b?.quantity) || 1) + 1 }
+          : b
+      );
+    } else {
+      updatedWishlist = [...list, moveWish];
     }
     setList(updatedWishlist);
 
-    const autoRemoveCart = cart?.filter((book) => book._id !== _id);
+    toast.success("Book moved to Wishlist.", {
+      autoClose: 3000, // 3 seconds
+    });
+
+    const autoRemoveCart = cart?.filter((book) => book._id !== bookId);
     setCart(autoRemoveCart);
+    // toast("Book moved to wishlist.")
   }
-
-
 
   useEffect(() => {
     localStorage.setItem("wishList", JSON.stringify(list));
@@ -171,10 +174,14 @@ export function BookProvider({ children }) {
   function addToWishlist(_id) {
     const wishList = data?.find((book) => book._id === _id);
     setList([...list, wishList]);
+
+    toast.success("Book added to Wishlist.", {
+      autoClose: 3000, // 3 seconds
+    });
   }
 
   function wishListRemoveHandler(_id) {
-    const updateWishList = list?.filter((book) => book._id !== _id);
+    const updateWishList = list?.filter((book) => book?._id !== _id);
     setList(updateWishList);
   }
 
@@ -187,48 +194,52 @@ export function BookProvider({ children }) {
   //   setList(autoRemoveList);
   // }
 
-
-    function handleMoveCart(_id) {
+  function handleMoveCart(_id) {
     // const moveCart = list?.find((book) => book._id === _id);
     const moveCart = list?.find((book) => book._id === _id);
     const existingInCart = cart?.find((book) => book._id === _id);
 
+    let updatedCart;
 
-    let updatedCart; 
-
-    if(existingInCart){
-      updatedCart = cart.map((book) => book._id === _id ? {...book, quantity: (Number(book.quantity) || 1) + 1 } : book)
-    } else{
-      updatedCart = [...cart, {...moveCart, quantity : 1}]
+    if (existingInCart) {
+      updatedCart = cart.map((book) =>
+        book._id === _id
+          ? { ...book, quantity: (Number(book.quantity) || 1) + 1 }
+          : book
+      );
+    } else {
+      updatedCart = [...cart, { ...moveCart, quantity: 1 }];
     }
-    console.log(updatedCart, "ckljk")
+    console.log(updatedCart, "ckljk");
 
     setCart(updatedCart);
+
+    toast.success("Book moved to Cart.", {
+      autoClose: 3000, // 3 seconds
+    });
 
     const autoRemoveList = list?.filter((book) => book._id !== _id);
     setList(autoRemoveList);
   }
 
-
-  
-
-
-
-
-
   // Function for Add to Wish List from book detail page.
   function handleAddToWish(_id) {
     const addToWish = books?.find((book) => book._id === _id);
-    const existingWish = list?.find((b) => b._id === _id)
+    const existingWish = list?.find((b) => b._id === _id);
 
     let updateWishlist;
-    if(existingWish){
-      updateWishlist = list?.map((b) => b._id === _id ? {...b, quantity : (Number (b.quantity) || 1) + 1 } : b)
-    } else{
-      updateWishlist = [...list, addToWish]
+    if (existingWish) {
+      updateWishlist = list?.map((b) =>
+        b._id === _id ? { ...b, quantity: (Number(b.quantity) || 1) + 1 } : b
+      );
+    } else {
+      updateWishlist = [...list, { ...addToWish, quantity: 1 }];
     }
     setList(updateWishlist);
     console.log(list, "checking list value");
+    toast.success("Book added to Wishlist.", {
+      autoClose: 3000, // 3 seconds
+    });
   }
 
   //local storage..    Adding cart to local storage.
@@ -236,29 +247,42 @@ export function BookProvider({ children }) {
   // Function for Add to Cart from book detail page.
   function handleAddToCart(_id) {
     const addToCart = books?.find((book) => book._id === _id);
-    console.log(addToCart, "djf")
+    console.log(addToCart, "djf");
     const existingCart = cart?.find((b) => b._id === _id);
 
     let updateCart;
-    if(existingCart){
-      updateCart = cart?.map((b) => b._id === _id ? {...b, quantity: (Number(b.quantity) || 1) + 1 } : b )
-    } else{
-      updateCart = [...cart, {...addToCart, quantity : 1}]
+    if (existingCart) {
+      updateCart = cart?.map((b) =>
+        b._id === _id ? { ...b, quantity: (Number(b.quantity) || 1) + 1 } : b
+      );
+    } else {
+      updateCart = [...cart, { ...addToCart, quantity: 1 }];
     }
     setCart(updateCart);
     // console.log(cart, "checking cart value");
-      alert("Book moved to cart successfully!");
+
+    toast.success("Book added to Cart.", {
+      autoClose: 3000, // 3 seconds
+    });
   }
 
   //Function addWish and addCart for more books which is below to book detail page.
   function handleAddWish(_id) {
     const addWish = books.find((book) => book._id === _id);
     setList([...list, addWish]);
+
+    toast.success("Book added to Wishlist.", {
+      autoClose: 3000, // 3 seconds
+    });
   }
 
   function handleAddCart(_id) {
     const addCart = books.find((book) => book._id === _id);
     setCart([...cart, addCart]);
+
+    toast.success("Book added to Cart.", {
+      autoClose: 3000, // 3 seconds
+    });
   }
 
   useEffect(() => {
@@ -284,7 +308,6 @@ export function BookProvider({ children }) {
     setBooks(filterData);
   }
 
- 
   function parsePrice(price) {
     if (typeof price === "string") {
       price = price.replace(/[^0-9.-]+/g, "");
@@ -292,7 +315,6 @@ export function BookProvider({ children }) {
     const parsed = Number(price);
     return isNaN(parsed) ? 0 : parsed;
   }
-
 
   const value = {
     books,

@@ -45,7 +45,7 @@ const BookDetail = () => {
                         className="img-fluid"
                       />
                     </div>
-                    <Link to="/wishList-page">
+                    {/* <Link to="/wishList-page"> */}
                       <button
                         className="btn btn-outline-secondary display-block w-100 mb-2"
                         onClick={() => handleAddToWish(data._id)}
@@ -53,15 +53,15 @@ const BookDetail = () => {
                         Add to Wishlist
                         <i className="bi bi-suit-heart-fill ms-2"></i>
                       </button>
-                    </Link>
-                    <Link to="/cart-page">
+                    {/* </Link> */}
+                    {/* <Link to="/cart-page"> */}
                       <button
                         className="btn btn-outline-secondary display-block w-100"
                         onClick={() => handleAddToCart(data._id)}
                       >
                         Add to Cart<i className="bi bi-cart4 ms-2"></i>
                       </button>
-                    </Link>
+                    {/* </Link> */}
                   </div>
                 </div>
                 <div className="col-md-8 ">

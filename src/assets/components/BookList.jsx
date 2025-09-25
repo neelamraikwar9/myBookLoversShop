@@ -90,7 +90,7 @@ const BookList = () => {
                       <br />
 
                       <div className="mt-auto" key={book?._id}>
-                      {list.find((li) => li._id === book._id) ? 
+                      {list.find((li) => li?._id === book?._id) ? 
                        (<Link to="/wishList-page" className = "btn btn-outline-success w-100">
                         Go to Wishlist
                         <i className="bi bi-suit-heart-fill ms-2"></i>

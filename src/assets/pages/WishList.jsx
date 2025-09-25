@@ -14,31 +14,31 @@ const WishList = () => {
         <div>
           <div className="row py-5">
             {list?.map((book) => (
-              <div key={book._id} className="container col-md-4">
+              <div key={book?._id} className="container col-md-4 mt-5">
                 <div className="card h-100 ">
                   <div className="container p-3">
                     <img
-                      src={book.image}
-                      alt={book.name}
+                      src={book?.image}
+                      alt={book?.name}
                       className="img-fluid"
                     />
                   </div>
                   <div className="card-body text-center">
-                    <h5>{book.name}</h5>
-                    <h6>by {book.author}</h6>
-                    <h4>{book.salePrice}</h4>
+                    <h5>{book?.name}</h5>
+                    <h6>by {book?.author}</h6>
+                    <h4>{book?.salePrice}</h4>
                   </div>
-                  <Link to="/cart-page">
+                  {/* <Link to="/cart-page"> */}
                     <button
                       className="btn btn-outline-secondary display-block w-100 mb-2"
-                      onClick={() => handleMoveCart(book._id)}
+                      onClick={() => handleMoveCart(book?._id)}
                     >
                       Move to Cart <i className="bi bi-cart4"></i>
                     </button>
-                  </Link>
+                  {/* </Link> */}
                   <button
                     className="btn btn-secondary display-block w-100"
-                    onClick={() => wishListRemoveHandler(book._id)}
+                    onClick={() => wishListRemoveHandler(book?._id)}
                   >
                     Remove from Wishlist{" "}
                     <i className="bi bi-suit-heart-fill ms-2"></i>

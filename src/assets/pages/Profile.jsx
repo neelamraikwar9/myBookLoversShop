@@ -1,25 +1,14 @@
-
 import { useState, useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import React, { useRef } from 'react';
-
-
-
-
+import { useRef } from "react";
 
 const Profile = () => {
-
   const inputRef = useRef(null);
 
-  const {
-    saveData,
-    setSaveData,
-  } = useBookContext();
+  const { saveData, setSaveData } = useBookContext();
 
-
-  
   const initial = {
     id: uuidv4(),
     name: "",
@@ -32,21 +21,25 @@ const Profile = () => {
     streetAddress: "",
   };
 
-  
   const [form, setForm] = useState(initial);
 
   const formStorageData = localStorage.getItem("formData");
   console.log(formStorageData, "dkjfiuuyudjkl");
 
-
-    //useStates for editing in checkout page;
+  //useStates for editing in checkout page;
   const [editAddressIndex, setEditAddressIndex] = useState();
   const [buttonLabel, setButtonLabel] = useState(false);
 
+  // const [addressSelectedId, setAddressSelectedId] = useState(uuidv4());
+  const [addressSelectedId, setAddressSelectedId] = useState(() => uuidv4());
+
+  // const handleSelect = (addressSelectedId) => {
+  //   localStorage.setItem('selectedAddress', JSON.stringify(addressObj));
+  // }
+  
 
   console.log(form, "checkinform");
   console.log(saveData, "dright");
-
 
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
@@ -62,12 +55,10 @@ const Profile = () => {
     setSaveData(updateDelete);
     localStorage.setItem("formData", JSON.stringify(updateDelete));
   }
-    console.log(saveData, "dflkj ");
+  console.log(saveData, "dflkj ");
 
-
-
-    const handleEdit = (id) => {
-     inputRef.current?.focus();
+  const handleEdit = (id) => {
+    inputRef.current?.focus();
     setButtonLabel(true);
     console.log("dfoeifw", id);
     const selectedAddress = saveData.find((add) => add.id === id);
@@ -81,16 +72,11 @@ const Profile = () => {
     console.log(setEditAddressIndex, "edjitjitj");
   };
 
-
-
-   const handleInputOnChange = (e) => {
+  const handleInputOnChange = (e) => {
     const { name, value } = e.target;
     console.log(name, value, "kfd");
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-
-
-
 
   function formSubmitHandler(event) {
     event.preventDefault();
@@ -127,11 +113,15 @@ const Profile = () => {
     );
 
     setForm(initial); // Reset form after submit;
-    setButtonLabel(false);  //reset button.
-
+    setButtonLabel(false); //reset button.
   }
 
-  
+
+
+  const handleSelect = (addressObj) => {
+    localStorage.setItem('selectedAddress', JSON.stringify(addressObj));
+  }
+
   return (
     <main>
       <div className="container">
@@ -152,7 +142,7 @@ const Profile = () => {
 
         <div className="card col-md-4 container py-3 text-center">
           <h3>Address Form</h3>
-          <form onSubmit={ formSubmitHandler}>
+          <form onSubmit={formSubmitHandler}>
             <label htmlFor="nam">Name:-</label>
             <input
               type="text"
@@ -281,45 +271,59 @@ const Profile = () => {
 
             <h5 className="container py-2">Address:-</h5>
             {saveData.length > 0 &&
-              saveData?.map((user, index) => 
-                {
-                  console.log(user,'hifuhiwuuiefu')
-                  return(
+              saveData?.map((user, index) => {
+                console.log(user, "hifuhiwuuiefu");
+                return (
+                  <div
+                    key={index}
+                    className="container card col-md-8 mt-4 fs-6"
+                  >
+                    <div className="container py-3">
+                      <p>Name:- {user.name}</p>
+                      <p>Phone No:- {user.phoneNo}</p>
+                      <p>Selected Address:- {user.selectedAddress}</p>
+                      <p>Country:- {user.country}</p>
+                      <p>State:- {user.stateName}</p>
+                      <p>City:- {user.city}</p>
+                      <p>Zip Code:- {user.zipCode}</p>
+                      <p>Street Address:- {user.streetAddress}</p>
+                      <div className="d-flex d-grid gap-3">
+                        <button
+                          type="button"
+                          onClick={() => handleEdit(user?.id)}
+                          // onClick={() => handleEdit(user?.phoneNo)}
 
-                <div key={index} className="container card col-md-8 mt-4 fs-6">
-                  <div className="container py-3">
-                    <p>Name:- {user.name}</p>
-                    <p>Phone No:- {user.phoneNo}</p>
-                    <p>Selected Address:- {user.selectedAddress}</p>
-                    <p>Country:- {user.country}</p>
-                    <p>State:- {user.stateName}</p>
-                    <p>City:- {user.city}</p>
-                    <p>Zip Code:- {user.zipCode}</p>
-                    <p>Street Address:- {user.streetAddress}</p>
-                    <div className="d-flex d-grid gap-3">
-                      <button
-                        type="button"
-                        onClick={() => handleEdit(user?.id)}
-                        // onClick={() => handleEdit(user?.phoneNo)}
-
-                        className="btn btn-outline-secondary"
-                      >
-                        <i className="bi bi-pen-fill"></i>Edit
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(user.name)}
-                        className="btn btn-outline-danger"
-                      >
-                        <i className="bi bi-trash"></i>Delete
-                      </button>
+                          className="btn btn-outline-secondary"
+                        >
+                          <i className="bi bi-pen-fill"></i>Edit
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(user.name)}
+                          className="btn btn-outline-danger"
+                        >
+                          <i className="bi bi-trash"></i>Delete
+                        </button>
+                      </div>
+                      <br />
+                      <input
+                        type="radio"
+                        name="address"
+                        checked={addressSelectedId === user.id}
+                        value={user.id}
+                        onChange={() => {setAddressSelectedId(user.id)
+                         handleSelect(user);   
+                        }}
+                        style={{ marginRight: 8 }}
+      
+                      />
+                        {console.log(addressSelectedId, "dfsk")}
+                      <h4>Select {user.name}</h4>
+                      {/* <div>{user.details}</div> */}
                     </div>
                   </div>
-                </div>
-                  )
-
-            }
-              )}
+                );
+              })}
             <Link to="/CheckOut-page">
               <button className="btn btn-primary mt-5 w-100">Checkout</button>
             </Link>
