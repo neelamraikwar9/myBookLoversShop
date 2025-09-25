@@ -303,6 +303,9 @@ const Profile = () => {
                         </button>
                       </div>
                       <br />
+                      <div className="container d-flex align-items-center gap-3">
+                      <label><h5>Select {user.name}</h5>
+                      </label>
                       <input
                         type="radio"
                         name="address"
@@ -312,11 +315,11 @@ const Profile = () => {
                           setAddressSelectedId(user.id);
                           handleSelect(user);
                         }}
-                        style={{ marginRight: 8 }}
+                
                       />
                       {console.log(addressSelectedId, "dfsk")}
-                      <h4>Select {user.name}</h4>
-                      {/* <div>{user.details}</div> */}
+
+                      </div>
                     </div>
                   </div>
                 );
