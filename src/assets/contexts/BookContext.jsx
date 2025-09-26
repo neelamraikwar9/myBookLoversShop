@@ -28,7 +28,6 @@ export function BookProvider({ children }) {
     return savedList ? JSON.parse(savedList) : [];
   });
 
-  // const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
 
   const [saveData, setSaveData] = useState(() => {
@@ -44,7 +43,7 @@ export function BookProvider({ children }) {
     }
   }, [data, allData]);
 
-  //Function to add Card in a Cart page.
+  //Function for adding Card in a Cart page.
   const bookCartHandler = (_id) => {
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
@@ -238,17 +237,6 @@ export function BookProvider({ children }) {
       autoClose: 3000,
     });
   }
-
-  // useEffect(() => {
-  //   if (data && data.length > 0) {
-  //     setDataTo(data);
-  //   } else {
-  //     data;
-  //   }
-  // }, [data, dataTo]);
-  // console.log(dataTo, "checking dataTo oncontext");
-
-  //Function for search bar.
 
   function searchBarHandler(value) {
     setSearchInput(value);
