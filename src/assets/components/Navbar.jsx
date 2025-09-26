@@ -8,7 +8,7 @@ import CartListCount from "./CartListCount";
 import useBookContext from "../contexts/BookContext";
 
 const Navbar = () => {
-  const { searchInput } = useBookContext();
+  const { searchInput, searchBarHandler } = useBookContext();
 
   return (
     <>
