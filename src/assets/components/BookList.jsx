@@ -16,7 +16,7 @@ const BookList = () => {
     cart,
     list,
   } = useBookContext();
-  console.log(books);
+  console.log(books, "jhkjhkjhkjhkj");
 
   const { category } = useParams();
   console.log(category, "checking category on bookCOntext");

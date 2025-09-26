@@ -1,27 +1,24 @@
-import React from "react";
 import useFetch from "../hook/useFetch";
 import { useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 
 const CategoryFilter = ({
   datafromcat,
-  checkedTrue,
+
   setCheckedTrue,
   catData,
   setCatData,
 }) => {
   const navigate = useNavigate();
 
-  const { allData, books, setBooks } = useBookContext();
-  // console.log(books, "books");
+  const { allData, setBooks } = useBookContext();
 
   const { data, loading, error } = useFetch(
     "https://category-data.vercel.app/categories"
   );
-  // console.log("Checking data", data);
 
   // const [catData, setCatData] = useState();  //uplifted to filter panel.
   // const [checkedTrue, setCheckedTrue] = useState([]);
@@ -57,10 +54,8 @@ const CategoryFilter = ({
     // const filtered = allData?.filter((b) => b.category === category);
 
     const checked = event.target.checked;
-    // console.log(filtered, "dkfjdklf");
-    // console.log(catData, "fkj")
 
-    // Here we are updating to toggle isChecked of clicked category which is checked. when coming from landing page categories to the books page where we saw checked.
+    // Here we are updating to toggle isChecked of clicked category which is checked. when coming from landing page with featured categories to the books page where we saw checked. In filter selecter.
     const updatedCatData = catData?.map((b) =>
       b.category === category ? { ...b, isChecked: checked } : b
     );

@@ -22,7 +22,6 @@ const FilterPanel = () => {
   const datafromcat = (data) => {
     console.log(data, "fweifjowei");
     setNewData(data);
-    // return data
   };
 
   function clearFilters() {

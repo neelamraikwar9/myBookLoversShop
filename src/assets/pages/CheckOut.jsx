@@ -1,4 +1,3 @@
-import React from "react";
 import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -25,7 +24,7 @@ const CheckOut = () => {
   console.log(discount, "kjl");
 
   const totalAmount = cart?.reduce(
-    (acc, curr) => acc + (discount - parsePrice(curr.salePrice)),
+    (acc, curr) => acc + (parsePrice(curr.salePrice) - discount),
     0
   );
   console.log(totalAmount, "hgj");
@@ -43,7 +42,6 @@ const CheckOut = () => {
 
   return (
     <main className="container">
-      {/* when address is selected - take them to checkout page - which gives the order summary - when user clicks on checkout - display a message "Order places successfully" */}
       <h1>Checkout</h1>
       <br />
 
@@ -61,53 +59,6 @@ const CheckOut = () => {
                   </button>
                 </Link>
               </div>
-
-              {/* //If I have to all data from the local storage then i have to show it by saveData.  */}
-              {/* {saveData && saveData.length > 0 ? (
-                saveData.map((user, index) => (
-                  <div
-                    key={index}
-                    className="container card col-md-10 py-3 mt-3 mb-3"
-                  >
-                    <p>
-                      <strong>Name:- </strong>
-                      {user.name}
-                    </p>
-                    <p>
-                      <strong>Phone No:- </strong>
-                      {user.phoneNo}
-                    </p>
-                    <p>
-                      <strong>Selected Address:- </strong>
-                      {user.selectedAddress}
-                    </p>
-                    <p>
-                      <strong>Country:- </strong>
-                      {user.country}
-                    </p>
-                    <p>
-                      <strong>State:- </strong>
-                      {user.stateName}
-                    </p>
-                    <p>
-                      <strong>City:- </strong>
-                      {user.city}
-                    </p>
-                    <p>
-                      <strong>Zip Code:- </strong>
-                      {user.zipCode}
-                    </p>
-                    <p>
-                      <strong>Street Address:- </strong>
-                      {user.streetAddress}
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <p></p>
-              )}
-            </div>
-          </div> */}
 
               {/* {saveData && saveData.length > 0 ? (
                 saveData.map((user, index) => ( */}
@@ -181,7 +132,6 @@ const CheckOut = () => {
             </div>
           </div>
 
-          {/* <div className="container"> */}
           <div className="col-md-12 mt-5">
             <div className="card">
               <div className="card-header">
@@ -199,16 +149,16 @@ const CheckOut = () => {
                           className="img-fluid border border-warning mt-3 mb-2"
                         />
                       </div>
-                      <div className="col-md-10 container py-5 p-5 d-flex">
+                      <div className="col-md-10 container py-md-5 p-md-5 d-md-flex">
                         <h5 className="card-title py-3">
                           <i>
                             {item.name} by {item.author}
                           </i>
                         </h5>
-                        <h4 className="card-text py-3 ms-5 p">
+                        <h4 className="card-text py-3 ms-md-5 p">
                           {item.salePrice}
                         </h4>
-                        <h5 className="py-3 ms-5">
+                        <h5 className="py-3 ms-md-5">
                           {" "}
                           Quantity: {item.quantity}
                         </h5>

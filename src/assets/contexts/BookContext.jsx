@@ -16,22 +16,19 @@ export function BookProvider({ children }) {
   const [books, setBooks] = useState(data);
   const [allData, setAllData] = useState(data);
 
-  //  const [cart, setCart] = useState([]); // early state without using local storage.
-
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
-    // console.log(savedCart, "kjhfkljdf")
+
     return savedCart ? JSON.parse(savedCart) : [];
     console.log(savedCart, "kjhfkljdf");
   });
 
-  // const [list, setList] = useState();
   const [list, setList] = useState(() => {
     const savedList = localStorage.getItem("wishList");
     return savedList ? JSON.parse(savedList) : [];
   });
 
-  const [dataTo, setDataTo] = useState(data);
+  // const [dataTo, setDataTo] = useState(data);
   const [searchInput, setSearchInput] = useState("");
 
   const [saveData, setSaveData] = useState(() => {
@@ -49,8 +46,6 @@ export function BookProvider({ children }) {
 
   //Function to add Card in a Cart page.
   const bookCartHandler = (_id) => {
-    // console.log(_id);
-
     const cartItem = data?.find((book) => book._id === _id);
     console.log(cartItem, "cartItem chekcing,.. ");
     setCart([...cart, cartItem]);
@@ -72,15 +67,10 @@ export function BookProvider({ children }) {
   function cartRemoveHandler(_id) {
     const updatedCart = cart.filter((car) => car._id !== _id);
     setCart(updatedCart);
+    toast.success("Book removed from Cart.", {
+      autoClose: 3000,
+    });
   }
-
-  // function handleMoveWishlist(_id) {
-  //   const moveWish = cart?.find((book) => book._id === _id);
-  //   setList([...list, moveWish]);
-
-  //   const autoRemoveCart = cart?.filter((book) => book._id !== _id);
-  //   setCart(autoRemoveCart);
-  // }
 
   function handleMoveWishlist(bookId) {
     const moveWish = cart?.find((book) => book._id === bookId);
@@ -99,12 +89,11 @@ export function BookProvider({ children }) {
     setList(updatedWishlist);
 
     toast.success("Book moved to Wishlist.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
 
     const autoRemoveCart = cart?.filter((book) => book._id !== bookId);
     setCart(autoRemoveCart);
-    // toast("Book moved to wishlist.")
   }
 
   useEffect(() => {
@@ -112,36 +101,12 @@ export function BookProvider({ children }) {
     console.log(list, "dfjkstoreu");
   }, [list]);
 
-  // Quantity Function for Cart Page.
-
-  // function quantityFunction({quantity, onIncrement, onDecrement}) {
-  //   return (
-  //     <span className="container ms-3">
-  //       <i
-  //         className="bi bi-plus-circle ms-5 ps-3"
-  //         onClick={() => setCounter((quantity) => quantity + 1)
-  //         }
-  //       ></i>
-  //       <span className="ms-2">{counter}</span>
-  //       <i
-  //         className="bi bi-dash-circle ms-2"
-  //         // onClick={() => setCounter((count) => count - 1)} // earliar
-  //         onClick={() => setCounter((quantity) => quantity - 1)}
-  //       ></i>
-  //     </span>
-  //   );
-  // }
-
   function QuantityFunction({ quantity, onIncrement, onDecrement }) {
     return (
       <span className="container ms-3">
         <div className="d-flex align-items-center gap-3 me-5">
           <p className="mb-0">Quantity</p>
-          <i
-            className="bi bi-dash-circle "
-            // onClick={() => setCounter((count) => count - 1)} // earliar
-            onClick={onDecrement}
-          ></i>
+          <i className="bi bi-dash-circle " onClick={onDecrement}></i>
           <span className="fs-5">{quantity}</span>
           <i className="bi bi-plus-circle " onClick={onIncrement}></i>
         </div>
@@ -150,7 +115,6 @@ export function BookProvider({ children }) {
   }
 
   // Functions to handle increment or decrement of a particular product in the cart.
-
   function incrementQuantity(bookId) {
     const increment = cart.map((item) =>
       item._id === bookId
@@ -176,26 +140,19 @@ export function BookProvider({ children }) {
     setList([...list, wishList]);
 
     toast.success("Book added to Wishlist.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
   }
 
   function wishListRemoveHandler(_id) {
     const updateWishList = list?.filter((book) => book?._id !== _id);
     setList(updateWishList);
+    toast.success("Book removed from Wishlist.", {
+      autoClose: 3000,
+    });
   }
 
-  // function handleMoveCart(_id) {
-  //   const moveCart = list?.find((book) => book._id === _id);
-  //   console.log(moveCart, "ckljk")
-  //   setCart([...cart, moveCart]);
-
-  //   const autoRemoveList = list?.filter((book) => book._id !== _id);
-  //   setList(autoRemoveList);
-  // }
-
   function handleMoveCart(_id) {
-    // const moveCart = list?.find((book) => book._id === _id);
     const moveCart = list?.find((book) => book._id === _id);
     const existingInCart = cart?.find((book) => book._id === _id);
 
@@ -215,7 +172,7 @@ export function BookProvider({ children }) {
     setCart(updatedCart);
 
     toast.success("Book moved to Cart.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
 
     const autoRemoveList = list?.filter((book) => book._id !== _id);
@@ -238,11 +195,9 @@ export function BookProvider({ children }) {
     setList(updateWishlist);
     console.log(list, "checking list value");
     toast.success("Book added to Wishlist.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
   }
-
-  //local storage..    Adding cart to local storage.
 
   // Function for Add to Cart from book detail page.
   function handleAddToCart(_id) {
@@ -259,10 +214,9 @@ export function BookProvider({ children }) {
       updateCart = [...cart, { ...addToCart, quantity: 1 }];
     }
     setCart(updateCart);
-    // console.log(cart, "checking cart value");
 
     toast.success("Book added to Cart.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
   }
 
@@ -272,7 +226,7 @@ export function BookProvider({ children }) {
     setList([...list, addWish]);
 
     toast.success("Book added to Wishlist.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
   }
 
@@ -281,29 +235,28 @@ export function BookProvider({ children }) {
     setCart([...cart, addCart]);
 
     toast.success("Book added to Cart.", {
-      autoClose: 3000, // 3 seconds
+      autoClose: 3000,
     });
   }
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      setDataTo(data);
-    } else {
-      data;
-    }
-  }, [data, dataTo]);
-  console.log(dataTo, "checking dataTo oncontext");
+  // useEffect(() => {
+  //   if (data && data.length > 0) {
+  //     setDataTo(data);
+  //   } else {
+  //     data;
+  //   }
+  // }, [data, dataTo]);
+  // console.log(dataTo, "checking dataTo oncontext");
 
   //Function for search bar.
 
   function searchBarHandler(value) {
     setSearchInput(value);
     console.log(searchInput, "frljkgd");
-    // const filterData = allData.filter((item) => typeof item ==="string" && item.toLowerCase().includes(searchInput.toLowerCase()));
     const filterData = allData.filter((item) =>
       item.name.toLowerCase().includes(searchInput.toLowerCase())
     );
-    // console.log(allData, "gkkdf")
+
     console.log(filterData, "fjlkdf");
     setBooks(filterData);
   }

@@ -30,12 +30,7 @@ const Profile = () => {
   const [editAddressIndex, setEditAddressIndex] = useState();
   const [buttonLabel, setButtonLabel] = useState(false);
 
-  // const [addressSelectedId, setAddressSelectedId] = useState(uuidv4());
   const [addressSelectedId, setAddressSelectedId] = useState(() => uuidv4());
-
-  // const handleSelect = (addressSelectedId) => {
-  //   localStorage.setItem('selectedAddress', JSON.stringify(addressObj));
-  // }
 
   console.log(form, "checkinform");
   console.log(saveData, "dright");
@@ -64,7 +59,6 @@ const Profile = () => {
     console.log("selectedAddress", selectedAddress);
 
     setForm(selectedAddress); // load entyr data in the form.
-    //  setForm({ phoneNo: selectedData.phoneNo })
 
     setEditAddressIndex(id);
 
@@ -81,8 +75,6 @@ const Profile = () => {
     event.preventDefault();
 
     console.log(form, "jyiouou898");
-
-    // console.log(editAddressIndex, "kfdfkf")
 
     if (editAddressIndex) {
       //update existing address
@@ -176,7 +168,6 @@ const Profile = () => {
               required
               onChange={handleInputOnChange}
             >
-              {/* <option value="">Home</option> */}
               <option value="Home">Home</option>
               <option value="Work">Work</option>
               <option value="Other">Other</option>
@@ -205,7 +196,6 @@ const Profile = () => {
               name="stateName"
               value={form?.stateName || ""}
               required
-              // onChange={(event) => setNameState(event.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
@@ -219,7 +209,6 @@ const Profile = () => {
               name="city"
               value={form?.city || " "}
               required
-              // onChange={(event) => setCity(event.target.value)}
               onChange={handleInputOnChange}
             />
             <br />
@@ -288,8 +277,6 @@ const Profile = () => {
                         <button
                           type="button"
                           onClick={() => handleEdit(user?.id)}
-                          // onClick={() => handleEdit(user?.phoneNo)}
-
                           className="btn btn-outline-secondary"
                         >
                           <i className="bi bi-pen-fill"></i>Edit
@@ -303,22 +290,21 @@ const Profile = () => {
                         </button>
                       </div>
                       <br />
-                      <div className="container d-flex align-items-center gap-3">
-                      <label><h5>Select {user.name}</h5>
-                      </label>
-                      <input
-                        type="radio"
-                        name="address"
-                        checked={addressSelectedId === user.id}
-                        value={user.id}
-                        onChange={() => {
-                          setAddressSelectedId(user.id);
-                          handleSelect(user);
-                        }}
-                
-                      />
-                      {console.log(addressSelectedId, "dfsk")}
-
+                      <div className="container d-flex align-item-between gap-3">
+                        <label>
+                          <h5>Select {user.name}</h5>
+                        </label>
+                        <input
+                          type="radio"
+                          name="address"
+                          checked={addressSelectedId === user.id}
+                          value={user.id}
+                          onChange={() => {
+                            setAddressSelectedId(user.id);
+                            handleSelect(user);
+                          }}
+                        />
+                        {console.log(addressSelectedId, "dfsk")}
                       </div>
                     </div>
                   </div>

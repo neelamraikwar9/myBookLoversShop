@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 import { useParams } from "react-router-dom";
@@ -8,8 +7,6 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
 
   const { category } = useParams();
   console.log(category, "gjkri");
-
-  // const [ratingg, setRatingg] = useState("0"); //lifted up to filter panel.
 
   function ratingChangeHandler(event) {
     const selectedRate = event.target.value;
@@ -23,7 +20,6 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
         return Number(item.rating) >= Number(ratingg);
       });
 
-      // console.log(filteredItem, "checking filteredd items");
       setBooks([...filteredItem]);
     }
   }, [ratingg, allData]);

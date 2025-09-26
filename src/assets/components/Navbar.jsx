@@ -8,7 +8,7 @@ import CartListCount from "./CartListCount";
 import useBookContext from "../contexts/BookContext";
 
 const Navbar = () => {
-  const { searchInput, searchBarHandler } = useBookContext();
+  const { searchInput } = useBookContext();
 
   return (
     <>
@@ -18,7 +18,7 @@ const Navbar = () => {
             to="/"
             className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 "
           >
-            {/* 📚BookLovers */}
+            
             <h1 className="display-4 fw-semibold fst-italic text-dark">
               📚Book<span className="text-secondary">Lovers</span>
             </h1>

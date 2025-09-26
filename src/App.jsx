@@ -16,13 +16,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  //Checking local storage.
-  //     if (typeof(Storage) !== "undefined") {
-  //   console.log("localStorage is supported")
-  // } else {
-  //   console.log("localStorage is not supported")
-  // }
-
+  
   return (
     <>
       <Routes>

@@ -13,7 +13,6 @@ const BookDetail = () => {
   } = useBookContext();
 
   // console.log(allData, "amm i getting allData?");
-  // console.log(allData, "checking data in detail page...");
 
   const { bookId, category } = useParams();
   console.log(bookId);
@@ -199,7 +198,3 @@ const BookDetail = () => {
 };
 
 export default BookDetail;
-
-{
-  /* Book Detail Not Found. */
-}

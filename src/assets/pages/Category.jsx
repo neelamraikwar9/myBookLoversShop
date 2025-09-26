@@ -1,4 +1,3 @@
-import React from "react";
 import useFetch from "../hook/useFetch";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";

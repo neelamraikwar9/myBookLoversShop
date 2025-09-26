@@ -1,11 +1,8 @@
-import React from "react";
 import useBookContext from "../contexts/BookContext";
 import { useEffect } from "react";
 
 const SortPrize = ({ sortOrder, setSortOrder }) => {
   const { allData, books, setBooks, parsePrice } = useBookContext();
-
-  // const [sortOrder, setSortOrder] = useState("Default");    //uplifted this state to Filter Panel.
 
   const sortByPrice = (event) => {
     // const selectedRadio = event.target.value;
@@ -14,16 +11,13 @@ const SortPrize = ({ sortOrder, setSortOrder }) => {
 
   useEffect(() => {
     const safeAllData = books || [];
-    // console.log(allData, "fdjk")
 
     let sortedBooks = [...safeAllData];
-    // console.log(sortedBooks, "547fkj")
 
     if (sortOrder === "Default") {
       console.log(safeAllData, "dkljdf");
       sortedBooks = [...safeAllData];
     } else if (sortOrder === "Low to High") {
-      // console.log(sortedBooks, "jkdfl")
       sortedBooks.sort(
         (a, b) => parsePrice(a.salePrice) - parsePrice(b.salePrice)
       );

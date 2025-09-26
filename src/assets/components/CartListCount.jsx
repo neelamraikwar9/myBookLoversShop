@@ -1,4 +1,3 @@
-import React from "react";
 import useBookContext from "../contexts/BookContext";
 
 const CartListCount = () => {

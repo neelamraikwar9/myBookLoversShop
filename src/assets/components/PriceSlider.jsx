@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import useBookContext from "../contexts/BookContext";
 
@@ -36,7 +35,6 @@ const PriceSlider = ({ price, setPrice }) => {
           <input
             type="range"
             id="rangeInput"
-            // defaultValue={price}
             value={price}
             onChange={handlePriceChange}
             min={100}
