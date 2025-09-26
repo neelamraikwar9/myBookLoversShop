@@ -69,7 +69,8 @@ const BookList = () => {
                     <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
 
                     <div key={book?._id} className="mt-auto">
-                      {cart.find((car) => car?._id === book?._id) ? (
+                      {console.log(cart, "fweiujfoweifoweifoweifweifjweo")}
+                      {cart?.find((car) => car?._id === book?._id) ? (
                         <Link to="/cart-page" className="btn btn-success w-100">
                           Go to Cart
                           <i className="bi bi-cart4"></i>

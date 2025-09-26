@@ -37,7 +37,7 @@ const Category = () => {
             <div
               key={cat._id}
               onClick={() => handleCategoryClick(cat.category)}
-              className="col-md-4 bt-sm-3"
+              className="col-md-4 bt-sm-3 mb-5"
             >
               <div className="container">
                 <div className="card">
@@ -55,8 +55,8 @@ const Category = () => {
       ) : (
         <p></p>
       )}
-      <br />
-      <div className="container col-md-4 py-5">
+
+      <div className="container col-md-4">
         <div className="card">
           <Link to="/books">
             <img

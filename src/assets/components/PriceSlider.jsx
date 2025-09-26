@@ -42,7 +42,6 @@ const PriceSlider = ({ price, setPrice }) => {
             step={100}
           />
         </label>
-        {/* <button type="button" onClick={() => setPrice(price)}>Clear Slider🧹</button> */}
       </form>
     </div>
   );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const CheckOut = () => {
-  const { cart, parsePrice } = useBookContext();
+  const { cart, parsePrice, clearCart } = useBookContext();
 
   const totalItems = cart?.reduce(
     (acc, curr) => acc + Number(curr.quantity),
@@ -47,12 +47,12 @@ const CheckOut = () => {
 
       <div className="container ">
         <div className="row">
-          <div className="col-md-7">
+          <div className="col-md-7 mb-5">
             <div className="card">
               <div className="card-header">
                 <h4>Selected Address</h4>
               </div>
-              <div className="d-flex justify-content-end">
+              <div className="d-flex justify-content-end me-3">
                 <Link to="/profile-page">
                   <button type="button" className="btn btn-outline-info mt-3">
                     Manage Address
@@ -121,7 +121,7 @@ const CheckOut = () => {
                 </h5>
               </div>
               <Link to="/order">
-                <button className="btn btn-primary w-100">Place Order</button>
+                <button className="btn btn-primary w-100" onClick={clearCart}>Place Order</button>
               </Link>
             </div>
           </div>

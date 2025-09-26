@@ -73,7 +73,7 @@ export const Cart = () => {
                 cart?.map((car) => (
                   <div key={car?._id} className="card mt-2 w-auto mt-auto mb-3">
                     <div className="row align-items-start justify-content-start">
-                      <div className="col-md-6 col-ms-6 mt-3">
+                      <div className="col-md-6 col-ms-4 mt-3">
                         <img
                           src={car.image}
                           alt={car.name}
@@ -100,10 +100,10 @@ export const Cart = () => {
                             onDecrement={() => decrementQuantity(car._id)}
                           />
 
-                          <div className="">
+                          <div className="mb-2">
                             {/* <Link to="/wishList-page"> */}
                             <button
-                              className="btn btn-outline-secondary "
+                              className="btn btn-outline-secondary mb-2 display-block "
                               onClick={() => handleMoveWishlist(car._id)}
                             >
                               {" "}
@@ -113,7 +113,7 @@ export const Cart = () => {
                             {/* </Link> */}
 
                             <button
-                              className="btn btn-secondary"
+                              className="btn btn-secondary display-block"
                               onClick={() => cartRemoveHandler(car._id)}
                             >
                               Remove From Cart <i className="bi bi-cart4"></i>

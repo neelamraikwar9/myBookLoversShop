@@ -9,7 +9,7 @@ const Background = () => {
         alt="bookStore"
         className="img-fluid"
       />
-      <h1 className="text-end">BookLovers Shop!!</h1>
+      <h1 className="text-end">BookReaders Shop!!</h1>
     </div>
   );
 };

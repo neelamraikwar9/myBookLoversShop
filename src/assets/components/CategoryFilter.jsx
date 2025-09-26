@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 const CategoryFilter = ({
   datafromcat,
-
   setCheckedTrue,
   catData,
   setCatData,
@@ -29,15 +28,12 @@ const CategoryFilter = ({
         ...item,
         isChecked: false,
       }));
-      //  setCatData(addedNewKey)
-      datafromcat(addedNewKey);
-      // console.log(addedNewKey, "Checking newData");
 
-      // console.log(category, "chejkgvhtrfry", catData);
+      datafromcat(addedNewKey);
+
       const checkedCheck = addedNewKey?.map((b) =>
         b.category === category ? { ...b, isChecked: true } : { ...b }
       );
-      // console.log(checkedCheck, "chedkingedkedfiltere");
 
       setCatData(checkedCheck);
     } else {
@@ -45,14 +41,10 @@ const CategoryFilter = ({
     }
   }, [data]);
 
-  // console.log(catData, "Checking catData");
-
   function updatedFilter(event, category) {
-    // const filtered = allData?.filter((b) => b.category === category);
-
     const checked = event.target.checked;
 
-    // Here we are updating to toggle isChecked of clicked category which is checked. when coming from landing page with featured categories to the books page where we saw checked. In filter selecter.
+    // Here updating to toggle isChecked of clicked category which is checked.
     const updatedCatData = catData?.map((b) =>
       b.category === category ? { ...b, isChecked: checked } : b
     );
@@ -63,7 +55,6 @@ const CategoryFilter = ({
     const checkedCategories = updatedCatData
       .filter((cat) => cat.isChecked)
       .map((cat) => cat.category);
-    console.log(checkedCategories, "yurifkjdf");
 
     setCheckedTrue(updatedCatData.filter((cat) => cat.isChecked));
 
@@ -74,9 +65,8 @@ const CategoryFilter = ({
       );
       setBooks(filteredBooks);
     } else {
-      // If no categories checked, reset to show all books
       setBooks(allData);
-      navigate("/books"); // optional: to clear filters route
+      navigate("/books");
     }
   }
 
@@ -93,22 +83,22 @@ const CategoryFilter = ({
               console.log(cat, "jeofiwoeiowfie");
 
               return (
-                <label
-                  htmlFor={cat.category}
-                  key={cat.category}
-                  className="ms-3"
-                >
-                  <input
-                    type="checkbox"
-                    onChange={(e) => updatedFilter(e, cat.category)}
-                    id={cat.category}
-                    value={true}
-                    name={cat.category}
-                    checked={cat?.isChecked}
-                  />
-                  {cat?.category}
+                <div>
+                  <label htmlFor={cat.category} key={cat.category}>
+                    <input
+                      type="checkbox"
+                      onChange={(e) => updatedFilter(e, cat.category)}
+                      id={cat.category}
+                      value={true}
+                      name={cat.category}
+                      checked={cat?.isChecked}
+                      className="ms-"
+                    />
+                    {cat?.category}
+                    <br />
+                  </label>
                   <br />
-                </label>
+                </div>
               );
             })}
           </div>

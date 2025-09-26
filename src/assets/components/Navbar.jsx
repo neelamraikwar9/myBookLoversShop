@@ -18,13 +18,12 @@ const Navbar = () => {
             to="/"
             className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 "
           >
-            
             <h1 className="display-4 fw-semibold fst-italic text-dark">
-              📚Book<span className="text-secondary">Lovers</span>
+              📚Book<span className="text-secondary">Readres</span>
             </h1>
           </NavLink>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler me-2"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -48,7 +47,17 @@ const Navbar = () => {
                   <strong>Wishlist</strong>
                   <span className="position-relative">
                     <FontAwesomeIcon icon={faHeart} />
-                    <span className="position-absolute top-0 start-1 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle">
+                    <span
+                      className="position-absolute top-0 start-100 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle"
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        padding: "0.5rem",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
                       <WishListCount />{" "}
                     </span>
                   </span>
@@ -59,7 +68,17 @@ const Navbar = () => {
                   <strong>Cart</strong>
                   <span className="position-relative">
                     <FontAwesomeIcon icon={faCartShopping} />
-                    <span className="position-absolute top-0 start-1 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle">
+                    <span
+                      className="position-absolute top-0 start-100 translate-middle p-1 badge text-bg-secondary border border-light rounded-circle"
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        padding: "0.5rem",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
                       <CartListCount />{" "}
                     </span>
                   </span>
@@ -73,11 +92,11 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className="ms-md-6">
-              <div className="d-flex justify-content-center me-lg-5 me-md-5">
-                <i className="bi bi-search left-align"></i>
+            <div className="ms-md-6 col-sm-12 col-md-6">
+              <div className="container d-flex align-item-between">
+                <i className="bi bi-search py-2"></i>
                 <input
-                  className="mx-3"
+                  className="mx-3 form-control"
                   type="search"
                   placeholder="Search books..."
                   aria-label="Search"

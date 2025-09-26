@@ -29,8 +29,6 @@ const Profile = () => {
   const [editAddressIndex, setEditAddressIndex] = useState();
   const [buttonLabel, setButtonLabel] = useState(false);
 
-  const [addressSelectedId, setAddressSelectedId] = useState(() => uuidv4());
-
   console.log(form, "checkinform");
   console.log(saveData, "dright");
 
@@ -104,9 +102,11 @@ const Profile = () => {
     setButtonLabel(false);
   }
 
-  const handleSelect = (addressObj) => {
-    localStorage.setItem("selectedAddress", JSON.stringify(addressObj));
-  };
+  function handleSelectAddress(userData) {
+    console.log(userData, "ckljcjklkljcjlkc");
+
+    localStorage.setItem("selectedAddress", JSON.stringify(userData));
+  }
 
   return (
     <main>
@@ -126,14 +126,14 @@ const Profile = () => {
         <br />
         <br />
 
-        <div className="card col-md-4 container py-3 text-center">
-          <h3>Address Form</h3>
+        <div className="card col-md-4 container py-3">
+          <h3 className="text-center">Address Form</h3>
           <form onSubmit={formSubmitHandler}>
             <label htmlFor="nam">Name:-</label>
             <input
               type="text"
               id="nam"
-              className="ms-2"
+              className="form-control"
               name="name"
               value={form?.name || ""}
               required
@@ -147,7 +147,7 @@ const Profile = () => {
             <input
               type="number"
               id="phn"
-              className="ms-2"
+              className="form-control"
               name="phoneNo"
               value={form?.phoneNo || ""}
               required
@@ -159,7 +159,7 @@ const Profile = () => {
             <label htmlFor="add">Select Address:- </label>
             <select
               id="add"
-              className="ms-2"
+              className="form-select"
               name="selectedAddress"
               value={form?.selectedAddress}
               required
@@ -176,7 +176,7 @@ const Profile = () => {
             <input
               type="text"
               id="con"
-              className="ms-2"
+              className="form-control"
               name="country"
               value={form?.country || ""}
               required
@@ -189,7 +189,7 @@ const Profile = () => {
             <input
               type="text"
               id="stat"
-              className="ms-2"
+              className="form-control"
               name="stateName"
               value={form?.stateName || ""}
               required
@@ -202,7 +202,7 @@ const Profile = () => {
             <input
               type="text"
               id="cit"
-              className="ms-2"
+              className="form-control"
               name="city"
               value={form?.city || " "}
               required
@@ -215,7 +215,7 @@ const Profile = () => {
             <input
               type="text"
               id="zip"
-              className="ms-2"
+              className="form-control"
               name="zipCode"
               value={form?.zipCode || ""}
               required
@@ -228,7 +228,7 @@ const Profile = () => {
             <input
               type="text"
               id="str"
-              className="ms-2"
+              className="form-control"
               name="streetAddress"
               value={form?.streetAddress || ""}
               required
@@ -237,17 +237,18 @@ const Profile = () => {
             <br />
             <br />
 
-            {console.log(buttonLabel, "dfjkjdfjk")}
-            <button type="submit" className="btn btn-primary">
-              {!buttonLabel ? "Add Address" : "Save Address"}
-            </button>
+            <div className="d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary">
+                {!buttonLabel ? "Add Address" : "Save Address"}
+              </button>
+            </div>
           </form>
         </div>
         <br />
         <br />
 
         <div className="d-flex justify-content-center">
-          <div className="card col-md-8">
+          <div className="card col-md-8 w-100">
             <div className="card-header">
               <h3>Manage Address</h3>
             </div>
@@ -255,13 +256,9 @@ const Profile = () => {
             <h5 className="container py-2">Address:-</h5>
             {saveData.length > 0 &&
               saveData?.map((user, index) => {
-                console.log(user, "hifuhiwuuiefu");
                 return (
-                  <div
-                    key={index}
-                    className="container card col-md-8 mt-4 fs-6"
-                  >
-                    <div className="container py-3">
+                  <div key={index} className="card col-md-8 mt-4 fs-6 ms-3">
+                    <div className="ms-3 py-3">
                       <p>Name:- {user.name}</p>
                       <p>Phone No:- {user.phoneNo}</p>
                       <p>Selected Address:- {user.selectedAddress}</p>
@@ -287,29 +284,25 @@ const Profile = () => {
                         </button>
                       </div>
                       <br />
-                      <div className="container d-flex align-item-between gap-3">
-                        <label>
-                          <h5>Select {user.name}</h5>
-                        </label>
-                        <input
-                          type="radio"
-                          name="address"
-                          checked={addressSelectedId === user.id}
-                          value={user.id}
-                          onChange={() => {
-                            setAddressSelectedId(user.id);
-                            handleSelect(user);
-                          }}
-                        />
-                        {console.log(addressSelectedId, "dfsk")}
+                      <div className="d-flex align-item-between gap-3">
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => handleSelectAddress(user)}
+                        >
+                          Select Address
+                        </button>
                       </div>
                     </div>
                   </div>
                 );
               })}
-            <Link to="/CheckOut-page">
-              <button className="btn btn-primary mt-5 w-100">Checkout</button>
-            </Link>
+            <div className="d-flex justify-content-center">
+              <Link to="/CheckOut-page">
+                <button className="btn btn-primary mt-5 mb-3 px-auto py-auto">
+                  Checkout
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

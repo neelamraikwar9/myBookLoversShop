@@ -257,6 +257,12 @@ export function BookProvider({ children }) {
     return isNaN(parsed) ? 0 : parsed;
   }
 
+  // Function for clear Cart.
+  function clearCart() {
+    setCart([]);
+    // localStorage.removeItem('cart')
+  }
+
   const value = {
     books,
     setBooks,
@@ -284,6 +290,7 @@ export function BookProvider({ children }) {
     setSaveData,
     parsePrice,
     searchBarHandler,
+    clearCart,
   };
 
   return <BookContext.Provider value={value}>{children}</BookContext.Provider>;

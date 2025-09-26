@@ -11,7 +11,7 @@ const WishList = () => {
       <br />
       {list && list.length > 0 ? (
         <div>
-          <div className="row py-5">
+          <div className="row py-3">
             {list?.map((book) => (
               <div key={book?._id} className="container col-md-4 mt-5">
                 <div className="card h-100 ">

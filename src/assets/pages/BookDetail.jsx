@@ -24,7 +24,7 @@ const BookDetail = () => {
     <>
       {loading && (
         <h2 className="container py-5">
-          <i>Book Details are Loading...🌸🌸</i>
+          <i>Book Detail is Loading...🌸🌸</i>
         </h2>
       )}
       {error && <p>An error occured while fetching books.</p>}
@@ -78,10 +78,9 @@ const BookDetail = () => {
                         <span className="text-success">{data?.price}</span>
                       </del>
                     </h2>
-                    <h4 className="text-success">{data?.discount}</h4>
-                    <p>Quantity: </p>
+
                     <hr />
-                    <div className="container d-flex">
+                    <div className="container d-flex align-item-center">
                       <i className="bi bi-wallet-fill ms-5"></i>
                       <span className="ms-2">Pay on Delivery</span>
                       <i className="bi bi-truck-front-fill ms-5"></i>
