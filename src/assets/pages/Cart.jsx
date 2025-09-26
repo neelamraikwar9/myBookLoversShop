@@ -67,7 +67,7 @@ export const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className=" col-sm-row  d-md-flex justify-content-md-between border border-primary">
+          <div className=" col-sm-row  d-md-flex justify-content-md-between">
             <div className="container">
               {cart.length &&
                 cart?.map((car) => (

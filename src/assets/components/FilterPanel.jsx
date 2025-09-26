@@ -1,4 +1,3 @@
-import React from "react";
 import CategoryFilter from "../components/CategoryFilter";
 import RatingButtons from "../components/RatingButtons";
 import SortPrice from "../components/SortPrice";

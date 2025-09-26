@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const CheckOut = () => {
-  const { saveData, cart, parsePrice } = useBookContext();
+  const { cart, parsePrice } = useBookContext();
 
   const totalItems = cart?.reduce(
     (acc, curr) => acc + Number(curr.quantity),
@@ -60,8 +60,6 @@ const CheckOut = () => {
                 </Link>
               </div>
 
-              {/* {saveData && saveData.length > 0 ? (
-                saveData.map((user, index) => ( */}
               <div
                 key={selectedAddress?.id}
                 className="container card col-md-10 py-3 mt-3 mb-3"
@@ -99,10 +97,6 @@ const CheckOut = () => {
                   {selectedAddress?.streetAddress}
                 </p>
               </div>
-              {/* )) */}
-              {/* ) : (
-                <p></p>
-              )} */}
             </div>
           </div>
 

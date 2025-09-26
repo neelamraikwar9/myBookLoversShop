@@ -12,18 +12,13 @@ const BookDetail = () => {
     handleAddCart,
   } = useBookContext();
 
-  // console.log(allData, "amm i getting allData?");
-
-  const { bookId, category } = useParams();
+  const { bookId } = useParams();
   console.log(bookId);
 
   const { data, loading, error } = useFetch(
     `https://selling-books-data.vercel.app/books/getBooks/${bookId}`
   );
   console.log(data);
-
-  // const {data2} = useFetch(`https://selling-books-data.vercel.app/books/${category}`)
-  // console.log(data2, "outr")
 
   return (
     <>

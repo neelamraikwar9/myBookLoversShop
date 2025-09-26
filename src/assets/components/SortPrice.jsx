@@ -5,7 +5,6 @@ const SortPrize = ({ sortOrder, setSortOrder }) => {
   const { allData, books, setBooks, parsePrice } = useBookContext();
 
   const sortByPrice = (event) => {
-    // const selectedRadio = event.target.value;
     setSortOrder(event.target.value);
   };
 

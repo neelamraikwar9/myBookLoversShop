@@ -26,7 +26,6 @@ const Profile = () => {
   const formStorageData = localStorage.getItem("formData");
   console.log(formStorageData, "dkjfiuuyudjkl");
 
-  //useStates for editing in checkout page;
   const [editAddressIndex, setEditAddressIndex] = useState();
   const [buttonLabel, setButtonLabel] = useState(false);
 
@@ -58,7 +57,7 @@ const Profile = () => {
     const selectedAddress = saveData.find((add) => add.id === id);
     console.log("selectedAddress", selectedAddress);
 
-    setForm(selectedAddress); // load entyr data in the form.
+    setForm(selectedAddress);
 
     setEditAddressIndex(id);
 
@@ -77,7 +76,6 @@ const Profile = () => {
     console.log(form, "jyiouou898");
 
     if (editAddressIndex) {
-      //update existing address
       console.log(editAddressIndex, "kdjkjfd");
       setSaveData((prevData) =>
         prevData.map((address) =>
@@ -86,7 +84,6 @@ const Profile = () => {
       );
       setEditAddressIndex(null);
     } else {
-      // Add new address with unique id
       setSaveData((prev) => [...prev, { ...form, id: uuidv4() }]);
     }
 
@@ -103,8 +100,8 @@ const Profile = () => {
       )
     );
 
-    setForm(initial); // Reset form after submit;
-    setButtonLabel(false); //reset button.
+    setForm(initial);
+    setButtonLabel(false);
   }
 
   const handleSelect = (addressObj) => {

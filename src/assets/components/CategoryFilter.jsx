@@ -20,9 +20,6 @@ const CategoryFilter = ({
     "https://category-data.vercel.app/categories"
   );
 
-  // const [catData, setCatData] = useState();  //uplifted to filter panel.
-  // const [checkedTrue, setCheckedTrue] = useState([]);
-
   const { category } = useParams();
   console.log(category, "checking category useParams");
 

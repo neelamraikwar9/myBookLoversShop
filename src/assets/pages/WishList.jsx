@@ -1,4 +1,3 @@
-import React from "react";
 import useBookContext from "../contexts/BookContext";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
