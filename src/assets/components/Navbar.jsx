@@ -38,8 +38,8 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto flex-row ms-sm-5 ps-sm-5 mx-md-auto ms-lg-5 ps-lg-5 ms-xl-0 ps-xl-0 ">
               <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5 ms-xl- ">
                 <NavLink to="/books" className="nav-link">
-                  <i className="bi bi-book-fill me-1"></i>
                   <strong>Books</strong>
+                  <i className="bi bi-book-fill me-1"></i>
                 </NavLink>
               </li>
               <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5 ">
@@ -86,8 +86,8 @@ const Navbar = () => {
               </li>
               <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
                 <NavLink to="/profile-page" className="nav-link">
-                  <FontAwesomeIcon icon={faUser} />
                   <strong>Profile</strong>
+                  <FontAwesomeIcon icon={faUser} />
                 </NavLink>
               </li>
             </ul>

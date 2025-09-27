@@ -28,7 +28,7 @@ const PriceSlider = ({ price, setPrice }) => {
   return (
     <div className="container">
       <h5>Price Slider</h5>
-      <h6>₹100 - ₹{price}</h6>
+      <h6>₹100 - ₹1500</h6>
 
       <form>
         <label htmlFor="rangeInput">
@@ -42,6 +42,9 @@ const PriceSlider = ({ price, setPrice }) => {
             step={100}
           />
         </label>
+        <p className="fs-5 ms-5">
+          <span className="text-success">₹{price}</span>
+        </p>
       </form>
     </div>
   );

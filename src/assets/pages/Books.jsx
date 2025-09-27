@@ -8,13 +8,13 @@ const Books = () => {
     <main>
       <div className="container">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <div className="card py-3">
               <FilterPanel />
             </div>
           </div>
 
-          <div className="col-md-9">
+          <div className="col-md-8">
             <div className="container">
               <BookList />
             </div>
