@@ -64,10 +64,13 @@ const BookList = () => {
                     <h5 className="text-center">
                       {book?.name} by {book?.author}
                     </h5>
-                    <h4 className="text-center">
+                    <h6 className="text-center">
+                      by {book?.author}
+                    </h6>
+                    <p className="text-center">
                       <strong>{book?.salePrice}</strong>
-                    </h4>
-                    <h5 className="text-center">⭐⭐⭐⭐⭐{book?.rating}</h5>
+                    </p>
+                    <p className="text-center">⭐⭐⭐⭐⭐{book?.rating}</p>
 
                     <div key={book?._id} className="mt-auto">
                       {console.log(cart, "fweiujfoweifoweifoweifweifjweo")}

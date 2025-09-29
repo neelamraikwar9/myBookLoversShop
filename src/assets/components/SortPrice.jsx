@@ -43,6 +43,7 @@ const SortPrize = ({ sortOrder, setSortOrder }) => {
           value="Default"
           checked={sortOrder === "Default"}
           onChange={sortByPrice}
+          style={{ marginRight: '8px' }}
         />
         Price - Default
       </label>
@@ -55,6 +56,7 @@ const SortPrize = ({ sortOrder, setSortOrder }) => {
           value="Low to High"
           checked={sortOrder === "Low to High"}
           onChange={sortByPrice}
+          style={{ marginRight: '8px' }}
         />
         Price - Low to High
       </label>
@@ -67,6 +69,7 @@ const SortPrize = ({ sortOrder, setSortOrder }) => {
           value="High to Low"
           checked={sortOrder === "High to Low"}
           onChange={sortByPrice}
+          style={{ marginRight: '8px' }}
         />
         Price - High to Low
       </label>

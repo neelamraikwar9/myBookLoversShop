@@ -39,7 +39,7 @@ const Category = () => {
               onClick={() => handleCategoryClick(cat.category)}
               className="col-md-4 bt-sm-3 mb-5"
             >
-              <div class="container">
+              <div className="container">
                 <div className="card">
                   <img
                     src={cat.image}

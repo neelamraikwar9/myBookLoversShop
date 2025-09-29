@@ -92,7 +92,8 @@ const CategoryFilter = ({
                       value={true}
                       name={cat.category}
                       checked={cat?.isChecked}
-                      className="ms-"
+                      
+                      style={{ marginRight: '8px' }}
                     />
                     {cat?.category}
                     <br />

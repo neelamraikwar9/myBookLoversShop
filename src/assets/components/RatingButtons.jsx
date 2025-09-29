@@ -36,6 +36,7 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
           value="4"
           checked={ratingg === "4"}
           onChange={ratingChangeHandler}
+          style={{ marginRight: '8px' }}
         />
         <label htmlFor="four">⭐⭐⭐⭐ and above</label>
         <br />
@@ -47,6 +48,7 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
           value="3"
           checked={ratingg === "3"}
           onChange={ratingChangeHandler}
+          style={{ marginRight: '8px' }}
         />
         <label htmlFor="three">⭐⭐⭐ and above</label>
         <br />
@@ -58,6 +60,7 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
           value="2"
           checked={ratingg === "2"}
           onChange={ratingChangeHandler}
+          style={{ marginRight: '8px' }}
         />
         <label htmlFor="two">⭐⭐ and above</label>
         <br />
@@ -69,6 +72,7 @@ const RatingButtons = ({ ratingg, setRatingg }) => {
           value="1"
           checked={ratingg === "1"}
           onChange={ratingChangeHandler}
+          style={{ marginRight: '8px' }}
         />
         <label htmlFor="one">⭐ and above</label>
       </div>

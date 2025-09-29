@@ -18,8 +18,9 @@ const Navbar = () => {
             to="/"
             className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 "
           >
-            <h1 className="display-4 fw-semibold fst-italic text-dark">
-              📚Book<span className="text-secondary">Readers</span>
+            <h1 className="display-5 fw-semibold fst-italic text-dark">
+            <i class="bi bi-book-half ms-3 me-2"></i>
+              Book<span className="text-secondary">Readers</span>
             </h1>
           </NavLink>
           <button
@@ -39,7 +40,7 @@ const Navbar = () => {
               <li className="nav-item ms-5 ms-md-5 ps-md-5  ms-lg-5 ps-lg-5 ms-xl- ">
                 <NavLink to="/books" className="nav-link">
                   <strong>Books</strong>
-                  <i className="bi bi-book-fill me-1"></i>
+                  <i className="bi bi-book-fill ms-1"></i>
                 </NavLink>
               </li>
               <li className="nav-item ms-3 ms-md-3 ps-md-3 ms-lg-3 ps-lg-3 ">

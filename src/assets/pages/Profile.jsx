@@ -114,19 +114,28 @@ const Profile = () => {
         <div className="col-md-12">
           <div className="card">
             <div className="d-flex justify-content-center">
-              <i className="bi bi-person-bounding-box fa-8x"></i>
+              <i className="bi bi-person-bounding-box fa-3x"></i>
             </div>
             <div className="text-center py-5">
-              <h4>Name: Sem</h4>
-              <h4>Email: sem2025@gmail.com</h4>
-              <h4>Mobile Number: 7685945323</h4>
+              <p>
+                <strong>Name:</strong> Sem
+              </p>
+              <p>
+                <strong>Email:</strong> sem2025@gmail.com
+              </p>
+              <p>
+                <strong>Mobile Number:</strong>7685945323
+              </p>
             </div>
           </div>
         </div>
         <br />
         <br />
+        <h2>Please add address to continue</h2>
+        <br />
+        <br />
 
-        <div className="card col-md-4 container py-3">
+        <div className="card col-md-3 container py-3">
           <h3 className="text-center">Address Form</h3>
           <form onSubmit={formSubmitHandler}>
             <label htmlFor="nam">Name:-</label>
@@ -257,7 +266,7 @@ const Profile = () => {
             {saveData.length > 0 &&
               saveData?.map((user, index) => {
                 return (
-                  <div key={index} className="card col-md-8 mt-4 fs-6 ms-3">
+                  <div key={index} className="card col-md-5 mt-4 fs-6 ms-3">
                     <div className="ms-3 py-3">
                       <p>Name:- {user.name}</p>
                       <p>Phone No:- {user.phoneNo}</p>
