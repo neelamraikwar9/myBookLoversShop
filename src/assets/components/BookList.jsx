@@ -52,6 +52,7 @@ const BookList = () => {
                   <div className="card h-100">
                     <div className="bg-body-secondary">
                       <Link to={`/book/${book?._id}`}>
+                      {/* {console.log(book?.image, "fkljdfkl")} */}
                         <img
                           src={book?.image}
                           alt={book?.name}

@@ -39,14 +39,18 @@ const Category = () => {
               onClick={() => handleCategoryClick(cat.category)}
               className="col-md-4 bt-sm-3 mb-5"
             >
-              <div className="container">
+              <div class="container">
                 <div className="card">
                   <img
                     src={cat.image}
                     alt={cat.category}
-                    className="img-fluid"
+                    className=" card-img-top img-fluid"
                   />
-                  <h4 className="text-center">📔{cat.category}📖</h4>
+                  <div className="card-body">
+                    <h4 className=" card-title text-center">
+                      📔{cat.category}📖
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -60,12 +64,14 @@ const Category = () => {
         <div className="card">
           <Link to="/books">
             <img
-              src="https://i.imghippo.com/files/yUC9826KOw.png"
+              src="https://res.cloudinary.com/dltfnhclh/image/upload/v1759136328/Non_Fiction_Books_9_icqebp.png"
               alt="All"
-              className="img-fluid"
+              className=" card-img-top img-fluid"
             />
           </Link>
-          <h4 className="text-center">📔All Books...📖</h4>
+          <div className="card-body">
+            <h4 className="card-title text-center">📔All Books...📖</h4>
+          </div>
         </div>
       </div>
       <div></div>

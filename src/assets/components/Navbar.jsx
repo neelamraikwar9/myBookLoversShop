@@ -19,7 +19,7 @@ const Navbar = () => {
             className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 "
           >
             <h1 className="display-4 fw-semibold fst-italic text-dark">
-              📚Book<span className="text-secondary">Readres</span>
+              📚Book<span className="text-secondary">Readers</span>
             </h1>
           </NavLink>
           <button
@@ -42,7 +42,7 @@ const Navbar = () => {
                   <i className="bi bi-book-fill me-1"></i>
                 </NavLink>
               </li>
-              <li className="nav-item ms-3 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5 ">
+              <li className="nav-item ms-3 ms-md-3 ps-md-3 ms-lg-3 ps-lg-3 ">
                 <NavLink to="/wishList-page" className="nav-link">
                   <strong>Wishlist</strong>
                   <span className="position-relative">
@@ -63,7 +63,7 @@ const Navbar = () => {
                   </span>
                 </NavLink>
               </li>
-              <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
+              <li className="nav-item ms-2 ms-md-3 ps-md-3 ms-lg-3 ps-lg-3">
                 <NavLink to="/cart-page" className="nav-link">
                   <strong>Cart</strong>
                   <span className="position-relative">
@@ -84,7 +84,7 @@ const Navbar = () => {
                   </span>
                 </NavLink>
               </li>
-              <li className="nav-item ms-4 ms-md-5 ps-md-5 ms-lg-5 ps-lg-5">
+              <li className="nav-item ms-3 ms-md-3 ps-md-3 ms-lg-3 ps-lg-3">
                 <NavLink to="/profile-page" className="nav-link">
                   <strong>Profile</strong>
                   <FontAwesomeIcon icon={faUser} />
@@ -92,7 +92,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className="ms-md-6 col-sm-12 col-md-6">
+            <div className="ms-md-6 col-sm-12 col-md-6 ms-lg-6">
               <div className="container d-flex align-item-between">
                 <i className="bi bi-search py-2"></i>
                 <input

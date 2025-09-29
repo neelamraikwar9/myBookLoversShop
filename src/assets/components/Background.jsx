@@ -1,15 +1,13 @@
 const Background = () => {
   return (
     <div className="container">
-      <h1 className="text-start">
-        <i>Warm Welcome To... </i>
-      </h1>
-      <img
-        src="https://i.imghippo.com/files/NQ6680lto.jpg"
-        alt="bookStore"
-        className="img-fluid"
-      />
-      <h1 className="text-end">BookReaders Shop!!</h1>
+      <div className="container col-md-10">
+        <img
+          src="https://i.imghippo.com/files/NQ6680lto.jpg"
+          alt="bookStore"
+          className="img-fluid"
+        />
+      </div>
     </div>
   );
 };
