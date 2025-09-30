@@ -92,8 +92,7 @@ const CategoryFilter = ({
                       value={true}
                       name={cat.category}
                       checked={cat?.isChecked}
-                      
-                      style={{ marginRight: '8px' }}
+                      style={{ marginRight: "8px" }}
                     />
                     {cat?.category}
                     <br />

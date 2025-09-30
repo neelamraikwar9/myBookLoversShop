@@ -42,23 +42,23 @@ const BookDetail = () => {
                         className="img-fluid"
                       />
                     </div>
-                    {/* <Link to="/wishList-page"> */}
-                    <button
-                      className="btn btn-outline-primary display-block w-100 mb-2"
-                      onClick={() => handleAddToWish(data._id)}
-                    >
-                      Add to Wishlist
-                      <i className="bi bi-suit-heart-fill ms-2"></i>
-                    </button>
-                    {/* </Link> */}
-                    {/* <Link to="/cart-page"> */}
-                    <button
-                      className="btn btn-outline-success display-block w-100 mb-3"
-                      onClick={() => handleAddToCart(data._id)}
-                    >
-                      Add to Cart<i className="bi bi-cart4 ms-2"></i>
-                    </button>
-                    {/* </Link> */}
+
+                    <div className="d-flex flex-column px-4">
+                      <button
+                        className="btn btn-outline-primary display-block w-100 mb-2"
+                        onClick={() => handleAddToWish(data._id)}
+                      >
+                        Add to Wishlist
+                        <i className="bi bi-suit-heart-fill ms-2"></i>
+                      </button>
+
+                      <button
+                        className="btn btn-outline-success display-block w-100 mb-3"
+                        onClick={() => handleAddToCart(data._id)}
+                      >
+                        Add to Cart<i className="bi bi-cart4 ms-2"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-8 ">
@@ -151,14 +151,12 @@ const BookDetail = () => {
                             className="img-fluid"
                           />
                         </div>
-                        <h5 className="text-center">
-                          {book.name}
-                        </h5>
-                        <h6 className="text-center">
-                          {book.author}
-                        </h6>
-                        <p className="text-center"><strong>{book.salePrice}</strong></p>
-                        <div className="mt-auto">
+                        <h5 className="text-center">{book.name}</h5>
+                        <h6 className="text-center">{book.author}</h6>
+                        <p className="text-center">
+                          <strong>{book.salePrice}</strong>
+                        </p>
+                        <div className="mt-auto d-flex flex-column px-3">
                           <Link to="/wishList-page">
                             <button
                               className="btn btn-outline-primary display-block w-100 mb-2"

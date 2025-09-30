@@ -121,7 +121,9 @@ const CheckOut = () => {
                 </h5>
               </div>
               <Link to="/order">
-                <button className="btn btn-primary w-100" onClick={clearCart}>Place Order</button>
+                <button className="btn btn-primary w-100" onClick={clearCart}>
+                  Place Order
+                </button>
               </Link>
             </div>
           </div>

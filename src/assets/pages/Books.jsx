@@ -1,4 +1,3 @@
-
 import BookList from "../components/BookList";
 import FilterPanel from "../components/FilterPanel";
 import "./books.css";

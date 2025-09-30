@@ -41,15 +41,15 @@ const Category = () => {
             >
               <div className="container">
                 {/* <div className="card"> */}
-                  <img
-                    src={cat.image}
-                    alt={cat.category}
-                    className=" card-img-top img-fluid"
-                  />
-                  <div className="card-body">
-                    <h4 className=" card-title text-center">
-                      📔{cat.category}📖
-                    </h4>
+                <img
+                  src={cat.image}
+                  alt={cat.category}
+                  className=" card-img-top img-fluid"
+                />
+                <div className="card-body">
+                  <h4 className=" card-title text-center">
+                    📔{cat.category}📖
+                  </h4>
                   {/* </div> */}
                 </div>
               </div>
@@ -62,15 +62,15 @@ const Category = () => {
 
       <div className="container col-md-4">
         {/* <div className="card"> */}
-          <Link to="/books">
-            <img
-              src="https://res.cloudinary.com/dltfnhclh/image/upload/v1759136328/Non_Fiction_Books_9_icqebp.png"
-              alt="All"
-              className=" card-img-top img-fluid"
-            />
-          </Link>
-          <div className="card-body">
-            <h4 className="card-title text-center">📔All Books...📖</h4>
+        <Link to="/books">
+          <img
+            src="https://res.cloudinary.com/dltfnhclh/image/upload/v1759136328/Non_Fiction_Books_9_icqebp.png"
+            alt="All"
+            className=" card-img-top img-fluid"
+          />
+        </Link>
+        <div className="card-body">
+          <h4 className="card-title text-center">📔All Books...📖</h4>
           {/* </div> */}
         </div>
       </div>

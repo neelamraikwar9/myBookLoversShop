@@ -19,7 +19,7 @@ const Navbar = () => {
             className="navbar-brand ms-md-2 ms-lg-2 ms-lg-2 ps-lg-1 "
           >
             <h1 className="display-5 fw-semibold fst-italic text-dark">
-            <i class="bi bi-book-half ms-3 me-2"></i>
+              <i class="bi bi-book-half ms-3 me-2"></i>
               Book<span className="text-secondary">Readers</span>
             </h1>
           </NavLink>

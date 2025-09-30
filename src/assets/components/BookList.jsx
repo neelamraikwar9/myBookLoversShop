@@ -76,12 +76,10 @@ const BookList = () => {
                             className="btn btn-success w-100"
                           >
                             Go to Cart
-                            <i className="bi bi-cart4"></i>
+                            <i className="bi bi-cart4 ms-1"></i>
                           </Link>
                         ) : (
                           <button
-                            // className="btn btn-primary w-100 "
-                            // className="btn btn-primary  ms-3 style={{ width: '50px' }}"
                             className="btn btn-primary w-100}"
                             onClick={() => bookCartHandler(book?._id)}
                           >
@@ -91,10 +89,8 @@ const BookList = () => {
                         )}
 
                         <br />
-
-                        {/* <div className="d-flex flex-column gap-1 px-3" key={book?._id}> */}
                       </div>
-                      <div className="d-flex flex-column px-3 " key={book?._id}>
+                      <div className="d-flex flex-column px-3" key={book?._id}>
                         {list.find((li) => li?._id === book?._id) ? (
                           <Link
                             to="/wishList-page"
@@ -102,7 +98,7 @@ const BookList = () => {
                             style={{ whiteSpace: "nowrap" }}
                           >
                             Go to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-2"></i>
+                            <i className="bi bi-suit-heart-fill ms-1"></i>
                           </Link>
                         ) : (
                           <button
