@@ -26,22 +26,24 @@ const WishList = () => {
                     <h5>{book?.name}</h5>
                     <h6>by {book?.author}</h6>
                     <h4>{book?.salePrice}</h4>
+                    {/* </div> */}
+                    {/* <Link to="/cart-page"> */}
+                    <button
+                      // className="btn btn-outline-primary display-block w-100 mb-2"
+                      className="btn btn-outline-primary w-50 ms-3 mb-2"
+                      onClick={() => handleMoveCart(book?._id)}
+                    >
+                      Move to Cart <i className="bi bi-cart4"></i>
+                    </button>
+                    {/* </Link> */}
+                    <button
+                      className="btn btn-secondary display-block w-50 ms-2 mb-3"
+                      onClick={() => wishListRemoveHandler(book?._id)}
+                    >
+                      Remove from Wishlist{" "}
+                      <i className="bi bi-suit-heart-fill ms-2"></i>
+                    </button>
                   </div>
-                  {/* <Link to="/cart-page"> */}
-                  <button
-                    className="btn btn-outline-primary display-block w-100 mb-2"
-                    onClick={() => handleMoveCart(book?._id)}
-                  >
-                    Move to Cart <i className="bi bi-cart4"></i>
-                  </button>
-                  {/* </Link> */}
-                  <button
-                    className="btn btn-secondary display-block w-100 mb-3"
-                    onClick={() => wishListRemoveHandler(book?._id)}
-                  >
-                    Remove from Wishlist{" "}
-                    <i className="bi bi-suit-heart-fill ms-2"></i>
-                  </button>
                 </div>
               </div>
             ))}

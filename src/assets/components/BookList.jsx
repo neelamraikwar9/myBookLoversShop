@@ -49,10 +49,9 @@ const BookList = () => {
                   key={book?._id}
                   className="col-md-4 container px-auto py-3 d-flex"
                 >
-                  <div className="card h-100">
+                  <div className="card px-1 py-2 d-flex justify-content-between">
                     <div className="bg-body-secondary">
                       <Link to={`/book/${book?._id}`}>
-                      {/* {console.log(book?.image, "fkljdfkl")} */}
                         <img
                           src={book?.image}
                           alt={book?.name}
@@ -61,52 +60,58 @@ const BookList = () => {
                       </Link>
                     </div>
                     <br />
-                    <h5 className="text-center">
-                      {book?.name} by {book?.author}
-                    </h5>
-                    <h6 className="text-center">
-                      by {book?.author}
-                    </h6>
+                    <h5 className="text-center">{book?.name}</h5>
+                    <h6 className="text-center">by {book?.author}</h6>
                     <p className="text-center">
                       <strong>{book?.salePrice}</strong>
                     </p>
                     <p className="text-center">⭐⭐⭐⭐⭐{book?.rating}</p>
 
-                    <div key={book?._id} className="mt-auto">
-                      {console.log(cart, "fweiujfoweifoweifoweifweifjweo")}
-                      {cart?.find((car) => car?._id === book?._id) ? (
-                        <Link to="/cart-page" className="btn btn-success w-100">
-                          Go to Cart
-                          <i className="bi bi-cart4"></i>
-                        </Link>
-                      ) : (
-                        <button
-                          className="btn btn-primary w-100 mb-1"
-                          onClick={() => bookCartHandler(book?._id)}
-                        >
-                          Add to Cart
-                          <i className="bi bi-cart4 ms-2"></i>
-                        </button>
-                      )}
+                    <div className="">
+                      <div key={book?._id} className="d-flex flex-column px-3">
+                        {console.log(cart, "fweiujfoweifoweifoweifweifjweo")}
+                        {cart?.find((car) => car?._id === book?._id) ? (
+                          <Link
+                            to="/cart-page"
+                            className="btn btn-success w-100"
+                          >
+                            Go to Cart
+                            <i className="bi bi-cart4"></i>
+                          </Link>
+                        ) : (
+                          <button
+                            // className="btn btn-primary w-100 "
+                            // className="btn btn-primary  ms-3 style={{ width: '50px' }}"
+                            className="btn btn-primary w-100}"
+                            onClick={() => bookCartHandler(book?._id)}
+                          >
+                            Add to Cart
+                            <i className="bi bi-cart4 ms-2"></i>
+                          </button>
+                        )}
 
-                      <br />
+                        <br />
 
-                      <div className="mt-auto" key={book?._id}>
+                        {/* <div className="d-flex flex-column gap-1 px-3" key={book?._id}> */}
+                      </div>
+                      <div className="d-flex flex-column px-3 " key={book?._id}>
                         {list.find((li) => li?._id === book?._id) ? (
                           <Link
                             to="/wishList-page"
-                            className="btn btn-outline-success w-100"
+                            className="btn btn-outline-success w-100 d-inline-flex justify-content-center"
+                            style={{ whiteSpace: "nowrap" }}
                           >
                             Go to Wishlist
                             <i className="bi bi-suit-heart-fill ms-2"></i>
                           </Link>
                         ) : (
                           <button
-                            className="btn btn-primary w-100"
+                            className="btn btn-primary w-100 d-inline-flex justify-content-center"
                             onClick={() => addToWishlist(book?._id)}
+                            style={{ whiteSpace: "nowrap" }}
                           >
                             Add to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-2"></i>
+                            <i className="bi bi-suit-heart-fill ms-1 "></i>
                           </button>
                         )}
                       </div>

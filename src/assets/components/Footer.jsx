@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="bg-light py-2">
+    <footer className="bg-light py-2 mt-5">
       <p className="text-center">&copy; BookLovers All Right Reserved.</p>
     </footer>
   );

@@ -40,7 +40,7 @@ const Category = () => {
               className="col-md-4 bt-sm-3 mb-5"
             >
               <div className="container">
-                <div className="card">
+                {/* <div className="card"> */}
                   <img
                     src={cat.image}
                     alt={cat.category}
@@ -50,7 +50,7 @@ const Category = () => {
                     <h4 className=" card-title text-center">
                       📔{cat.category}📖
                     </h4>
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@ const Category = () => {
       )}
 
       <div className="container col-md-4">
-        <div className="card">
+        {/* <div className="card"> */}
           <Link to="/books">
             <img
               src="https://res.cloudinary.com/dltfnhclh/image/upload/v1759136328/Non_Fiction_Books_9_icqebp.png"
@@ -71,7 +71,7 @@ const Category = () => {
           </Link>
           <div className="card-body">
             <h4 className="card-title text-center">📔All Books...📖</h4>
-          </div>
+          {/* </div> */}
         </div>
       </div>
       <div></div>

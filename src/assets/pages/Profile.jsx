@@ -131,11 +131,11 @@ const Profile = () => {
         </div>
         <br />
         <br />
-        <h2>Please add address to continue</h2>
+        <h2>Please add address to continue to Add Address</h2>
         <br />
         <br />
 
-        <div className="card col-md-3 container py-3">
+        <div className="card col-md-8 container py-3">
           <h3 className="text-center">Address Form</h3>
           <form onSubmit={formSubmitHandler}>
             <label htmlFor="nam">Name:-</label>
@@ -165,7 +165,7 @@ const Profile = () => {
             <br />
             <br />
 
-            <label htmlFor="add">Select Address:- </label>
+            <label htmlFor="add">Select Address</label>
             <select
               id="add"
               className="form-select"
@@ -262,7 +262,7 @@ const Profile = () => {
               <h3>Manage Address</h3>
             </div>
 
-            <h5 className="container py-2">Address:-</h5>
+            <h5 className="container py-2"> Add Address</h5>
             {saveData.length > 0 &&
               saveData?.map((user, index) => {
                 return (
