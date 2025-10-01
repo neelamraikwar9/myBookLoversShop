@@ -97,7 +97,7 @@ const BookList = () => {
                             className="btn btn-outline-success w-100 d-inline-flex justify-content-center"
                           >
                             Go to Wishlist
-                            <i className="bi bi-suit-heart-fill"></i>
+                            <i className="bi bi-suit-heart-fill ms-1"></i>
                           </Link>
                         ) : (
                           <div className="d-flex">
