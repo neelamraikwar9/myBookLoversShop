@@ -84,7 +84,7 @@ const BookList = () => {
                             onClick={() => bookCartHandler(book?._id)}
                           >
                             Add to Cart
-                            <i className="bi bi-cart4 ms-2"></i>
+                            <i className="bi bi-cart4 ms-1"></i>
                           </button>
                         )}
 
@@ -107,7 +107,7 @@ const BookList = () => {
                             style={{ whiteSpace: "nowrap" }}
                           >
                             Add to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-1 "></i>
+                            <i className="bi bi-suit-heart-fill ms-1"></i>
                           </button>
                         )}
                       </div>
