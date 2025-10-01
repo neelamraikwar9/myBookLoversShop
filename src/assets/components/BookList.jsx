@@ -69,7 +69,7 @@ const BookList = () => {
 
                     <div className="">
                       <div key={book?._id} className="d-flex flex-column px-3">
-                        {console.log(cart, "fweiujfoweifoweifoweifweifjweo")}
+                        {/* {console.log(cart, "fweiujfoweifoweifoweifweifjweo")} */}
                         {cart?.find((car) => car?._id === book?._id) ? (
                           <Link
                             to="/cart-page"
@@ -95,20 +95,20 @@ const BookList = () => {
                           <Link
                             to="/wishList-page"
                             className="btn btn-outline-success w-100 d-inline-flex justify-content-center"
-                            style={{ whiteSpace: "nowrap" }}
                           >
                             Go to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-1"></i>
+                            <i className="bi bi-suit-heart-fill"></i>
                           </Link>
                         ) : (
-                          <button
-                            className="btn btn-primary w-100 d-inline-flex justify-content-center"
-                            onClick={() => addToWishlist(book?._id)}
-                            style={{ whiteSpace: "nowrap" }}
-                          >
-                            Add to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-1"></i>
-                          </button>
+                          <div className="d-flex">
+                            <button
+                              className="btn btn-primary w-100 pe-0 ps-0"
+                              onClick={() => addToWishlist(book?._id)}
+                            >
+                              Add to Wishlist
+                              <i className="bi bi-suit-heart-fill ms-1"></i>
+                            </button>
+                          </div>
                         )}
                       </div>
                     </div>
