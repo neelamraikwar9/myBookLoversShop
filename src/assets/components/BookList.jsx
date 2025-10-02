@@ -30,10 +30,15 @@ const BookList = () => {
     }
   }, [allData, category]);
 
+  // const renderButton = () => {
+  //   return(
+
+  //   )
+  // }
+
   return (
     <>
       <h1 className="py-2">Books[{books?.length}]</h1>
-      {/* {console.log(books)} */}
       <div>
         {loading && (
           <h3 className="py-3">
@@ -69,7 +74,6 @@ const BookList = () => {
 
                     <div className="">
                       <div key={book?._id} className="d-flex flex-column px-3">
-                        {/* {console.log(cart, "fweiujfoweifoweifoweifweifjweo")} */}
                         {cart?.find((car) => car?._id === book?._id) ? (
                           <Link
                             to="/cart-page"
@@ -99,7 +103,7 @@ const BookList = () => {
                               to="/wishList-page"
                               // className="btn btn-outline-success w-100 d-inline-flex justify-content-center px-0 px-md-0"
                               // className="btn btn-outline-success w-100 d-md-flex px-0 px-md-0 p-md-0 mb-md-0"
-                              className="btn btn-outline-success w-100 d-md-flex align-md-items-center justifu-md-center  px-0 px-md-0 p-md-0 mb-md-0  d-flex align-items-center justify-content-center text-nowrap "
+                              className="btn btn-outline-success w-100 px-0 px-md-0 p-md-0 mb-md-0  d-flex align-items-center justify-content-center text-nowrap "
                             >
                               {/* <p className="d-flex-inline"> */}
                               Go to Wishlist
@@ -111,7 +115,7 @@ const BookList = () => {
                             </Link>
                           </div>
                         ) : (
-                          <div className="d-md-flex d-flex align-items-center justify-content-center text-nowrap">
+                          <div className=" align-items-center justify-content-center ">
                             <button
                               className="btn btn-primary w-100 pe-0 ps-0"
                               onClick={() => addToWishlist(book?._id)}
