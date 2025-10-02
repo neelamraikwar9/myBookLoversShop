@@ -83,8 +83,8 @@ const CategoryFilter = ({
               console.log(cat, "jeofiwoeiowfie");
 
               return (
-                <div>
-                  <label htmlFor={cat.category} key={cat.category}>
+                <div key={cat.category}>
+                  <label htmlFor={cat.category} >
                     <input
                       type="checkbox"
                       onChange={(e) => updatedFilter(e, cat.category)}

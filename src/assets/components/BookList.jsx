@@ -96,7 +96,8 @@ const BookList = () => {
 
                         <br />
                       </div>
-                      <div key={book?._id} className="d-flex flex-column px-3">
+                  
+                      <div key={book?._name} className="d-flex flex-column px-3">
                         {list.find((li) => li?._id === book?._id) ? (
                           <div className="d-md-flex px-md-0">
                             <Link
