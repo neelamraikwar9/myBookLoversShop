@@ -96,21 +96,14 @@ const BookList = () => {
 
                         <br />
                       </div>
-                      <div className="d-flex flex-column px-3" key={book?._id}>
+                      <div key={book?._id} className="d-flex flex-column px-3">
                         {list.find((li) => li?._id === book?._id) ? (
                           <div className="d-md-flex px-md-0">
                             <Link
                               to="/wishList-page"
-                              // className="btn btn-outline-success w-100 d-inline-flex justify-content-center px-0 px-md-0"
-                              // className="btn btn-outline-success w-100 d-md-flex px-0 px-md-0 p-md-0 mb-md-0"
-                              className="btn btn-outline-success w-100 px-0 px-md-0 p-md-0 mb-md-0  d-flex align-items-center justify-content-center text-nowrap "
+                              className="btn btn-outline-success w-100 d-inline-flex justify-content-center px-0 px-md-0"
                             >
-                              {/* <p className="d-flex-inline"> */}
                               Go to Wishlist
-                              <span>
-                                <i className="bi bi-suit-heart-fill ms-1"></i>
-                              </span>
-                              {/* </p> */}
                               {/* <i className="bi bi-suit-heart-fill ms-1"></i> */}
                             </Link>
                           </div>
