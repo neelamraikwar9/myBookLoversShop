@@ -79,34 +79,45 @@ const BookList = () => {
                             <i className="bi bi-cart4 ms-1"></i>
                           </Link>
                         ) : (
-                          <button
-                            className="btn btn-primary w-100}"
-                            onClick={() => bookCartHandler(book?._id)}
-                          >
-                            Add to Cart
-                            <i className="bi bi-cart4 ms-1"></i>
-                          </button>
+                          <div className="d-md-flex">
+                            <button
+                              className="btn btn-primary w-100 px-md-0"
+                              onClick={() => bookCartHandler(book?._id)}
+                            >
+                              Add to Cart
+                              <i className="bi bi-cart4 ms-1"></i>
+                            </button>
+                          </div>
                         )}
 
                         <br />
                       </div>
                       <div className="d-flex flex-column px-3" key={book?._id}>
                         {list.find((li) => li?._id === book?._id) ? (
-                          <Link
-                            to="/wishList-page"
-                            className="btn btn-outline-success w-100 d-inline-flex justify-content-center"
-                          >
-                            Go to Wishlist
-                            <i className="bi bi-suit-heart-fill ms-1"></i>
-                          </Link>
+                          <div className="d-md-flex px-md-0">
+                            <Link
+                              to="/wishList-page"
+                              // className="btn btn-outline-success w-100 d-inline-flex justify-content-center px-0 px-md-0"
+                              // className="btn btn-outline-success w-100 d-md-flex px-0 px-md-0 p-md-0 mb-md-0"
+                              className="btn btn-outline-success w-100 d-md-flex align-md-items-center justifu-md-center  px-0 px-md-0 p-md-0 mb-md-0  d-flex align-items-center justify-content-center text-nowrap "
+                            >
+                              {/* <p className="d-flex-inline"> */}
+                              Go to Wishlist
+                              <span>
+                                <i className="bi bi-suit-heart-fill ms-1"></i>
+                              </span>
+                              {/* </p> */}
+                              {/* <i className="bi bi-suit-heart-fill ms-1"></i> */}
+                            </Link>
+                          </div>
                         ) : (
-                          <div className="d-flex">
+                          <div className="d-md-flex d-flex align-items-center justify-content-center text-nowrap">
                             <button
                               className="btn btn-primary w-100 pe-0 ps-0"
                               onClick={() => addToWishlist(book?._id)}
                             >
                               Add to Wishlist
-                              <i className="bi bi-suit-heart-fill ms-1"></i>
+                              {/* <i className="bi bi-suit-heart-fill ms-1"></i> */}
                             </button>
                           </div>
                         )}
