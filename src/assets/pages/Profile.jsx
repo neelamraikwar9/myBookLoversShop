@@ -131,7 +131,7 @@ const Profile = () => {
         </div>
         <br />
         <br />
-        <h2>Please add address to continue to Add Address</h2>
+        <h2>Add Address</h2>
         <br />
         <br />
 
