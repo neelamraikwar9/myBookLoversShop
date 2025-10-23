@@ -1,12 +1,147 @@
-# React + Vite
+# BookReaders
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Books app where you can view books by different Filters, a search bar, Add to Cart/Go to Cart, Add to Wishlist and Go to Wishlist and Detail pages of all Books.
 
-Currently, two official plugins are available:
+Build with React Frontend, Express/Node backend, MongoDB database, Express and React Router.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Demo Link 
+
+[Live Demo](https://anvaya-crm-app-azure.vercel.app) 
+
+
+--- 
+
+
+## Quick Start
+
+```
+
+git clone https://github.com/neelamraikwar9/myBookLoversShop.git  
+cd <myBookLoversShop>
+npm install
+npm run dev
+
+```
+
+
+---
+
+
+## Technologies
+
+- React JS 
+- React Router
+- Node JS
+- Express
+- MongoDB
+- react-toastify
+- axios
+- react-toastify
+- bootstrap-icons
+- Bootstrap
+- React Bootstrap
+- uuid
+- useRef
+
+
+--- 
+
+
+## Demo Video
+
+Watch a Walkthrough 
+[Video](paste video link)
+
+
+---
+
+
+## Features 
+
+**Home**
+
+ - Displayed Books Categories.
+
+
+ **Books**
+
+ - A Filter Panel.
+ - You can filter by Price Slider, Category, Rating and Sort Books by Price.
+ - A Search Bar.
+ - View All Books.
+ - Add to Cart/ Wishlis and Go to Cart/ Wishlist.
+ - Click on Books to get Detail Page of a Book.
+
+
+ **Wishlist**
+ - Display Books.
+ - Move to Cart button.
+ - Remove from Wishlist button.
+
+
+ **Cart**
+ - Display Books with quantity, Price and Discount.
+ - Price Details Card.
+ - Place Order button.
+ - Move to Wishlist and Remove from Cart button.
+
+
+ **Profile**
+
+ - An user profile.
+ - Add Address Form.
+ - Manage Address.
+ - Select Address button.
+ - Checkout button.
+
+
+ **Checkout**
+
+ - Shows Selected Address.
+ - Manage Address button.
+ - Order Summary Card.
+ - Place Order button.
+ - Total Ordered Items with Quantity and Price.  
+
+
+ ---
+
+
+ ## API Refrence
+
+ ### GET /[api/books](https://selling-books-data.vercel.app/books)<br/>
+
+ List of all Books <br/>  
+
+ Sample Response: <br/>
+ 
+ ```
+
+[{ _id, name, author, price, image, category, genre}, ....] 
+
+
+ ```
+
+
+ ### GET /[api/books](https://category-data.vercel.app/categories)<br/>
+
+ List of  Category <br/>  
+
+ Sample Response: <br/>
+ 
+ ```
+
+[{ _id, image, category}] 
+
+
+ ```
+
+
+ ## Contact
+ For bugs or feature request, please reach out to neelam.raikwar.234303@gmail.com
+
+
