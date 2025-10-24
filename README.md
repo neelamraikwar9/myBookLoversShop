@@ -1,6 +1,6 @@
 # BookReaders
 
-A Books app where you can view books by different Filters, a search bar, Add to Cart/Go to Cart, Add to Wishlist and Go to Wishlist and Detail pages of all Books.
+A Books app where you can view books by different filters, a search bar, Add to cart/Go to cart, Add to wishlist and Go to wishlist and Detail Pages of all Books.
 
 Build with React Frontend, Express/Node backend, MongoDB database, Express and React Router.
 
@@ -10,7 +10,7 @@ Build with React Frontend, Express/Node backend, MongoDB database, Express and R
 
 ## Demo Link 
 
-[Live Demo](https://anvaya-crm-app-azure.vercel.app) 
+[Live Demo](https://my-book-lovers-shop.vercel.app/) 
 
 
 --- 
@@ -54,7 +54,7 @@ npm run dev
 ## Demo Video
 
 Watch a Walkthrough 
-[Video](paste video link)
+[Video](https://www.loom.com/share/da210a40b1b64fa8ac04615445be3da1?sid=9c1d02bb-8a00-406b-b56a-747bf98ff86b)
 
 
 ---
@@ -94,7 +94,7 @@ Watch a Walkthrough
 
  - An user profile.
  - Add Address Form.
- - Manage Address.
+ - Manage Address with Edit and Delete button.
  - Select Address button.
  - Checkout button.
 
