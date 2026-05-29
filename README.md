@@ -40,7 +40,6 @@ npm run dev
 - MongoDB
 - react-toastify
 - axios
-- react-toastify
 - bootstrap-icons
 - Bootstrap
 - React Bootstrap
